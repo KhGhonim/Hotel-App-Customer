@@ -36,6 +36,8 @@ export default function MiniHeroSection() {
               src={terace}
               width={600}
               height={300}
+              priority={true}
+              quality={100}
               alt="Night view of   KG Cave Hotel"
               className="rounded-lg w-full h-96 object-cover shadow-2xl"
             />
@@ -48,6 +50,8 @@ export default function MiniHeroSection() {
                 src={Amazing}
                 width={600}
                 height={300}
+                priority={true}
+                quality={100}
                 alt="Breakfast on the terrace with a scenic view"
                 className="absolute hidden lg:block -bottom-20 -left-10 w-96 h-72  object-cover border-4 rounded-lg shadow-xl"
               />

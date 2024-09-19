@@ -6,6 +6,7 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import { HeroSectionSliderDB } from "DB/db";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 
 const SliderTitle = {
   hidden: { opacity: 0, y: 100 },
@@ -38,7 +39,15 @@ export default function HeroSectionSlider() {
         {HeroSectionSliderDB.map((slider, index) => {
           return (
             <SwiperSlide className="relative" key={index}>
-              <img src={slider.image} className="w-full h-dvh object-cover" />
+              <Image
+                alt={slider.title}
+                width={1920}
+                height={1080}
+                src={slider.image}
+                priority={true}
+                quality={100}
+                className="w-full h-dvh object-cover"
+              />
               <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0.8)_100%)]"></div>
               <motion.div
                 variants={SliderTitle}

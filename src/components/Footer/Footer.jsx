@@ -9,16 +9,13 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12 px-4 sm:px-6 lg:px-8 relative">
+    <footer className="bg-gray-900 text-gray-300 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <Image
         src={taksim}
         alt="taksim"
-        layout="fill"
-        objectPosition="center"
+        priority={true}
         quality={100}
-        priority
-        objectFit="cover"
-        className="absolute inset-0"
+        className="absolute inset-0 w-full h-auto object-cover"
       />
       <div className="absolute inset-0 bg-gray-900 bg-opacity-95" />
       <div className="relative max-w-7xl mx-auto">

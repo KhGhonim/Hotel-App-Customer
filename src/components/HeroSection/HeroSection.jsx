@@ -5,7 +5,6 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import Rezervation from "components/Rezervation/Rezervation";
 import { FaSpinner } from "react-icons/fa";
-import MiniHeroSection from "components/MiniHeroSection/MiniHeroSection";
 
 export default function HeroSection() {
   const [data, setdata] = useState({});

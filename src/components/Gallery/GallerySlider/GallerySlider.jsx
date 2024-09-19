@@ -35,6 +35,8 @@ export default function GallerySlider() {
                 width={600}
                 height={400}
                 src={photo.photo}
+                priority={true}
+                quality={100}
                 className="object-cover rounded cursor-pointer"
               />
             </SwiperSlide>
