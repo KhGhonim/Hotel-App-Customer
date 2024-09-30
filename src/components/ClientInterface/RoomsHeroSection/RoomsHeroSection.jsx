@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Amazing from "../../../public/images/Amazing view.jpg";
+import Amazing from "../../../../public/images/Amazing view.jpg";
 
 export default function RoomsHeroSection() {
   return (

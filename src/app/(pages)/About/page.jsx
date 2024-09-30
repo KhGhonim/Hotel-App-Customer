@@ -1,8 +1,9 @@
-import AboutUsEcoFriendly from "components/AboutUsEcoFriendly/AboutUsEcoFriendly";
-import AboutUsHeroSection from "components/AboutUsHeroSection/AboutUsHeroSection";
-import AboutUSHome from "components/AboutUSHome/AboutUSHome";
-import Footer from "components/Footer/Footer";
-import Header from "components/Header/Header";
+import AboutUsEcoFriendly from "components/ClientInterface/AboutUsEcoFriendly/AboutUsEcoFriendly";
+import AboutUsHeroSection from "components/ClientInterface/AboutUsHeroSection/AboutUsHeroSection";
+import AboutUSHome from "components/ClientInterface/AboutUSHome/AboutUSHome";
+import Footer from "components/ClientInterface/Footer/Footer";
+import Header from "components/ClientInterface/Header/Header";
+
 
 export default function page() {
   return (

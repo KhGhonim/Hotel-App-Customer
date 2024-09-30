@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import HotelLogo from "../../../public/images/hotel-svgrepo-com.svg";
+import HotelLogo from "../../../../public/images/hotel-svgrepo-com.svg";
 import { useEffect, useState } from "react";
 import { MdClose, MdOutlineMenu } from "react-icons/md";
 import Link from "next/link";

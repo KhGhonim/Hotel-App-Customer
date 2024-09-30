@@ -1,5 +1,4 @@
 "use client";
-import Footer from "components/Footer/Footer";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaBaby, FaCalendar, FaSpinner, FaUsers } from "react-icons/fa";
@@ -12,9 +11,10 @@ import { FcSafe } from "react-icons/fc";
 import { MdOutlineRoomService } from "react-icons/md";
 import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import HotelLogo from "../../../public/images/Rooms/Connecting Family Room, istanbul, Garden View.webp";
+import HotelLogo from "../../../../public/images/Rooms/Connecting Family Room, istanbul, Garden View.webp";
 import DiferentDates from "./DiferentDates";
 import Link from "next/link";
+import Footer from "components/ClientInterface/Footer/Footer";
 
 export default function page() {
   const [Isloading, setIsloading] = useState(false);

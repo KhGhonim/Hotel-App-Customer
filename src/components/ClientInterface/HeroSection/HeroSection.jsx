@@ -3,8 +3,8 @@ import HeroSectionSlider from "./HeroSectionSlider/HeroSectionSlider";
 import { CiClock2, CiCloud } from "react-icons/ci";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import Rezervation from "components/Rezervation/Rezervation";
 import { FaSpinner } from "react-icons/fa";
+import Rezervation from "../Rezervation/Rezervation";
 
 export default function HeroSection() {
   const [data, setdata] = useState({});

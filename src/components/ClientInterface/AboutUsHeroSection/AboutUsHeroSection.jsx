@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HotelEntrance from "../../../public/images/Entrance-scaled.jpg.webp";
+import HotelEntrance from "../../../../public/images/Entrance-scaled.jpg.webp";
 
 export default function AboutUsHeroSection() {
   return (

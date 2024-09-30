@@ -1,9 +1,9 @@
 "use client";
-import RoomsCard from "components/RoomsCard/RoomsCard";
 import { useEffect, useState } from "react";
 import FinalProducts from "./FinalProducts";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
+import RoomsCard from "../RoomsCard/RoomsCard";
 
 export default function RoomFiltering() {
   const [bedType, setBedType] = useState("all");

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Resturant from '../../../public/images/Hotel Photos/4.jpg'
+import Resturant from '../../../../public/images/Hotel Photos/4.jpg'
 
 export default function ResturantHeroSection({restaurantData}) {
   return (

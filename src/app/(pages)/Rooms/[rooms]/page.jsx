@@ -19,7 +19,7 @@ import CalenderPicker from "./CalenderPicker";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "next/navigation";
-import Header from "components/Header/Header";
+import Header from "components/ClientInterface/Header/Header";
 
 const Skeleton = ({ className }) => (
   <div className={`bg-gray-700 animate-pulse ${className}`}></div>

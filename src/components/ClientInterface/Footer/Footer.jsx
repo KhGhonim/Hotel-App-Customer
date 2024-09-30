@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { FaTripadvisor } from "react-icons/fa";
 import { FaFacebook, FaInstagram } from "react-icons/fa6";
-import HotelLogo from "../../../public/images/hotel-svgrepo-com.svg";
-import taksim from "../../../public/images/taksim.jpg";
+import HotelLogo from "../../../../public/images/hotel-svgrepo-com.svg";
+import taksim from "../../../../public/images/taksim.jpg";
 import { TbDeviceLandlinePhone } from "react-icons/tb";
 import { MdEmail, MdOutlinePhone } from "react-icons/md";
 import Link from "next/link";

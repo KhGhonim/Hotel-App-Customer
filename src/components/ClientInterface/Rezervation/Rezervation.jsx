@@ -5,7 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { MdClose } from "react-icons/md";
 import AccommodationForm from "./AccommodationForm";
 import DiningForm from "./DiningForm";
-import HotelLogo from "../../../public/images/hotel-svgrepo-com.svg";
+import HotelLogo from "../../../../public/images/hotel-svgrepo-com.svg";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";

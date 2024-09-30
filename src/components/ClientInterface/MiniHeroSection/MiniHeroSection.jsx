@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import terace from "../../../public/images/cay in terace.jpg";
-import Amazing from "../../../public/images/Amazing view.jpg";
+import terace from "../../../../public/images/cay in terace.jpg";
+import Amazing from "../../../../public/images/Amazing view.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function MiniHeroSection() {

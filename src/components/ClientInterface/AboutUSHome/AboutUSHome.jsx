@@ -1,6 +1,6 @@
 import { AboutUs } from "DB/db";
 import Image from "next/image";
-import Cityscape from "../../../public/images/Cityscape with river.jpg";
+import Cityscape from "../../../../public/images/Cityscape with river.jpg";
 
 
 export default function AboutUSHome() {
