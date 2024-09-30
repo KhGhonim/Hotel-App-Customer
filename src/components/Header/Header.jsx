@@ -164,9 +164,13 @@ export default function Header() {
             <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg">
               Book Now
             </button>
-            <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg">
+            <Link
+              className="text-xl hover:scale-105 font-bold bg-[#F7AB0A] p-3 rounded-lg"
+              href={"/LogIn"}
+              onClick={toggleMenu}
+            >
               Log In
-            </button>
+            </Link>
           </div>
           <ul>
             {Menu.map((link, index) => (
@@ -223,12 +227,16 @@ export default function Header() {
           </div>
 
           <div className="flex items-center justify-around my-10 ">
-            <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg">
+            <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black">
               Book Now
             </button>
-            <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg">
+            <Link
+              onClick={toggleMenu}
+              className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black"
+              href={"/LogIn"}
+            >
               Log In
-            </button>
+            </Link>
           </div>
           <ul>
             {Menu.map((link, index) => (
@@ -240,24 +248,24 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="flex justify-center items-center space-x-4 border rounded-md p-2 border-black">
+          <div className="flex justify-center items-center space-x-4 border rounded-md p-2 border-gray-700 shadow-sm mt-6">
             <button
               onClick={() => handleLanguageChange({ target: { value: "en" } })}
-              className={`p-2  text-lg rounded-md ${
+              className={`p-2 text-lg rounded-md ${
                 selectedLanguage === "en"
                   ? "bg-yellow-500 text-white"
-                  : "bg-transparent text-black"
-              }`}
+                  : "bg-transparent text-black hover:text-yellow-500"
+              } transition-all`}
             >
               English
             </button>
             <button
               onClick={() => handleLanguageChange({ target: { value: "tr" } })}
-              className={`p-2 border-r-2 border-l-2 text-lg rounded-md ${
+              className={`p-2 text-lg rounded-md ${
                 selectedLanguage === "tr"
                   ? "bg-yellow-500 text-white"
-                  : "bg-transparent text-black"
-              }`}
+                  : "bg-transparent text-black hover:text-yellow-500"
+              } transition-all`}
             >
               Turkish
             </button>
@@ -266,14 +274,16 @@ export default function Header() {
               className={`p-2 text-lg rounded-md ${
                 selectedLanguage === "ar"
                   ? "bg-yellow-500 text-white"
-                  : "bg-transparent text-black"
-              }`}
+                  : "bg-transparent text-black hover:text-yellow-500"
+              } transition-all`}
             >
               Arabic
             </button>
           </div>
         </div>
       </header>
+
+      {/* Overlay for Tablet menu */}
 
       {isMenuOpen && (
         <div

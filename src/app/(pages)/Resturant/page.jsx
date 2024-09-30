@@ -3,16 +3,18 @@ import ResturantCustomerReviews from "components/ResturantCustomerReviews/Restur
 import ResturantGallery from "components/ResturantGallery/ResturantGallery";
 import ResturantHeroSection from "components/ResturantHeroSection/ResturantHeroSection";
 import ResturantMenuHighlights from "components/ResturantMenuHighlights/ResturantMenuHighlights";
-import margherita from "../../../public/images/Food/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg";
-import Tiramsu from "../../../public/images/Food/AdobeStock_273554640.jpeg";
-import carbonara from "../../../public/images/Food/carbonara-horizontal-square640-v2.jpg";
-import Milanese from "../../../public/images/Food/ec84d216-5260-4f13-be4c-bac44340caf1.jpg";
-import burger from "../../../public/images/Food/burger-with-melted-cheese.jpg";
-import pizza from "../../../public/images/Food/deep-dish-pizza-chicago.jpg";
-import fish from "../../../public/images/Food/fish-and-chips.jpeg";
-import img from "../../../public/images/Food/img-6.jpg";
-import Untitleddesign from "../../../public/images/Food/Untitleddesign-11.webp";
-import Photography from "../../../public/images/Food/6-Amazing-Food-Photography-Tricks-You-Need-To-Know-Pancakes.jpg";
+import margherita from "../../../../public/images/Food/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg";
+import Tiramsu from "../../../../public/images/Food/AdobeStock_273554640.jpeg";
+import carbonara from "../../../../public/images/Food/carbonara-horizontal-square640-v2.jpg";
+import Milanese from "../../../../public/images/Food/ec84d216-5260-4f13-be4c-bac44340caf1.jpg";
+import burger from "../../../../public/images/Food/burger-with-melted-cheese.jpg";
+import pizza from "../../../../public/images/Food/deep-dish-pizza-chicago.jpg";
+import fish from "../../../../public/images/Food/fish-and-chips.jpeg";
+import img from "../../../../public/images/Food/img-6.jpg";
+import Untitleddesign from "../../../../public/images/Food/Untitleddesign-11.webp";
+import Photography from "../../../../public/images/Food/6-Amazing-Food-Photography-Tricks-You-Need-To-Know-Pancakes.jpg";
+import Footer from "components/Footer/Footer";
+import Header from "components/Header/Header";
 
 const restaurantData = {
   name: "KG Cave Hotel",
@@ -93,11 +95,13 @@ export default function page() {
   return (
     <div className=" bg-gray-300 w-full h-full">
       <div>
+        <Header />
         <ResturantHeroSection restaurantData={restaurantData} />
         <ResturantMenuHighlights restaurantData={restaurantData} />
         <ResturantChefSpeacial restaurantData={restaurantData} />
         <ResturantGallery restaurantData={restaurantData} />
         <ResturantCustomerReviews restaurantData={restaurantData} />
+        <Footer />
       </div>
     </div>
   );

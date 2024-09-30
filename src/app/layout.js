@@ -1,6 +1,5 @@
-import AboutUSHome from "components/AboutUSHome/AboutUSHome";
-import Footer from "components/Footer/Footer";
-import Header from "components/Header/Header";
+
+import AuthProvider from "utils/AuthProvider";
 import "./globals.css";
 import { Cairo } from 'next/font/google'
 const cairo = Cairo({
@@ -26,10 +25,11 @@ export default function RootLayout({ children }) {
       <body
         className={cairo.className}
       >
-        <Header />
-        {children}
-        <AboutUSHome />
-        <Footer />
+        <AuthProvider>
+
+          {children}
+        </AuthProvider>
+
       </body>
     </html>
   );

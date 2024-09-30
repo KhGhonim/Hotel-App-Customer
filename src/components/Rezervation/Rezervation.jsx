@@ -7,7 +7,8 @@ import AccommodationForm from "./AccommodationForm";
 import DiningForm from "./DiningForm";
 import HotelLogo from "../../../public/images/hotel-svgrepo-com.svg";
 import Image from "next/image";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Rezervation() {
   const [adults, setAdults] = useState(1);
@@ -22,6 +23,7 @@ export default function Rezervation() {
   const [CheckOutForDisplay, setCheckOutForDisplay] = useState(null);
   const dateInputRef = useRef(null);
   const dateInputRef2 = useRef(null);
+  const router = useRouter();
 
   {
     /* Handlers CheckIn  */
@@ -61,10 +63,14 @@ export default function Rezervation() {
     dateInputRef2.current.showPicker();
   };
 
-  const addAdults = () => {
+  const addAdults = (eo) => {
+    eo.preventDefault();
+
     setAdults(adults + 1);
   };
-  const removeAdults = () => {
+  const removeAdults = (eo) => {
+    eo.preventDefault();
+
     if (adults > 1) {
       setAdults(adults - 1);
     }
@@ -73,10 +79,13 @@ export default function Rezervation() {
       setAdults(1);
     }
   };
-  const addKids = () => {
+  const addKids = (eo) => {
+    eo.preventDefault();
     setKids(kids + 1);
   };
-  const removeKids = () => {
+  const removeKids = (eo) => {
+    eo.preventDefault();
+
     if (kids > 0) {
       setKids(kids - 1);
     }
@@ -108,40 +117,48 @@ export default function Rezervation() {
     eo.preventDefault();
     setIsloading(true);
 
-    if (!CheckIn || CheckOut || adults || kids) {
+    if (!CheckIn || !CheckOut || !adults) {
       toast.error("Please fill in all fields");
+      setIsloading(false);
+      return;
     }
     setIsloading(true);
 
     try {
-      const res = await fetch(`/api/reservation/accommodation`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          CheckIn,
-          CheckOut,
-          adults,
-          kids,
-        }),
-      });
+      const res = await fetch(
+        `/api/reservation/CheckAvailableRoom?checkIn=${CheckIn}&checkOut=${CheckOut}&adults=${adults}&kids=${kids}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) {
         toast.error(data.message);
+        setIsloading(false);
+
+        return;
       }
       setIsloading(false);
 
-      toast.success(data.message);
+      toast.success("Rooms are available, redirecting to room selection...");
+      router.push(
+        `/CheckAvailableRoom?checkIn=${CheckIn}&checkOut=${CheckOut}&adults=${adults}&kids=${kids}`
+      );
     } catch (error) {
       toast.error("Something went wrong, please try again later...");
+    } finally {
+      setIsloading(false);
     }
   };
 
   return (
     <>
+      <Toaster position="top-right" />
       {/* Rezervation PC */}
       <div
         className={`hidden lg:block ${
