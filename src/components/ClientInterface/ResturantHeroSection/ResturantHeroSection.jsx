@@ -3,7 +3,7 @@ import Resturant from '../../../../public/images/Hotel Photos/4.jpg'
 
 export default function ResturantHeroSection({restaurantData}) {
   return (
-    <div className="relative h-[400px] rounded-xl overflow-hidden mb-8">
+    <div className="relative h-[400px] rounded-b-xl overflow-hidden mb-8">
       <Image
         width={1200}
         height={400}
