@@ -39,6 +39,7 @@ export default function page() {
         toast.success("Login Successful");
         setIsLoading(false);
         await getSession();
+
         router.push("/");
       }
       eo.target.reset();

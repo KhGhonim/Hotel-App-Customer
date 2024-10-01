@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "avatar.iran.liara.run",
         port: "",
       },
+      {
+        protocol: "http",
+        hostname: "res.cloudinary.com",
+        port: "",
+      },
     ],
   },
 

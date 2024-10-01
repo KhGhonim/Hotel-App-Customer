@@ -12,17 +12,22 @@ export const authOptions = {
       credentials: {},
       async authorize(credentials, req, res) {
 
-        // Add logic here to look up the user from the credentials supplied
         const userResult = await pool.query(CheckIfEmailExists, [credentials.email]);
 
         const user = userResult.rows[0];
-
-
         if (user) {
           const match = await bcrypt.compare(credentials.password, user.password);
 
           if (match) {
-            return user;
+            return {
+              Firstname: user.first_name,
+              Lastname: user.last_name,
+              Email: user.email_address,
+              Phone: user.phone_number,
+              Role: user.user_role,
+              ProfileImg: user.profile_img,
+              id: user.id
+            };
           } else {
             console.log("Invalid credentials");
             return null;
@@ -44,6 +49,31 @@ export const authOptions = {
     signIn: "/LogIn",
   },
 
+  callbacks: {
+    async session({ session, token }) {
+      // Attach user information to the session object
+      if (token) {
+        session.user.Email = token.Email;
+        session.user.Role = token.Role;
+        session.user.Firstname = token.Firstname;
+        session.user.Lastname = token.Lastname;
+        session.user.ProfileImg = token.ProfileImg;
+      }
+      return session;
+    },
+
+    async jwt({ token, user }) {
+      // Add user information to token when user is authenticated
+      if (user) {
+        token.Email = user.Email;
+        token.Role = user.Role;
+        token.Firstname = user.Firstname;
+        token.Lastname = user.Lastname;
+        token.ProfileImg = user.ProfileImg;
+      }
+      return token;
+    },
+  }
 }
 
 const handler = NextAuth(authOptions);

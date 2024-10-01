@@ -32,7 +32,7 @@ export default function HeroSection() {
 
   return (
     <div className="w-full h-dvh relative font-cairo">
-      <div className="hidden md:block absolute z-20 top-1/4 space-y-10 right-10 text-white font-cairo font-[500]">
+      <div className="hidden md:block absolute z-10 top-1/4 space-y-10 right-10 text-white font-cairo font-[500]">
         <div className="flex flex-col items-center gap-5">
           <div className="flex items-center gap-5 text-2xl lg:text-5xl">
             <CiClock2 />

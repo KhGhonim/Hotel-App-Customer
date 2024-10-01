@@ -42,9 +42,9 @@ export const Menu = [
   { name: "About", url: "/About" },
   { name: "Rooms", url: "/Rooms" },
   { name: "Resturant", url: "/Resturant" },
-  { name: "Login", url: "/LogIn" },
+
 ];
-// { name: "Contact", url: "/contact" },
+
 
 export const AboutUs = [
   { value: '35+', label: 'Years of Experiencem' },

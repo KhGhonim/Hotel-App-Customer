@@ -1,15 +1,20 @@
 "use client";
 import Image from "next/image";
 import HotelLogo from "../../../../public/images/hotel-svgrepo-com.svg";
+import UserPlaceHolder from "../../../../public/PlaceHolder.jpg";
 import { useEffect, useState } from "react";
 import { MdClose, MdOutlineMenu } from "react-icons/md";
 import Link from "next/link";
 import { Menu } from "DB/db";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { data: session, status } = useSession();
+  const [IsPhotoClicked, setIsPhotoClicked] = useState(false);
 
+  console.log(session, status);
   // Handler for language change
   const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);
@@ -35,7 +40,7 @@ export default function Header() {
   return (
     <>
       {/* PC Menu */}
-      <header className="bg-transparent  hidden lg:block p-4 absolute z-20 right-0 text-white text-2xl font-cairo font-[500] w-full  overflow-hidden">
+      <header className="bg-transparent  hidden lg:block p-4 absolute z-20 right-0 text-white text-2xl font-cairo font-[500] w-full  ">
         <div className="flex items-center justify-between">
           <Link className="flex items-center gap-4 pl-5" href={"/"}>
             <Image
@@ -50,11 +55,32 @@ export default function Header() {
 
           <div className="flex items-center gap-4 pr-5">
             <nav className="flex space-x-6">
-              {Menu.map((item, index) => (
+              {Menu.filter((item) => {
+                if (status === "authenticated" && item.name === "Login")
+                  return false;
+                if (
+                  item.name === "Admin Dashboard" &&
+                  !(
+                    status === "authenticated" &&
+                    session?.user?.Role === "admin"
+                  )
+                )
+                  return false;
+
+                if (status !== "authenticated" && item.name === "log Out")
+                  return false;
+                return true;
+              }).map((item, index) => (
                 <a
                   href={item.url}
                   key={index}
                   className="text-lg hover:xml group relative hover:text-[#F7AB0A] transition-colors duration-300"
+                  onClick={(e) => {
+                    if (item.name === "log Out") {
+                      e.preventDefault();
+                      signOut();
+                    }
+                  }}
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-0 h-0.5 w-full scale-x-0 transform bg-black transition-transform duration-500 group-hover:scale-x-100"></span>
@@ -89,9 +115,72 @@ export default function Header() {
                 </option>
               </select>
             </div>
+            <div className="relative">
+              <Image
+                src={session?.user?.ProfileImg || UserPlaceHolder}
+                alt="Profile Image"
+                width={50}
+                height={50}
+                className="rounded-full h-12 w-12 object-cover cursor-pointer transition-transform hover:scale-105 border-2 border-gray-300 shadow-sm"
+                quality={100}
+                onClick={() => setIsPhotoClicked(!IsPhotoClicked)}
+              />
+
+              <div
+                className={`${
+                  IsPhotoClicked ? "block" : "hidden"
+                } absolute !z-50 right-0 mt-2 w-64 bg-white shadow-lg rounded-xl p-4 text-slate-700 text-center transition-transform transform ease-out duration-300`}
+              >
+                {status === "authenticated" && (
+                  <div className="flex flex-col items-center">
+                    <p className="text-lg font-semibold text-gray-800 mb-2">
+                      Welcome, {session?.user?.Firstname}{" "}
+                      {session?.user?.Lastname}
+                    </p>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {session?.user?.Email}
+                    </p>
+
+                    {session?.user?.Role === "admin" && (
+                      <Link
+                        className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                        href={"/Dashboard"}
+                      >
+                        Admin Dashboard
+                      </Link>
+                    )}
+
+                    <button
+                      className="mt-4 !z-50 px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-full hover:bg-red-600 transition-colors"
+                      onClick={() => signOut()}
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                )}
+
+                {status !== "authenticated" && (
+                  <div className="flex flex-col items-center p-4 bg-white shadow-lg rounded-lg mt-2">
+                    <Link
+                      className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
+                      href={"/login"}
+                    >
+                      Log In
+                    </Link>
+                    <Link
+                      className="text-base font-medium text-gray-600 hover:text-gray-800 transition-colors px-4 py-2 rounded-full hover:bg-gray-100"
+                      href={"/Rooms"}
+                    >
+                      Check the Rooms
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </header>
+
       {/* Tablet Menu Header */}
       <header
         className={`bg-transparent hidden  md:block lg:hidden p-4 ${
@@ -110,7 +199,7 @@ export default function Header() {
             <span className="text-2xl font-bold text-primary">KG HOTEL</span>
           </Link>
 
-          {/* Mobile Menu Icon */}
+          {/* Tablet Menu Icon */}
           <div className="flex items-center gap-4 pr-5">
             <nav className="flex space-x-6 relative">
               {isMenuOpen ? (
@@ -147,10 +236,73 @@ export default function Header() {
                 </option>
               </select>
             </div>
+
+            <div className="relative">
+              <Image
+                src={session?.user?.ProfileImg || UserPlaceHolder}
+                alt="Profile Image"
+                width={50}
+                height={50}
+                className="rounded-full h-12 w-12 object-cover cursor-pointer transition-transform hover:scale-105 border-2 border-gray-300 shadow-sm"
+                quality={100}
+                onClick={() => setIsPhotoClicked(!IsPhotoClicked)}
+              />
+
+              <div
+                className={`${
+                  IsPhotoClicked ? "block" : "hidden"
+                } absolute !z-50 right-0 mt-2 w-64 bg-white shadow-lg rounded-xl p-4 text-slate-700 text-center transition-transform transform ease-out duration-300`}
+              >
+                {status === "authenticated" && (
+                  <div className="flex flex-col items-center">
+                    <p className="text-lg font-semibold text-gray-800 mb-2">
+                      Welcome, {session?.user?.Firstname}{" "}
+                      {session?.user?.Lastname}
+                    </p>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {session?.user?.Email}
+                    </p>
+
+                    {session?.user?.Role === "admin" && (
+                      <Link
+                        className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                        href={"/Dashboard"}
+                      >
+                        Admin Dashboard
+                      </Link>
+                    )}
+
+                    <button
+                      className="mt-4 !z-50 px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-full hover:bg-red-600 transition-colors"
+                      onClick={() => signOut()}
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                )}
+
+                {status !== "authenticated" && (
+                  <div className="flex flex-col items-center p-4 bg-white shadow-lg rounded-lg mt-2">
+                    <Link
+                      className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
+                      href={"/login"}
+                    >
+                      Log In
+                    </Link>
+                    <Link
+                      className="text-base font-medium text-gray-600 hover:text-gray-800 transition-colors px-4 py-2 rounded-full hover:bg-gray-100"
+                      href={"/Rooms"}
+                    >
+                      Check the Rooms
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Tablet Menu */}
         <div
           className={`absolute top-0 right-0 h-screen  z-50 bg-[#F5F5F5] w-96 p-7 text-black ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
@@ -161,16 +313,38 @@ export default function Header() {
           </div>
 
           <div className="flex items-center justify-around my-10 ">
-            <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg">
-              Book Now
-            </button>
-            <Link
-              className="text-xl hover:scale-105 font-bold bg-[#F7AB0A] p-3 rounded-lg"
-              href={"/LogIn"}
-              onClick={toggleMenu}
-            >
-              Log In
-            </Link>
+            {status === "authenticated" && session?.user?.Role === "admin" ? (
+              <Link
+                className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg"
+                href={"/Dashboard/RoomList"}
+              >
+                Add New Room
+              </Link>
+            ) : (
+              <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg">
+                Book Now
+              </button>
+            )}
+            {status === "authenticated" ? (
+              <Link
+                className="text-xl hover:scale-105 font-bold bg-[#F7AB0A] p-3 rounded-lg"
+                href={"/login"}
+                onClick={() => {
+                  signOut();
+                  toggleMenu();
+                }}
+              >
+                Log Out
+              </Link>
+            ) : (
+              <Link
+                className="text-xl hover:scale-105 font-bold bg-[#F7AB0A] p-3 rounded-lg"
+                href={"/login"}
+                onClick={toggleMenu}
+              >
+                Log In
+              </Link>
+            )}
           </div>
           <ul>
             {Menu.map((link, index) => (
@@ -186,11 +360,10 @@ export default function Header() {
       </header>
 
       {/* Phone Menu */}
-
       <header
         className={`bg-transparent  md:hidden lg:hidden p-4 ${
           isMenuOpen ? "fixed inset-0" : "absolute right-0"
-        } z-40  text-white overflow-hidden text-2xl font-cairo font-[500] w-full `}
+        } z-40  text-white  text-2xl font-cairo font-[500] w-full `}
       >
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center gap-4 pl-5">
@@ -201,7 +374,7 @@ export default function Header() {
               height={75}
               quality={100}
             />
-            <span className="text-2xl font-bold text-primary">KG HOTEL</span>
+            <span className="text-sm font-bold text-primary">KG HOTEL</span>
           </Link>
 
           <div className="flex items-center gap-4 pr-5">
@@ -212,6 +385,68 @@ export default function Header() {
                 <MdOutlineMenu onClick={toggleMenu} />
               )}
             </nav>
+            <div className="relative">
+              <Image
+                src={session?.user?.ProfileImg || UserPlaceHolder}
+                alt="Profile Image"
+                width={50}
+                height={50}
+                className="rounded-full h-12 w-12 object-cover cursor-pointer transition-transform hover:scale-105 border-2 border-gray-300 shadow-sm"
+                quality={100}
+                onClick={() => setIsPhotoClicked(!IsPhotoClicked)}
+              />
+
+              <div
+                className={`${
+                  IsPhotoClicked ? "block" : "hidden"
+                } absolute !z-50 right-0 mt-2 w-64 bg-white shadow-lg rounded-xl p-4 text-slate-700 text-center transition-transform transform ease-out duration-300`}
+              >
+                {status === "authenticated" && (
+                  <div className="flex flex-col items-center">
+                    <p className="text-lg font-semibold text-gray-800 mb-2">
+                      Welcome, {session?.user?.Firstname}{" "}
+                      {session?.user?.Lastname}
+                    </p>
+                    <p className="text-sm text-gray-600 mb-4">
+                      {session?.user?.Email}
+                    </p>
+
+                    {session?.user?.Role === "admin" && (
+                      <Link
+                        className="text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+                        href={"/Dashboard"}
+                      >
+                        Admin Dashboard
+                      </Link>
+                    )}
+
+                    <button
+                      className="mt-4 !z-50 px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-full hover:bg-red-600 transition-colors"
+                      onClick={() => signOut()}
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                )}
+
+                {status !== "authenticated" && (
+                  <div className="flex flex-col items-center p-4 bg-white shadow-lg rounded-lg mt-2">
+                    <Link
+                      className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
+                      href={"/login"}
+                    >
+                      Log In
+                    </Link>
+                    <Link
+                      className="text-base font-medium text-gray-600 hover:text-gray-800 transition-colors px-4 py-2 rounded-full hover:bg-gray-100"
+                      href={"/Rooms"}
+                    >
+                      Check the Rooms
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -227,19 +462,48 @@ export default function Header() {
           </div>
 
           <div className="flex items-center justify-around my-10 ">
-            <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black">
-              Book Now
-            </button>
-            <Link
-              onClick={toggleMenu}
-              className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black"
-              href={"/LogIn"}
-            >
-              Log In
-            </Link>
+            {status === "authenticated" && session?.user?.Role === "admin" ? (
+              <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black">
+                Add A Room
+              </button>
+            ) : (
+              <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black">
+                Book Now
+              </button>
+            )}
+            {status === "authenticated" ? (
+              <Link
+                onClick={() => {
+                  signOut();
+                  toggleMenu();
+                }}
+                className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black"
+                href={"/LogIn"}
+              >
+                Log Out
+              </Link>
+            ) : (
+              <Link
+                onClick={toggleMenu}
+                className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black"
+                href={"/LogIn"}
+              >
+                Log In
+              </Link>
+            )}
           </div>
           <ul>
-            {Menu.map((link, index) => (
+            {Menu.filter((item) => {
+              if (item.name === "Login") return false;
+              if (
+                item.name === "Admin Dashboard" &&
+                !(status === "authenticated" && session?.user?.Role === "admin")
+              )
+                return false;
+
+              if (item.name === "log Out") return false;
+              return true;
+            }).map((link, index) => (
               <li
                 className="p-5 w-full border-b-2 last:border-b-0 hover:px-10 transition-all duration-300 hover:text-[#F7AB0A] "
                 key={index}
@@ -284,7 +548,6 @@ export default function Header() {
       </header>
 
       {/* Overlay for Tablet menu */}
-
       {isMenuOpen && (
         <div
           onClick={toggleMenu}
