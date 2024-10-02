@@ -2,6 +2,7 @@
 import AuthProvider from "utils/AuthProvider";
 import "./globals.css";
 import { Cairo } from 'next/font/google'
+import DarkAndLightMode from "components/Dashboard/DarkAndLightMode/DarkAndLightMode";
 const cairo = Cairo({
   weight: ['200', '300', '400', '500', '600', '700'],
   subsets: ['latin'],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         className={cairo.className}
       >
         <AuthProvider>
+          <DarkAndLightMode />
           {children}
         </AuthProvider>
 

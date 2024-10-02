@@ -1,38 +1,68 @@
-import { FaBell, FaSearch } from "react-icons/fa";
-import { FaMessage, FaThreads } from "react-icons/fa6";
+import { CiMenuBurger } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
+import ProfileImageAndDropMenu from "./ProfileImageAndDropMenu";
+import {
+  MdKeyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight,
+} from "react-icons/md";
+import NotificationBell from "components/Notification/NotificationBell";
+import Conversation from "../Conversation/Conversation";
 
-export default function DashboardHeader() {
+export default function DashboardHeader({
+  setIsSideBarOpened,
+  IsSideBarOpened,
+}) {
   return (
-    <header className="flex h-16 items-center justify-between border-b bg-white px-4 lg:px-6">
-      <button className="text-gray-500 focus:outline-none lg:hidden">
-        <FaThreads className="h-6 w-6" />
+    <header
+      className={`fixed z-40 w-full flex h-20 items-center justify-between transition-all duration-300  bg-white ${
+        IsSideBarOpened ? "pl-60 pr-10" : "pr-5 md:pr-10 pl-20"
+      }`}
+    >
+      {IsSideBarOpened ? (
+        <button
+          onClick={() => setIsSideBarOpened(!IsSideBarOpened)}
+          className="hidden md:block text-gray-500 focus:outline-none hover:scale-110 transition-all duration-150 "
+        >
+          <MdKeyboardDoubleArrowRight className="h-6 w-6 text-red-500" />
+        </button>
+      ) : (
+        <button
+          onClick={() => setIsSideBarOpened(!IsSideBarOpened)}
+          className="hidden md:block text-gray-500 focus:outline-none hover:scale-105 transition-all duration-150"
+        >
+          <MdKeyboardDoubleArrowLeft className="h-6 w-6 text-red-500" />
+        </button>
+      )}
+
+      {/* Menu button */}
+      <button
+        onClick={() => setIsSideBarOpened(!IsSideBarOpened)}
+        className="text-gray-500 focus:outline-none lg:hidden"
+      >
+        <CiMenuBurger className="h-6 w-6" />
       </button>
-      <div className="flex items-center">
-        <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
+
+      {/* Search bar */}
+      <div className="relative flex items-center mx-3">
+        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <input
+          type="text"
+          placeholder="Search for anything"
+          className="w-full md:w-96 pl-10 pr-4 py-3 rounded-lg  bg-gray-100 outline-none"
+        />
       </div>
-      <div className="flex items-center space-x-4">
-        <button className="text-gray-500 hover:text-gray-600">
-          <FaSearch className="h-6 w-6" />
-        </button>
-        <button className="relative text-gray-500 hover:text-gray-600">
-          <FaBell className="h-6 w-6" />
-          <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-            4
-          </span>
-        </button>
-        <button className="relative text-gray-500 hover:text-gray-600">
-          <FaMessage className="h-6 w-6" />
-          <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-green-500 text-xs text-white">
-            7
-          </span>
-        </button>
-        <button className="h-10 w-10 overflow-hidden rounded-full">
-          <img
-            src="/placeholder.svg"
-            alt="User profile"
-            className="h-full w-full object-cover"
-          />
-        </button>
+
+      {/* Right section buttons 'Bell' and 'Message' and profile image */}
+      <div className="flex items-center space-x-4 relative">
+        {/* Bell button */}
+        <NotificationBell />
+
+        {/* Message button */}
+        <Conversation />
+
+        {/* Profile image */}
+        <ProfileImageAndDropMenu />
       </div>
     </header>
   );

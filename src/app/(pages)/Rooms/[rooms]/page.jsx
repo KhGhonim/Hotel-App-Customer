@@ -27,7 +27,7 @@ const Skeleton = ({ className }) => (
 export default function page() {
   const params = useParams().rooms;
   const [Data, setData] = useState(null);
-
+  console.log(Data)
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(

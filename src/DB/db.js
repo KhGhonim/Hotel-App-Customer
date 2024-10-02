@@ -1,3 +1,11 @@
+import { BiSolidUserDetail } from "react-icons/bi";
+import { IoMdInformationCircle } from "react-icons/io";
+import { MdBedroomParent, MdSpaceDashboard } from "react-icons/md";
+import { GrUserWorker } from "react-icons/gr";
+import { CiSettings } from "react-icons/ci";
+import { PiFileText } from "react-icons/pi";
+import { CgMenuRound } from "react-icons/cg";
+
 export const HeroSectionSliderDB = [
   {
     id: 1,
@@ -62,8 +70,8 @@ export const rooms = [
     roomType: "Room",
     roomView: "Courtyard View",
     services: ["wifi", "tv", "coffee"],
-    rating: 4, 
-    pricePerNight: 120 
+    rating: 4,
+    pricePerNight: 120
   },
   {
     id: 102,
@@ -254,4 +262,14 @@ export const HomeGallery = [
   {
     photo: "/images/Hotel Photos/yemek3.jpg",
   },
+]
+
+export const DashboardMenu = [
+  { icon: <MdSpaceDashboard className="h-6 w-6" />, label: 'Dashboard', link: '/Dashboard' },
+  { icon: <MdBedroomParent className="h-6 w-6" />, link: '/Rooms', label: 'Rooms', subItems: ['All Rooms', 'Available', 'Booked'] },
+  { icon: <IoMdInformationCircle className="h-6 w-6" />, link: '/Info', label: 'Information', subItems: ['Hotel Info', 'Policies', 'FAQs'] },
+  { icon: <BiSolidUserDetail className="h-6 w-6" />, link: '/Analytics', label: 'Analytics', subItems: ['Revenue', 'Occupancy', 'Trends'] },
+  { icon: <GrUserWorker className="h-6 w-6" />, label: 'Reviews', subItems: ['All Reviews', 'Pending', 'Responded'] },
+  { icon: <CiSettings className="h-6 w-6" />, label: 'Settings', subItems: ['General', 'Security', 'Notifications'] },
+  { icon: <CgMenuRound className="h-6 w-6" />, label: 'More', subItems: ['Help', 'About', 'Contact'] },
 ]
