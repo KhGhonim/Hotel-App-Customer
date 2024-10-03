@@ -4,33 +4,51 @@ import { CiSettings } from "react-icons/ci";
 
 export default function DarkAndLightMode() {
   const [IsSettignOpened, setIsSettignOpened] = useState(false);
-  const [theme, settheme] = useState(
-    typeof localStorage !== "undefined" && localStorage.getItem("theme")
-      ? localStorage.getItem("theme")
-      : "light"
-  );
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    if (theme === "light") {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.classList.add("light");
-      setBackground("Morning Them");
-      settheme("light");
-    } 
-  }, [theme]);
 
   const [activeTab, setActiveTab] = useState("Theme");
-  const [background, setBackground] = useState("Morning Them");
+  const [background, setBackground] = useState(
+    typeof localStorage !== "undefined" && localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : "Morning Theme"
+  );
 
+  const previousThemeClass = useRef("");
+
+  useEffect(() => {
+    const themeClasses = {
+      "Morning Theme": "light",
+      "Sunset Theme": "yellow",
+      "Ocean Breeze Theme": "babyblue",
+      "Forest Theme": "green",
+      "Midnight Theme": "dark",
+    };
+
+    // Remove the previous theme class if it exists
+    if (previousThemeClass.current) {
+      document.documentElement.classList.remove(previousThemeClass.current);
+    }
+
+    // Add the new theme class
+    const newThemeClass = themeClasses[background];
+    document.documentElement.classList.add(newThemeClass);
+
+    // Store the new theme class for next time
+    previousThemeClass.current = newThemeClass;
+
+    // Save theme to localStorage
+    localStorage.setItem("theme", background);
+  }, [background]);
   const [container, setContainer] = useState("Wide");
   const [bodyFont, setBodyFont] = useState("Roboto");
   const [headerLayout, setHeaderLayout] = useState("Horizontal");
   const [headerPosition, setHeaderPosition] = useState("Static");
 
   const handleDeleteAllCookies = () => {
-    // Implement cookie deletion logic here
-    console.log("Deleting all cookies");
+    // Delete all cookies
+
+    // Reload the page
+    window.location.reload();
+    
   };
 
   const ref = useRef(null);
@@ -113,7 +131,6 @@ export default function DarkAndLightMode() {
                   <option>Ocean Breeze Theme</option>
                   <option>Forest Theme </option>
                   <option>Midnight Theme</option>
-                  <option>Pastel Dream Theme</option>
                 </select>
               </div>
             </div>

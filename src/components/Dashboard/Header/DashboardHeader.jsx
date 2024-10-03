@@ -6,7 +6,7 @@ import {
   MdKeyboardDoubleArrowLeft,
   MdKeyboardDoubleArrowRight,
 } from "react-icons/md";
-import NotificationBell from "components/Notification/NotificationBell";
+import NotificationBell from "components/Dashboard/Notification/NotificationBell";
 import Conversation from "../Conversation/Conversation";
 
 export default function DashboardHeader({

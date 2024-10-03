@@ -93,7 +93,7 @@ export default function NotificationBell() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-80 rounded-lg bg-gray-50 shadow-lg ring-1 ring-black ring-opacity-5">
+        <div className="absolute right-0 mt-2  w-44 sm:w-56 md:w-72 lg:w-80 rounded-lg bg-gray-50 shadow-lg ring-1 ring-black ring-opacity-5">
           <div
             className="py-1"
             role="menu"

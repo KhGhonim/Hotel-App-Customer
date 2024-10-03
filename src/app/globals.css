@@ -3,50 +3,50 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #ff6f61;
-  --text-color: #3e2723;
-  --MainContent-color: #ffab91;
-  --background-color: #ffe0b2;
-  --secondary-color: #d84315;
-  --highlight-color: #ffccbc;
+  --primary-color: #ff6f61; /* Coral */
+  --text-color: #2c2c2c; /* Dark Gray */
+  --MainContent-color: #ffe0b2; /* Light Peach */
+  --background-color: #ffffff; /* White */
+  --secondary-color: #d84315; /* Deep Orange */
+  --highlight-color: #ffe3e3; /* Light Pink */
 }
 
-
 .yellow {
-  --primary-color: #0277bd;
-  --text-color: #004d40;
-  --MainContent-color: #b2ebf2;
-  --background-color: #e0f7fa;
-  --secondary-color: #006064;
-  --highlight-color: #80deea;
+  --primary-color: #0288d1; /* Bright Blue */
+  --text-color: #004d40; /* Deep Teal */
+  --MainContent-color: #b2ebf2; /* Light Cyan */
+  --background-color: #e0f7fa; /* Very Light Cyan */
+  --secondary-color: #006064; /* Teal */
+  --highlight-color: #80deea; /* Soft Cyan */
 }
 
 .green {
-  --primary-color: #2e7d32;
-  --text-color: #1b5e20;
-  --MainContent-color: #a5d6a7;
-  --background-color: #e8f5e9;
-  --secondary-color: #4caf50;
-  --highlight-color: #81c784;
+  --primary-color: #388e3c; /* Strong Green */
+  --text-color: #1b5e20; /* Dark Green */
+  --MainContent-color: #c8e6c9; /* Light Green */
+  --background-color: #f1f8e9; /* Very Light Green */
+  --secondary-color: #4caf50; /* Medium Green */
+  --highlight-color: #a5d6a7; /* Soft Light Green */
 }
 
 .dark {
-  --primary-color: #212121;
-  --text-color: #e0e0e0;
-  --MainContent-color: #424242;
-  --background-color: #0d0d0d;
-  --secondary-color: #616161;
-  --highlight-color: #757575;
+  --primary-color: #001F3F; /* Dark Gray */
+  --text-color: #EAD8B1; /* Light Gray */
+  --MainContent-color: #3A6D8C; /* Medium Gray */
+  --background-color: #070606; /* Near Black */
+  --secondary-color: #757575; /* Gray */
+  --highlight-color: #6A9AB0; /* Light Gray */
 }
 
 .babyblue {
-  --primary-color: #f48fb1;
-  --text-color: #5d4037;
-  --MainContent-color: #ce93d8;
-  --background-color: #fce4ec;
-  --secondary-color: #b39ddb;
-  --highlight-color: #ffccbc;
+  --primary-color: #f06292; /* Pink */
+  --text-color: #5d4037; /* Brown */
+  --MainContent-color: #ce93d8; /* Lavender */
+  --background-color: #fce4ec; /* Very Light Pink */
+  --secondary-color: #b39ddb; /* Light Purple */
+  --highlight-color: #ffccbc; /* Light Peach */
 }
+
 
 
 html {

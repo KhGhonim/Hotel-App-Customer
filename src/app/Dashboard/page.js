@@ -18,7 +18,7 @@ export default function DahsboardAdmin() {
     }
   };
   return (
-    <div>
+    <>
       <DashboardHeader setIsSideBarOpened={setIsSideBarOpened} IsSideBarOpened={IsSideBarOpened} />
       <SideBar IsSideBarOpened={IsSideBarOpened} />
       <div className={`w-full h-full overflow-hidden transition-all duration-300 bg-gray-100 flex flex-1 flex-col pt-28  ${IsSideBarOpened ? "pl-44" : "pl-20 pr-3  md:pr-10 md:pl-0"} container mx-auto`}>
@@ -34,6 +34,6 @@ export default function DahsboardAdmin() {
         <TotalStatistics />
         <LatestReviews />
       </div>
-    </div>
+    </>
   );
 }

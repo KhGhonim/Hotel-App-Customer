@@ -121,7 +121,7 @@ export default function Conversation() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-96 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+        <div className="absolute right-0 mt-2 w-52 sm:w-64 md:w-80 lg:w-96 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
           <div
             className="py-1"
             role="menu"
@@ -145,18 +145,18 @@ export default function Conversation() {
                     alt={message.sender}
                   />
                   <div className="ml-3 w-0 flex-1">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900">
+                    <div className="flex items-center justify-between text-xs sm:text-sm">
+                      <p className="text-xs sm:text-sm font-medium text-gray-900">
                         {message.sender}
                       </p>
                       {message.type}
                     </div>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-xs sm:text-sm text-gray-600">
                       {message.message}
                     </p>
                     <div className="mt-2 flex items-center justify-between">
-                      <p className="text-xs text-gray-500">{message.time}</p>
-                      <div className="flex space-x-2">
+                      <p className="text-[10px] text-gray-500">{message.time}</p>
+                      <div className="flex flex-col md:flex-row space-x-2">
                         {message.unread && (
                           <button
                             onClick={() => handleMarkAsRead(message.id)}

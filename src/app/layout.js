@@ -27,7 +27,6 @@ export default function RootLayout({ children }) {
         className={cairo.className}
       >
         <AuthProvider>
-          <DarkAndLightMode />
           {children}
         </AuthProvider>
 
