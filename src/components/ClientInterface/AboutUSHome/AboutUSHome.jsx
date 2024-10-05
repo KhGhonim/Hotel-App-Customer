@@ -1,9 +1,17 @@
+"use client";
 import { AboutUs } from "DB/db";
 import Image from "next/image";
 import Cityscape from "../../../../public/images/Cityscape with river.jpg";
+import CountUp, { useCountUp } from "react-countup";
 
 
 export default function AboutUSHome() {
+  useCountUp({
+    ref: "counter",
+    end: 100,
+    enableScrollSpy: true,
+    scrollSpyDelay: 1000,
+  });
   return (
     <section className="relative h-screen w-full  overflow-hidden">
       <Image
@@ -24,7 +32,10 @@ export default function AboutUSHome() {
         <div className="flex flex-wrap justify-center gap-10 mb-8">
           {AboutUs.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-orange-400">{stat.value}</div>
+              <div className="text-4xl md:text-5xl font-bold text-orange-400">
+
+              <CountUp end={stat.value} enableScrollSpy />
+              </div>
               <div className="text-sm md:text-base">{stat.label}</div>
             </div>
           ))}

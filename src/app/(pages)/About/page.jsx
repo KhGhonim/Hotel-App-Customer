@@ -4,6 +4,15 @@ import AboutUSHome from "components/ClientInterface/AboutUSHome/AboutUSHome";
 import Footer from "components/ClientInterface/Footer/Footer";
 import Header from "components/ClientInterface/Header/Header";
 
+export const metadata = {
+  title: "KG Cave Hotel",
+  description:
+    "Read more about our eco-friendly building. Designed by Khaled Ghonim",
+
+  icons: {
+    icon: "/images/KGLogo.png",
+  },
+};
 
 export default function page() {
   return (

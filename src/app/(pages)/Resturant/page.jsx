@@ -92,6 +92,15 @@ const restaurantData = {
   ],
 };
 
+export const metadata = {
+  title: "KG Cave Hotel",
+  description:
+    "Learn more about our restaurant. Designed by Khaled Ghonim",
+
+  icons: {
+    icon: "/images/KGLogo.png",
+  },
+};
 export default function page() {
   return (
     <div className=" bg-gray-300 w-full h-full">

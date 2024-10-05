@@ -50,12 +50,13 @@ export const Menu = [
   { name: "About", url: "/About" },
   { name: "Rooms", url: "/Rooms" },
   { name: "Resturant", url: "/Resturant" },
+  { name: "Tours", url: "/Tours" },
 
 ];
 
 
 export const AboutUs = [
-  { value: '35+', label: 'Years of Experiencem' },
+  { value: '35', label: 'Years of Experiencem' },
   { value: '185', label: 'Room' },
   { value: '6144', label: 'Monthly Guest Average' },
 ]
