@@ -100,7 +100,7 @@ export default function page() {
       }
 
       toast.success("Registration successful. Redirecting to home page...");
-      router.replace("/LogIn");
+      router.replace("/login");
       setIsloading(false);
     } catch (error) {
       toast.error("Something went wrong. Please try again later.");

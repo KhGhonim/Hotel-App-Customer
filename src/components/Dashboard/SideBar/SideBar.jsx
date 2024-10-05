@@ -5,9 +5,12 @@ import Image from "next/image";
 import Logo from "../../../../public/images/hotel-svgrepo-com.svg";
 import { DashboardMenu } from "DB/db";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
-export default function SideBar({ IsSideBarOpened }) {
+export default function SideBar() {
   const [hoveredItem, setHoveredItem] = useState(null);
+  // @ts-ignore
+  const { IsSideBarOpened } = useSelector((state) => state.Users)
 
   return (
     <div className="flex fixed left-0 top-0 z-40   h-screen">
@@ -16,7 +19,8 @@ export default function SideBar({ IsSideBarOpened }) {
           IsSideBarOpened ? "w-56" : "w-16"
         }`}
       >
-        <div
+        <Link
+          href="/Dashboard"
           className={`flex w-full items-center  ml-3  p-4 ${
             IsSideBarOpened ? "justify-start" : "justify-center"
           }`}
@@ -38,7 +42,7 @@ export default function SideBar({ IsSideBarOpened }) {
               </h6>
             </div>
           )}
-        </div>
+        </Link>
         {DashboardMenu.map((item, index) => (
           <div
             key={index}
@@ -50,7 +54,7 @@ export default function SideBar({ IsSideBarOpened }) {
               className={`flex h-12 px-8 gap-5 cursor-pointer transition-all duration-300  items-center z-50 ${
                 IsSideBarOpened ? "justify-start w-44 " : "justify-center"
               } rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-900`}
-              href={`${item.label}`}
+              href={`/${item.label}`}
             >
               <p> {item.icon}</p>
               {IsSideBarOpened && (

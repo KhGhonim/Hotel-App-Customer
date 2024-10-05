@@ -1,19 +1,26 @@
+"use client";
 import DarkAndLightMode from "components/Dashboard/DarkAndLightMode/DarkAndLightMode";
 import "../globals.css";
 import AuthProvider from "utils/AuthProvider";
-
-export const metadata = {
-  title: "Hotel Admin Dashboard",
-  description: "Web App for Khaled Ghonim's Dashboard",
-};
+import DashboardHeader from "components/Dashboard/Header/DashboardHeader";
+import SideBar from "components/Dashboard/SideBar/SideBar";
+import { Provider } from "react-redux";
+import { store, persistor } from "../lib/store";
+import { PersistGate } from "redux-persist/integration/react";
+import AdminWrapper from "app/lib/AdminWrapper";
 
 export default function RootLayout({ children }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-slate-100">
       <AuthProvider>
-        <DarkAndLightMode />
-
-        {children}
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <DarkAndLightMode />
+            <DashboardHeader />
+            <SideBar />
+            <AdminWrapper>{children}</AdminWrapper>
+          </PersistGate>
+        </Provider>
       </AuthProvider>
     </div>
   );

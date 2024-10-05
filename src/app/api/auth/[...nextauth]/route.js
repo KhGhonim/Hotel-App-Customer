@@ -1,22 +1,26 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { pool } from "DB/Postgres";
 import { CheckIfEmailExists } from "app/api/query/queries";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
-      name: 'Credentials',
+      name: "Credentials",
       credentials: {},
       async authorize(credentials, req, res) {
-
-        const userResult = await pool.query(CheckIfEmailExists, [credentials.email]);
+        const userResult = await pool.query(CheckIfEmailExists, [
+          credentials.email,
+        ]);
 
         const user = userResult.rows[0];
         if (user) {
-          const match = await bcrypt.compare(credentials.password, user.password);
+          const match = await bcrypt.compare(
+            credentials.password,
+            user.password
+          );
 
           if (match) {
             return {
@@ -26,7 +30,7 @@ export const authOptions = {
               Phone: user.phone_number,
               Role: user.user_role,
               ProfileImg: user.profile_img,
-              id: user.id
+              id: user.id,
             };
           } else {
             console.log("Invalid credentials");
@@ -36,13 +40,9 @@ export const authOptions = {
           console.log("User not found");
           return null;
         }
-
-
-      }
-
+      },
     }),
   ],
-
 
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
@@ -58,6 +58,7 @@ export const authOptions = {
         session.user.Firstname = token.Firstname;
         session.user.Lastname = token.Lastname;
         session.user.ProfileImg = token.ProfileImg;
+        session.user.id = token.id;
       }
       return session;
     },
@@ -70,12 +71,12 @@ export const authOptions = {
         token.Firstname = user.Firstname;
         token.Lastname = user.Lastname;
         token.ProfileImg = user.ProfileImg;
+        token.id = user.id;
       }
       return token;
     },
-  }
-}
+  },
+};
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
-

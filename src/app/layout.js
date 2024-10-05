@@ -1,35 +1,28 @@
-
+"use client";
 import AuthProvider from "utils/AuthProvider";
 import "./globals.css";
-import { Cairo } from 'next/font/google'
-import DarkAndLightMode from "components/Dashboard/DarkAndLightMode/DarkAndLightMode";
+import { Cairo } from "next/font/google";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./lib/store";
 const cairo = Cairo({
-  weight: ['200', '300', '400', '500', '600', '700'],
-  subsets: ['latin'],
-  fallback: ['Helvetica', 'Arial', 'sans-serif'],
+  weight: ["200", "300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+  fallback: ["Helvetica", "Arial", "sans-serif"],
   adjustFontFallback: true,
-
-
-})
-
-export const metadata = {
-  title: "KG Hotel App",
-  description: "A hotel booking app built by Khaled Ghonim",
-  icons: {
-    icon: "/images/KGLogo.png",
-  },
-};
+});
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={cairo.className}
-      >
+      <body className={cairo.className}>
         <AuthProvider>
-          {children}
+          <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+              {children}
+            </PersistGate>
+          </Provider>
         </AuthProvider>
-
       </body>
     </html>
   );

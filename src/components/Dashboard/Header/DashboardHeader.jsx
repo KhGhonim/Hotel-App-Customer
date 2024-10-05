@@ -1,6 +1,5 @@
 import { CiMenuBurger } from "react-icons/ci";
 import { FaSearch } from "react-icons/fa";
-import { FaMessage } from "react-icons/fa6";
 import ProfileImageAndDropMenu from "./ProfileImageAndDropMenu";
 import {
   MdKeyboardDoubleArrowLeft,
@@ -8,11 +7,14 @@ import {
 } from "react-icons/md";
 import NotificationBell from "components/Dashboard/Notification/NotificationBell";
 import Conversation from "../Conversation/Conversation";
+import { useDispatch, useSelector } from "react-redux";
+import { DashboardOpened } from "app/lib/DashboardSlice";
 
-export default function DashboardHeader({
-  setIsSideBarOpened,
-  IsSideBarOpened,
-}) {
+export default function DashboardHeader({}) {
+  // @ts-ignore
+  const { IsSideBarOpened } = useSelector((state) => state.Users)
+  const dispatch = useDispatch();
+
   return (
     <header
       className={`fixed z-40 w-full flex h-20 items-center justify-between transition-all duration-300  bg-white ${
@@ -21,15 +23,15 @@ export default function DashboardHeader({
     >
       {IsSideBarOpened ? (
         <button
-          onClick={() => setIsSideBarOpened(!IsSideBarOpened)}
-          className="hidden md:block text-gray-500 focus:outline-none hover:scale-110 transition-all duration-150 "
+          onClick={() => dispatch(DashboardOpened())}
+          className="hidden lg:block text-gray-500 focus:outline-none hover:scale-110 transition-all duration-150 "
         >
           <MdKeyboardDoubleArrowRight className="h-6 w-6 text-red-500" />
         </button>
       ) : (
         <button
-          onClick={() => setIsSideBarOpened(!IsSideBarOpened)}
-          className="hidden md:block text-gray-500 focus:outline-none hover:scale-105 transition-all duration-150"
+          onClick={() => dispatch(DashboardOpened())}
+          className="hidden lg:block text-gray-500 focus:outline-none hover:scale-105 transition-all duration-150"
         >
           <MdKeyboardDoubleArrowLeft className="h-6 w-6 text-red-500" />
         </button>
@@ -37,7 +39,7 @@ export default function DashboardHeader({
 
       {/* Menu button */}
       <button
-        onClick={() => setIsSideBarOpened(!IsSideBarOpened)}
+        onClick={() =>  dispatch(DashboardOpened())}
         className="text-gray-500 focus:outline-none lg:hidden"
       >
         <CiMenuBurger className="h-6 w-6" />

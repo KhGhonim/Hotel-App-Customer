@@ -7,13 +7,15 @@ import toast, { Toaster } from "react-hot-toast";
 import { FaShip, FaSpinner, FaTrain } from "react-icons/fa";
 import { SiTurkishairlines } from "react-icons/si";
 import { getSession, signIn } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { SignInSuccess } from "app/lib/DashboardSlice";
 
 export default function page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
+  const dispatch = useDispatch();
   const handleSubmit = async (eo) => {
     eo.preventDefault();
     if (!email || !password) {
@@ -38,7 +40,8 @@ export default function page() {
       if (res.ok) {
         toast.success("Login Successful");
         setIsLoading(false);
-        await getSession();
+        const Session = await getSession();
+        dispatch(SignInSuccess(Session.user.Role));
 
         router.push("/");
       }
@@ -128,7 +131,7 @@ export default function page() {
         </form>
 
         <div className="text-center mt-1">
-          <Link className="text-blue-600 hover:underline" href={"/Register"}>
+          <Link className="text-blue-600 hover:underline" href={"/register"}>
             Create an account
           </Link>
         </div>

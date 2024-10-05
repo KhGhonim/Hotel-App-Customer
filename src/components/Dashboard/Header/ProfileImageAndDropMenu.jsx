@@ -1,12 +1,13 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function ProfileImageAndDropMenu() {
   const { data: session, status } = useSession();
   const [IsPhotoClicked, setIsPhotoClicked] = useState(false);
-
+console.log(session)
   return (
     <>
       {/* Profile image */}
@@ -34,6 +35,13 @@ export default function ProfileImageAndDropMenu() {
               Welcome, {session?.user?.Firstname} {session?.user?.Lastname}
             </p>
             <p className="text-sm text-gray-600 mb-4">{session?.user?.Email}</p>
+
+            <Link
+              href={`/Dashboard/Profile/${session?.user?.id}`}
+              className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-full" 
+            >
+              View Profile
+            </Link>
 
             <button
               className="mt-4 !z-50 px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-full hover:bg-red-600 transition-colors"
