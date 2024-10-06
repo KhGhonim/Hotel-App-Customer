@@ -21,6 +21,20 @@ JOIN
 JOIN 
     rooms ON bookings.room_id = rooms.id;`;
 
+export const GetAllDining = `SELECT 
+    dining.id AS dining_id,
+    dining.people,
+    dining.time,
+    dining.date,
+    dining.reservation_timestamp,
+    users.first_name AS user_firstname,
+    users.last_name AS user_lastname,
+    users.profile_img AS image
+FROM 
+    dining
+JOIN 
+    users ON dining.user_id = users.id;`;
+
 export const getBookingPerUser = `SELECT * FROM bookings WHERE user_id = $1;`;
 export const getBookingRoomPerUser = `SELECT 
     users.id AS user_id,

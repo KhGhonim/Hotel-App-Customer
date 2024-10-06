@@ -6,12 +6,19 @@ import Logo from "../../../../public/images/hotel-svgrepo-com.svg";
 import { DashboardMenu } from "DB/db";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 export default function SideBar() {
   const [hoveredItem, setHoveredItem] = useState(null);
   // @ts-ignore
-  const { IsSideBarOpened } = useSelector((state) => state.Users)
+  const [OpenSubItem, setOpenSubItem] = useState(null);
+  const { IsSideBarOpened } = useSelector((state) => state.Users);
+  const router = useRouter();
 
+  const HandleMenuDashboard = (item) => {
+    setOpenSubItem(item.label);
+    item.link === "/Dashboard" ? router.push(item.link) : null;
+  };
   return (
     <div className="flex fixed left-0 top-0 z-40   h-screen">
       <div
@@ -49,21 +56,22 @@ export default function SideBar() {
             className="relative "
             onMouseEnter={() => setHoveredItem(item.label)}
             onMouseLeave={() => setHoveredItem(null)}
+            onClick={() => {
+              HandleMenuDashboard(item);
+            }}
           >
-            <Link
+            <div
               className={`flex h-12 px-8 gap-5 cursor-pointer transition-all duration-300  items-center z-50 ${
                 IsSideBarOpened ? "justify-start w-44 " : "justify-center"
               } rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-900`}
-              href={`/${item.label}`}
             >
               <p> {item.icon}</p>
               {IsSideBarOpened && (
                 <h6 className="text-black font-bold">{item.label}</h6>
               )}
-            </Link>
+            </div>
             {hoveredItem === item.label && item.subItems && (
               <>
-
                 <div
                   className={`${
                     IsSideBarOpened
@@ -83,6 +91,31 @@ export default function SideBar() {
                 </div>
               </>
             )}
+
+            {hoveredItem === item.label &&
+              item.subItems &&
+              OpenSubItem === item.label && (
+                <>
+                  <div
+                    className={`${
+                      IsSideBarOpened
+                        ? "block transition-all duration-500"
+                        : "hidden transition-all duration-500"
+                    }  w-full bg-white  `}
+                    onMouseLeave={() => setOpenSubItem(null)}
+                  >
+                    {item.subItems.map((subItem, subIndex) => (
+                      <Link
+                        key={subIndex}
+                        href="#"
+                        className="block pl-14 rounded-md py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {subItem}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              )}
           </div>
         ))}
       </div>

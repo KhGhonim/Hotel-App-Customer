@@ -4,6 +4,7 @@ import AvabilityHome from "components/Dashboard/AvabilityHome/AvabilityHome";
 import HomeStatics from "components/Dashboard/HomeStatics/HomeStatics";
 import LatestReviews from "components/Dashboard/LatestReviews/LatestReviews";
 import RecentBooking from "components/Dashboard/RecentBooking/RecentBooking";
+import RecentDining from "components/Dashboard/RecentDining/RecentDining";
 import ReservationHomeStats from "components/Dashboard/ReservationHomeStats/ReservationHomeStats";
 import TotalStatistics from "components/Dashboard/TotalStatistics/TotalStatistics";
 import { useRef } from "react";
@@ -39,7 +40,11 @@ export default function DahsboardAdmin() {
           <ReservationHomeStats />
           <RecentBooking />
         </div>
-        <AvabilityHome />
+        <div className="flex flex-col pt-5   justify-between items-center gap-4 md:flex-row flex-1">
+          <RecentDining />
+          <AvabilityHome />
+        </div>
+
         <TotalStatistics />
         <LatestReviews />
       </div>

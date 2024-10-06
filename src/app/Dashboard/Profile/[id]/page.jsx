@@ -1,419 +1,258 @@
 "use client";
 import DashboardHeader from "components/Dashboard/Header/DashboardHeader";
 import SideBar from "components/Dashboard/SideBar/SideBar";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
-// @ts-ignore
-import { useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
-import { BiSolidWasher, BiSolidFridge } from "react-icons/bi";
-import {
-  FaBath,
-  FaCoffee,
-  FaEllipsisV,
-  FaPhone,
-  FaTv,
-  FaWifi,
-} from "react-icons/fa";
-import { FcSafe } from "react-icons/fc";
-import { GiSlippers } from "react-icons/gi";
-import { MdOutlineRoomService } from "react-icons/md";
-import { PiOven, PiHairDryerLight } from "react-icons/pi";
-import { TbAirConditioning, TbMessageCircle } from "react-icons/tb";
+import { useState } from "react";
+import { FaPenSquare } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
+const currentUser = {
+  name: "Alice Johnson",
+  email: "alice.johnson@hotel.com",
+  role: "Front Desk Manager",
+  department: "Front Office",
+  joinDate: "2021-03-15",
+};
+
+const authorizedPersons = [
+  {
+    id: "1",
+    name: "Bob Smith",
+    email: "bob.smith@hotel.com",
+    role: "General Manager",
+    department: "Management",
+    joinDate: "2019-01-01",
+  },
+  {
+    id: "2",
+    name: "Carol Davis",
+    email: "carol.davis@hotel.com",
+    role: "Housekeeping Supervisor",
+    department: "Housekeeping",
+    joinDate: "2020-06-15",
+  },
+  {
+    id: "3",
+    name: "David Wilson",
+    email: "david.wilson@hotel.com",
+    role: "Chef de Cuisine",
+    department: "Food & Beverage",
+    joinDate: "2018-11-30",
+  },
+  {
+    id: "4",
+    name: "Eva Brown",
+    email: "eva.brown@hotel.com",
+    role: "HR Manager",
+    department: "Human Resources",
+    joinDate: "2021-09-01",
+  },
+];
+
 export default function page() {
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  // @ts-ignore
-  const { data: session, status } = useSession();
-
-  const [BookingData, setBookingData] = useState([]);
-
-  useEffect(() => {
-    const FetchBookingData = async () => {
-      const res = await fetch(
-        // @ts-ignore
-        `http://localhost:3000/api/reservation/PerPersonReservation?q=${session?.user?.id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          credentials: "include",
-          cache: "no-store",
-        }
-      );
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.message);
-      }
-      setBookingData(data);
-    };
-
-    FetchBookingData();
-    // @ts-ignore
-  }, [session?.user?.id]);
-  const ref = useRef(null);
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
-
-  const openEditModal = () => {
-    setShowDropdown(false);
-    setShowEditModal(true);
-  };
-
-  const openDeleteModal = () => {
-    setShowDropdown(false);
-    setShowDeleteModal(true);
-  };
-
-  const closeModal = () => {
-    setShowEditModal(false);
-    setShowDeleteModal(false);
-  };
-
-  // @ts-ignore
+  const [isEditing, setIsEditing] = useState(false);
+  const [profile, setProfile] = useState(currentUser);
   const { IsSideBarOpened } = useSelector((state) => state.Users);
+
+  const handleInputChange = (e) => {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    // Here you would typically send the updated profile to your backend
+    console.log("Updated profile:", profile);
+  };
   return (
-    <div>
-      <DashboardHeader />
-      <SideBar />
-      <div className={`w-full  h-dvh flex flex-col bg-gray-100 relative `}>
-        <div
-          className={`flex flex-col md:flex-row  shadow-lg bg-gray-300 ${
-            IsSideBarOpened ? "pl-60  pt-32 pr-5" : "pl-20 pt-32 pr-5"
-          }`}
-        >
-          <div className="flex-1  overflow-auto p-5 lg:p-10 bg-white shadow-md rounded-lg">
-            <div className="flex-1 overflow-auto lg:p-8 bg-white  rounded-lg">
-              <div className="flex flex-col space-y-6 w-full mx-auto">
-                {/* Profile Header */}
-                <div className="relative flex items-center space-x-6">
-                  <Image
-                    // @ts-ignore
-                    src={session?.user?.ProfileImg}
-                    alt={`Profile image of ${session?.user?.name}`}
-                    width={90}
-                    height={90}
-                    quality={100}
-                    className="rounded-full object-cover w-32 h-32 border-4 border-gray-200 shadow-lg"
-                  />
-                  <div>
-                    <h1 className="text-3xl font-semibold text-gray-900">
-                      {
-                        // @ts-ignore
-                        session?.user?.Firstname
-                      }{" "}
-                      {session?.user?.Lastname}
-                    </h1>
-                    <p className="text-sm text-gray-400">
-                      ID :{" "}
-                      {
-                        // @ts-ignore
-                        session?.user?.id
-                      }
-                    </p>
-                  </div>
-                  <button
-                    onClick={toggleDropdown}
-                    className="ml-auto p-2 text-gray-500 hover:text-gray-900 relative"
-                  >
-                    <FaEllipsisV
-                      // @ts-ignore
-                      className="h-5 w-5"
-                    />
-                  </button>
-
-                  {/* Dropdown menu */}
-                  {showDropdown && (
-                    <div className="absolute top-14 right-0 mt-1 w-48 bg-white shadow-lg rounded-md py-2 z-10">
-                      <button
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                        onClick={openEditModal}
-                      >
-                        Edit Profile
-                      </button>
-                      <button
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                        onClick={openDeleteModal}
-                      >
-                        Delete Profile
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex space-x-4">
-                  <button className="flex items-center justify-center p-4 rounded-full bg-green-500 text-white hover:bg-green-600 transition duration-300 shadow-lg">
-                    <FaPhone
-                      // @ts-ignore
-                      className="h-5 w-5"
-                    />
-                  </button>
-                  <button className="flex-1 flex items-center justify-center p-4 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-300 shadow-lg">
-                    <TbMessageCircle
-                      // @ts-ignore
-                      className="h-5 w-5 mr-2"
-                    />
-                    Send Message
-                  </button>
-                </div>
-
-                {/* Booking Info */}
-                <div className="grid grid-cols-2 gap-6 border border-gray-200 p-4 rounded-lg bg-gray-50">
-                  <div className="flex flex-col">
-                    <h3 className="text-xs font-medium text-gray-500">
-                      Check In
-                    </h3>
-                    <p className="mt-1 text-gray-900">
-                      {BookingData?.check_in_date &&
-                        new Date(BookingData.check_in_date).toLocaleDateString(
-                          "en-US",
-                          {
-                            weekday: "long", // "Monday"
-                            year: "numeric", // "2024"
-                            month: "long", // "October"
-                            day: "numeric", // "4"
-                          }
-                        )}{" "}
-                      |
-                      {BookingData?.check_in_date &&
-                        new Date(BookingData.check_in_date).toLocaleTimeString(
-                          "en-US",
-                          {
-                            hour: "numeric",
-                            minute: "numeric",
-                            hour12: true, // true for AM/PM format
-                          }
-                        )}
-                    </p>
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-xs font-medium text-gray-500">
-                      Check Out
-                    </h3>
-                    <p className="mt-1 text-gray-900">
-                      {BookingData?.check_out_date &&
-                        new Date(BookingData.check_out_date).toLocaleDateString(
-                          "en-US",
-                          {
-                            weekday: "long", // "Monday"
-                            year: "numeric", // "2024"
-                            month: "long", // "October"
-                            day: "numeric", // "4"
-                          }
-                        )}{" "}
-                      |
-                      {BookingData?.check_out_date &&
-                        new Date(BookingData.check_out_date).toLocaleTimeString(
-                          "en-US",
-                          {
-                            hour: "numeric",
-                            minute: "numeric",
-                            hour12: true, // true for AM/PM format
-                          }
-                        )}
-                    </p>{" "}
-                  </div>
-                </div>
-
-                {/* Room Information */}
-                <div className="bg-gray-50 p-6 rounded-lg shadow-md">
-                  <div className="flex justify-between items-center">
-                    <h2 className="text-xl font-semibold text-gray-800">
-                      {BookingData?.title} - {BookingData?.room_type}
-                    </h2>
-                    <div>
-                      <span className="text-3xl font-bold text-green-500">
-                        ${BookingData?.price_per_night}
-                      </span>
-                      <span className="text-sm text-gray-500">/night</span>
-                    </div>
-                  </div>
-                  <p className="mt-3 text-gray-600 leading-relaxed">
-                    {BookingData?.description}
-                  </p>
-                </div>
-
-                {/* Facilities */}
-                <div className="flex flex-wrap gap-4 mt-4">
-                  {BookingData?.services?.map((service, i) => {
-                    return (
-                      <div
-                        key={i}
-                        className="bg-gray-100 text-green-600 flex items-center gap-2 px-4 py-2 rounded-md shadow-sm"
-                      >
-                        {service === "wifi" && (
-                          // @ts-ignore
-                          <FaWifi className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "coffee" && (
-                          // @ts-ignore
-                          <FaCoffee className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "turkish bath" && (
-                          // @ts-ignore
-                          <FaBath className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "tv" && (
-                          <FaTv
-                            // @ts-ignore
-                            className="w-4 h-4 mr-1"
-                          />
-                        )}
-                        {service === "washer" && (
-                          // @ts-ignore
-                          <BiSolidWasher className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "minibar" && (
-                          // @ts-ignore
-                          <BiSolidFridge className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "oven" && (
-                          // @ts-ignore
-                          <PiOven className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "hairdryer" && (
-                          // @ts-ignore
-                          <PiHairDryerLight className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "air conditioning" && (
-                          // @ts-ignore
-                          <TbAirConditioning className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "slippers" && (
-                          // @ts-ignore
-                          <GiSlippers className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "safe" && (
-                          // @ts-ignore
-                          <FcSafe className="w-4 h-4 mr-1" />
-                        )}
-                        {service === "roomervice" && (
-                          // @ts-ignore
-                          <MdOutlineRoomService className="w-4 h-4 mr-1" />
-                        )}
-                        <span className="text-sm">{service}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+    <div
+      className={`container mx-auto  ${
+        IsSideBarOpened ? "pl-20 lg:pl-36 pt-24" : "pl-20 pr-5 lg:p-6  !pt-24"
+      }  transition-all duration-300  w-full h-full md:h-dvh`}
+    >
+      <h1 className="text-3xl font-extrabold mb-8 text-gray-800">
+        Dashboard Profile
+      </h1>
+      <div className="grid gap-8 lg:grid-cols-2">
+        {/* Profile Section */}
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-700">
+            User Profile
+          </h2>
+          <p className="text-gray-500 mb-6">
+            View and edit your profile information
+          </p>
+          <div className="flex items-center space-x-6 mb-6">
+            <div className="relative w-24 h-24 rounded-full overflow-hidden bg-gray-100">
+              <Image
+                width={96}
+                height={96}
+                src="/placeholder-avatar.jpg"
+                alt={profile.name}
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gray-600 bg-opacity-30 flex items-center justify-center text-white text-lg font-bold uppercase">
+                {profile.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
               </div>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800">
+                {profile.name}
+              </h3>
+              <p className="text-sm text-gray-500">{profile.role}</p>
             </div>
           </div>
-
-          {/* Room Image Section */}
-          <div className="relative w-1/2 h-full">
-            <Image
-              className="object-cover w-full h-full rounded-l-lg"
-              placeholder="blur"
-              blurDataURL="/placeholder.svg"
-              width={1920}
-              height={1080}
-              quality={100}
-              src="/placeholder.svg"
-              alt="Room photo"
-            />
-            <div className="absolute z-10 inset-0 bg-black bg-opacity-50 flex flex-col justify-between p-6 text-white">
-              <div className="self-end bg-green-500 px-4 py-1 rounded-full">
-                BOOKED
-              </div>
-              <div>
-                <h2 className="text-4xl font-bold mb-2">Bed Room</h2>
-                <p className="leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-            </div>
+          <div className="space-y-4">
+            {isEditing ? (
+              <>
+                <div className="flex flex-col">
+                  <label
+                    className="text-sm font-medium text-gray-600"
+                    htmlFor="name"
+                  >
+                    Name
+                  </label>
+                  <input
+                    className="border border-gray-300 rounded-lg p-2 mt-1"
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={profile.name}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="text-sm font-medium text-gray-600"
+                    htmlFor="email"
+                  >
+                    Email
+                  </label>
+                  <input
+                    className="border border-gray-300 rounded-lg p-2 mt-1"
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={profile.email}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    className="text-sm font-medium text-gray-600"
+                    htmlFor="department"
+                  >
+                    Department
+                  </label>
+                  <input
+                    className="border border-gray-300 rounded-lg p-2 mt-1"
+                    type="text"
+                    id="department"
+                    name="department"
+                    value={profile.department}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <button
+                  className="mt-4 w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-all"
+                  onClick={handleSave}
+                >
+                  Save Changes
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="space-y-1">
+                  <span className="text-sm font-medium text-gray-600">
+                    Email
+                  </span>
+                  <p className="text-gray-800">{profile.email}</p>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-sm font-medium text-gray-600">
+                    Department
+                  </span>
+                  <p className="text-gray-800">{profile.department}</p>
+                </div>
+                <div className="space-y-1">
+                  <span className="text-sm font-medium text-gray-600">
+                    Join Date
+                  </span>
+                  <p className="text-gray-800">{profile.joinDate}</p>
+                </div>
+                <button
+                  className="mt-4 w-full flex items-center justify-center bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-all"
+                  onClick={() => setIsEditing(true)}
+                >
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11 5h4m4 4V5a2 2 0 00-2-2h-3.585a2 2 0 00-1.414.586L5 7.586A2 2 0 004 9v7.5A2.5 2.5 0 006.5 19h11a2.5 2.5 0 002.5-2.5V12"
+                    ></path>
+                  </svg>
+                  Edit Profile
+                </button>
+              </>
+            )}
           </div>
         </div>
 
-        {/* Modal: Edit Profile */}
-        {showEditModal && (
-          <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white z-50  p-6 rounded-md shadow-lg w-full max-w-md mx-auto">
-              <h2 className="text-xl font-bold mb-4">Edit Profile</h2>
-              <form>
-                <div className="mb-4 flex justify-center">
-                  <Image
-                    src="/placeholder.svg"
-                    alt="Profile picture"
-                    width={90}
-                    height={90}
-                    className="rounded-full border-4 border-gray-200 shadow-lg w-32 h-32 object-cover cursor-pointer"
-                    onClick={() => ref.current.click()}
-                  />
-                  <input
-                    ref={ref}
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    className="hidden"
-                    accept="image/*"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700">Name</label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-gray-700">Email</label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                  />
-                </div>
-                <div className="flex justify-end">
-                  <button
-                    type="button"
-                    className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2"
-                    onClick={closeModal}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="bg-green-500 text-white px-4 py-2 rounded-md"
-                  >
-                    Update
-                  </button>
-                </div>
-              </form>
-            </div>
+        {/* Authorized Persons Section */}
+        <div className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-xl font-semibold mb-4 text-gray-700">
+            Authorized Persons
+          </h2>
+          <p className="text-gray-500 mb-6">
+            View all authorized personnel and their roles
+          </p>
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-sm text-left text-gray-700">
+              <thead className="bg-gray-100 text-gray-600">
+                <tr>
+                  <th scope="col" className="py-2 px-4">
+                    Name
+                  </th>
+                  <th scope="col" className="py-2 px-4">
+                    Role
+                  </th>
+                  <th scope="col" className="py-2 px-4">
+                    Department
+                  </th>
+                  <th scope="col" className="py-2 px-4 text-right">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {authorizedPersons.map((person) => (
+                  <tr key={person.id} className="border-t border-gray-200">
+                    <td className="py-2 px-4 font-medium">{person.name}</td>
+                    <td className="py-2 px-4">{person.role}</td>
+                    <td className="py-2 px-4">{person.department}</td>
+                    <td className="py-2 px-4 text-right">
+                      <button className="text-blue-500 hover:underline">
+                        View Details
+                      </button>
+                      <button className="ml-4 text-red-500 hover:underline">
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        )}
-        {/* Modal: Confirm Delete Profile */}
-        {showDeleteModal && (
-          <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-md mx-auto">
-              <h2 className="text-xl font-bold mb-4">Delete Profile</h2>
-              <p className="mb-6">
-                Are you sure you want to delete this profile? This action cannot
-                be undone.
-              </p>
-              <div className="flex justify-end">
-                <button
-                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-2"
-                  onClick={closeModal}
-                >
-                  Cancel
-                </button>
-                <button className="bg-red-500 text-white px-4 py-2 rounded-md">
-                  Yes, Delete
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

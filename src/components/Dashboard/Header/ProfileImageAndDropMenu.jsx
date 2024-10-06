@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function ProfileImageAndDropMenu() {
   const { data: session, status } = useSession();
   const [IsPhotoClicked, setIsPhotoClicked] = useState(false);
-console.log(session)
   return (
     <>
       {/* Profile image */}
@@ -38,7 +37,7 @@ console.log(session)
 
             <Link
               href={`/Dashboard/Profile/${session?.user?.id}`}
-              className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-full" 
+              className="w-full mb-4 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-full"
             >
               View Profile
             </Link>
