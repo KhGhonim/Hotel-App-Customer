@@ -1,5 +1,5 @@
 export const GETALLROOMS = `SELECT * FROM rooms;`;
-export const GETROOMS = `SELECT * FROM rooms WHERE id = $1;`;
+export const GetOneRoom = `SELECT * FROM rooms WHERE id = $1;`;
 export const CheckAvailableRoomWithDates = `SELECT * FROM rooms WHERE room_availability = true AND room_capacity >= $1;`;
 export const CheckIfEmailExists = `SELECT * FROM users WHERE email_address = $1;`;
 export const CreateNewUser = `INSERT INTO users (first_name, last_name, email_address, password, phone_number, profile_img) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;`;
@@ -40,12 +40,10 @@ JOIN
 JOIN 
     rooms ON bookings.room_id = rooms.id
     WHERE 
-    users.id = $1;`
+    users.id = $1;`;
 
-export const InsertNewBooking = `INSERT INTO bookings (user_id, room_id, number_of_guests, number_of_children, booking_date, special_requests) VALUES ($1, $2, $3, $4, $5, $6);`;
+export const InsertNewBooking = `INSERT INTO bookings (user_id, room_id, number_of_guests, number_of_children, check_in_date, check_out_date, booking_date, special_requests) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
 
-
-
-
+export const InsertDiningReservation = `INSERT INTO dining (date, time, people, user_id) VALUES ($1, $2, $3 , $4);`;
 
 export const GETALLRESERVATIONS = `SELECT * FROM reservations;`;

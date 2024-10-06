@@ -1,15 +1,16 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
-export default function AccommodationForm() {
+export default function AccommodationForm({ setIsFormOpen }) {
   const [adults, setAdults] = useState(1);
   const [kids, setKids] = useState(0);
   const [CheckInDate, setCheckInDate] = useState(null);
   const [CheckOutDate, setCheckOutDate] = useState(null);
   const [Isloading, setIsloading] = useState(false);
-
+  const router = useRouter();
   const addAdults = (eo) => {
     eo.preventDefault();
     setAdults(adults + 1);
@@ -42,36 +43,45 @@ export default function AccommodationForm() {
   const handleFormSubmit = async (eo) => {
     eo.preventDefault();
 
-    if (!CheckInDate || CheckOutDate || adults || kids) {
+    if (!CheckInDate || !CheckOutDate || !adults) {
       toast.error("Please fill in all fields");
+
+      return;
     }
 
     setIsloading(true);
     try {
-      const res = await fetch(`/api/reservation/accommodation`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          CheckInDate,
-          CheckOutDate,
-          adults,
-          kids,
-        }),
-      });
+      const res = await fetch(
+        `/api/reservation/CheckAvailableRoom?checkIn=${CheckInDate}&checkOut=${CheckOutDate}&adults=${adults}&kids=${kids}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
-
       if (!res.ok) {
         toast.error(data.message);
-      }
+        setIsloading(false);
 
+        return;
+      }
       setIsloading(false);
-      toast.success(data.message);
+
+      toast.success("Rooms are available, redirecting to room selection...");
+      setIsFormOpen(false);
+      router.push(
+        `/CheckAvailableRoom?checkIn=${CheckInDate}&checkOut=${CheckOutDate}&adults=${adults}&kids=${kids}`
+      );
     } catch (error) {
       toast.error("Something went wrong, please try again later...");
+    } finally {
+      setIsloading(false);
+
+      
     }
   };
 
@@ -157,7 +167,13 @@ export default function AccommodationForm() {
         disabled={Isloading}
         className="w-full bg-blue-500 text-white py-2 text-2xl md:text-4xl px-4 rounded-md"
       >
-        {Isloading ? <FaSpinner className="animate-spin" /> : "Reserve"}
+        {Isloading ? (
+          <div className="flex items-center justify-center">
+            <FaSpinner className="animate-spin" />
+          </div>
+        ) : (
+          "Reserve"
+        )}
       </button>
     </form>
   );

@@ -40,14 +40,14 @@ export default function RecentBooking() {
   }
   if (data.length > 0) {
     return (
-      <div className="rounded-xl bg-white p-6 shadow-sm hover:shadow-xl h-96 transition-all duration-300 w-full md:w-2/5">
+      <div className="rounded-xl bg-white p-6 shadow-sm hover:shadow-xl h-96 transition-all duration-300 w-full md:w-2/5 overflow-hidden">
         <h2 className="mb-6 text-lg font-semibold">Recent Bookings</h2>
-        <div className="space-y-4 overflow-x-auto">
+        <div className="space-y-4 overflow-y-auto h-96">
           {data.map((booking, index) => {
             return (
               <Link
                 key={index}
-                className="flex items-center justify-between hover:bg-gray-100 p-3 rounded-lg transition-all duration-300"
+                className="flex items-center justify-between hover:bg-gray-100 p-3 rounded-lg transition-all duration-300 "
                 href={`/booking/${booking?.booking_id}`}
               >
                 <div className="flex items-center space-x-4">

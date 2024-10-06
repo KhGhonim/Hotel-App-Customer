@@ -75,7 +75,7 @@ export default function page() {
 
     HandleRezervation();
   }, [checkOut, checkIn, adults, kids]);
-
+  console.log(Data);
   return (
     <>
       <div className="container mx-auto px-4 py-8">
@@ -102,7 +102,10 @@ export default function page() {
                 Kids: {kids}
               </div>
             </div>
-            <Link className="bg-slate-50 hover:bg-slate-100 transition-all duration-500 text-black px-6 py-3 rounded-lg" href={"#ModifySearch"}>
+            <Link
+              className="bg-slate-50 hover:bg-slate-100 transition-all duration-500 text-black px-6 py-3 rounded-lg"
+              href={"#ModifySearch"}
+            >
               Modify Search
             </Link>
           </div>
@@ -217,11 +220,12 @@ export default function page() {
                     ))}
                   </div>
                 </div>
-                <div>
-                  <button className="w-full bg-black rounded-lg text-white hover:bg-gray-800 px-6 py-3 my-2 transition-all duration-500">
-                    Book Now
-                  </button>
-                </div>
+                <Link
+                  href={`/ReservationConfirmation?checkIn=${checkIn}&checkOut=${checkOut}&adults=${adults}&kids=${kids}&room_id=${room.id}&price=${room.price_per_night}`}
+                  className="w-full text-center bg-black rounded-lg text-white hover:bg-gray-800 px-6 py-3 my-5 transition-all duration-500"
+                >
+                  Book Now
+                </Link>
               </div>
             ))}
           </div>

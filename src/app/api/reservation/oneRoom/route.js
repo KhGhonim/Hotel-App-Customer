@@ -1,4 +1,4 @@
-import { GETROOMS } from "app/api/query/queries";
+import { GetOneRoom } from "app/api/query/queries";
 import { pool } from "DB/Postgres";
 import { NextResponse } from "next/server";
 
@@ -12,7 +12,7 @@ export async function GET(request) {
 
 
   try {
-    const res = await pool.query(GETROOMS, [q]);
+    const res = await pool.query(GetOneRoom, [q]);
 
 
     if (res.rows.length === 0) {

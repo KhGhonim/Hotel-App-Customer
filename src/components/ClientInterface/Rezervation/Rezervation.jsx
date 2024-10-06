@@ -122,7 +122,6 @@ export default function Rezervation() {
       setIsloading(false);
       return;
     }
-    setIsloading(true);
 
     try {
       const res = await fetch(
@@ -161,6 +160,7 @@ export default function Rezervation() {
       <Toaster position="top-right" />
       {/* Rezervation PC */}
       <div
+        id="rezervation"
         className={`hidden lg:block ${
           IsRezervationBarGoDown
             ? "fixed top-0 right-0 bg-[#AF8D70] rounded-lg"
@@ -330,9 +330,9 @@ export default function Rezervation() {
           </div>
 
           {activeTab === "accommodation" ? (
-            <AccommodationForm />
+            <AccommodationForm setIsFormOpen={setIsFormOpen} />
           ) : (
-            <DiningForm />
+            <DiningForm setIsFormOpen={setIsFormOpen} />
           )}
         </div>
       </div>
