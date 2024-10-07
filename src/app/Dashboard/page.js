@@ -45,8 +45,10 @@ export default function DahsboardAdmin() {
           <AvabilityHome />
         </div>
 
-        <TotalStatistics />
-        <LatestReviews />
+        <div className="flex flex-col pt-5   justify-between items-center gap-4 md:flex-row flex-1">
+          <TotalStatistics />
+          <LatestReviews />
+        </div>
       </div>
     </>
   );

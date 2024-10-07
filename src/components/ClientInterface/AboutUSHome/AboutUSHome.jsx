@@ -11,6 +11,7 @@ export default function AboutUSHome() {
     end: 100,
     enableScrollSpy: true,
     scrollSpyDelay: 1000,
+    scrollSpyOnce: true,
   });
   return (
     <section className="relative h-screen w-full  overflow-hidden">
@@ -33,7 +34,7 @@ export default function AboutUSHome() {
           {AboutUs.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-orange-400">
-                <CountUp end={stat.value} enableScrollSpy />
+                <CountUp end={stat.value} enableScrollSpy scrollSpyOnce />
               </div>
               <div className="text-sm md:text-base">{stat.label}</div>
             </div>

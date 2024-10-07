@@ -23,7 +23,7 @@ export default function ResturantChefSpeacial({ restaurantData }) {
               {restaurantData.chefSpecial.description}
             </p>
             <p className="text-2xl font-bold text-green-600">
-              ${restaurantData.chefSpecial.price}
+              {restaurantData.chefSpecial.price}
             </p>
             <div className="flex justify-center">
               <button className="bg-green-500 text-white  mt-2 px-24 py-2 rounded-md hover:bg-green-600 transition">

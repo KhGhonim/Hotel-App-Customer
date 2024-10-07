@@ -14,11 +14,8 @@ const counterSlice = createSlice({
   initialState,
   reducers: {
     SignOut: (state) => {
-      state.currentUser = null;
-      state.isAuthenticated = false;
-      state.IsSideBarOpened = false;
-      state.isLoading = false;
-      state.error = null;
+      state.IsAdmin = null;
+
     },
     DashboardOpened: (state) => {
       state.IsSideBarOpened = !state.IsSideBarOpened;

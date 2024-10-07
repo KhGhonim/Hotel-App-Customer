@@ -19,13 +19,15 @@ export const metadata = {
 export default function Home() {
   return (
     <div>
-      <Header />
+                    <Header />
+
       <HeroSection />
       <MiniHeroSection />
       <Facilities />
       <Gallery />
       <AboutUSHome />
       <Footer />
+
     </div>
   );
 }

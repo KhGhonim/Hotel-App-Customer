@@ -12,6 +12,7 @@ import { MdOutlineRoomService } from "react-icons/md";
 import { PiOven, PiHairDryerLight } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { useSession } from "next-auth/react";
+import Footer from "components/ClientInterface/Footer/Footer";
 
 export default function ReservationConfirmation() {
   const [isConfirmed, setIsConfirmed] = useState(false);
@@ -131,54 +132,6 @@ export default function ReservationConfirmation() {
     // toast.success("Email sent successfully, check your inbox");
   };
 
-  // Adding booking information to DB
-  // useEffect(() => {
-  //   if (
-  //     !SpecialRequest ||
-  //     !checkIn ||
-  //     !checkOut ||
-  //     !adults ||
-  //     !kids ||
-  //     !roomID ||
-  //     !session?.user?.id
-  //   ) {
-  //     toast.error("Please return and try again with all fields filled in");
-  //     return;
-  //   }
-
-  //   try {
-  //     if (isConfirmed) {
-  //       const InsertBooking = async () => {
-  //         const res = await fetch(`/api/accommodation`, {
-  //           method: "POST",
-  //           headers: { "Content-Type": "application/json" },
-  //           credentials: "include",
-  //           body: JSON.stringify({
-  //             checkIn,
-  //             checkOut,
-  //             adults,
-  //             kids,
-  //             totalPrice,
-  //             roomID,
-  //             SpecialRequest: SpecialRequest,
-  //             userID: session?.user?.id,
-  //           }),
-  //         });
-
-  //         if (!res.ok) {
-  //           toast.error("Error processing save booking");
-  //           return;
-  //         }
-
-  //         toast.success("Booking saved successfully");
-  //       };
-  //       InsertBooking();
-  //     }
-  //   } catch (error) {
-  //     toast.error("Error fetching room data: " + error);
-  //     console.log("Error fetching room data: " + error);
-  //   }
-  // }, [isConfirmed]);
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
@@ -317,6 +270,8 @@ export default function ReservationConfirmation() {
           </div>
         )}
       </div>
+      <Footer />
+
     </div>
   );
 }

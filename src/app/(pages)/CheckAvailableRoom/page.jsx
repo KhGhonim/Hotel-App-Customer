@@ -75,7 +75,6 @@ export default function page() {
 
     HandleRezervation();
   }, [checkOut, checkIn, adults, kids]);
-  console.log(Data);
   return (
     <>
       <div className="container mx-auto px-4 py-8">

@@ -16,6 +16,7 @@ import LastPage from "../../../../public/TourBook/15.png";
 import Bg from "../../../../public/TourBook/backGroundImgURL.jpg";
 import Header from "components/ClientInterface/Header/Header";
 import Image from "next/image";
+import Footer from "components/ClientInterface/Footer/Footer";
 
 const images = [
   FrontCover,
@@ -56,6 +57,9 @@ export default function Page() {
       <div className="flex justify-center items-center w-full h-full  pt-20">
         <PhotoBook images={images} />
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

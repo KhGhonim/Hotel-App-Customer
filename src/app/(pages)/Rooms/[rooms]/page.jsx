@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "next/navigation";
 import Header from "components/ClientInterface/Header/Header";
+import Footer from "components/ClientInterface/Footer/Footer";
 
 const Skeleton = ({ className }) => (
   <div className={`bg-gray-700 animate-pulse ${className}`}></div>
@@ -139,7 +140,8 @@ export default function page() {
   if (Data) {
     return (
       <div className="w-full min-h-screen bg-gray-900">
-        <Header />
+                      <Header />
+
         <div className=" bg-gray-900  px-4 py-32 ">
           <Toaster position="top-right" />
           <div className="grid md:grid-cols-2 gap-8 mx-auto container">
@@ -250,6 +252,8 @@ export default function page() {
             </div>
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }

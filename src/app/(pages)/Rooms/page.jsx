@@ -1,3 +1,4 @@
+
 import Footer from "components/ClientInterface/Footer/Footer";
 import Header from "components/ClientInterface/Header/Header";
 import RoomFiltering from "components/ClientInterface/RoomFiltering/RoomFiltering";
@@ -16,10 +17,12 @@ export const metadata = {
 export default function page() {
   return (
     <div className="w-full h-full">
-      <Header />
+                    <Header />
+
       <RoomsHeroSection />
       <RoomFiltering />
       <Footer />
+
     </div>
   );
 }

@@ -2,12 +2,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import {
-  FaCalendar,
-  FaClock,
-  FaSpinner,
-  FaUser,
-} from "react-icons/fa";
+import { FaCalendar, FaClock, FaSpinner, FaUser } from "react-icons/fa";
 
 export default function RecentDining() {
   const [Data, setData] = useState([]);
@@ -34,8 +29,6 @@ export default function RecentDining() {
     FetchDiningData();
   }, []);
 
-  console.log(Data);
-
   if (!Data || Data.length === 0) {
     return (
       <div className="flex justify-center items-center w-full h-full">
@@ -58,7 +51,7 @@ export default function RecentDining() {
           return (
             <div
               key={index}
-              className="group flex justify-between text-xs items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+              className="group flex flex-wrap gap-3 justify-between text-xs items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
             >
               {/* Reservation details date and time */}
               <div className="flex items-center space-x-2">

@@ -1,12 +1,21 @@
 "use client";
+import { SignOut } from "app/lib/DashboardSlice";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function ProfileImageAndDropMenu() {
   const { data: session, status } = useSession();
   const [IsPhotoClicked, setIsPhotoClicked] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    signOut();
+    dispatch(SignOut());
+  };
   return (
     <>
       {/* Profile image */}
@@ -44,7 +53,7 @@ export default function ProfileImageAndDropMenu() {
 
             <button
               className="mt-4 !z-50 px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-full hover:bg-red-600 transition-colors"
-              onClick={() => signOut()}
+              onClick={handleSignOut}
             >
               Log Out
             </button>

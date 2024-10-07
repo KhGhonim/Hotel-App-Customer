@@ -3,52 +3,144 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #ff6f61; /* Coral */
-  --text-color: #2c2c2c; /* Dark Gray */
-  --MainContent-color: #ffe0b2; /* Light Peach */
-  --background-color: #ffffff; /* White */
-  --secondary-color: #d84315; /* Deep Orange */
-  --highlight-color: #ffe3e3; /* Light Pink */
+  --primary-color: #ff6f61;
+  /* Coral */
+  --text-color: #2c2c2c;
+  /* Dark Gray */
+  --MainContent-color: #ffe0b2;
+  /* Light Peach */
+  --background-color: #ffffff;
+  /* White */
+  --secondary-color: #d84315;
+  /* Deep Orange */
+  --highlight-color: #ffe3e3;
+  /* Light Pink */
 }
 
 .yellow {
-  --primary-color: #0288d1; /* Bright Blue */
-  --text-color: #004d40; /* Deep Teal */
-  --MainContent-color: #b2ebf2; /* Light Cyan */
-  --background-color: #e0f7fa; /* Very Light Cyan */
-  --secondary-color: #006064; /* Teal */
-  --highlight-color: #80deea; /* Soft Cyan */
+  --primary-color: #0288d1;
+  /* Bright Blue */
+  --text-color: #004d40;
+  /* Deep Teal */
+  --MainContent-color: #b2ebf2;
+  /* Light Cyan */
+  --background-color: #e0f7fa;
+  /* Very Light Cyan */
+  --secondary-color: #006064;
+  /* Teal */
+  --highlight-color: #80deea;
+  /* Soft Cyan */
 }
 
 .green {
-  --primary-color: #388e3c; /* Strong Green */
-  --text-color: #1b5e20; /* Dark Green */
-  --MainContent-color: #c8e6c9; /* Light Green */
-  --background-color: #f1f8e9; /* Very Light Green */
-  --secondary-color: #4caf50; /* Medium Green */
-  --highlight-color: #a5d6a7; /* Soft Light Green */
+  --primary-color: #388e3c;
+  /* Strong Green */
+  --text-color: #1b5e20;
+  /* Dark Green */
+  --MainContent-color: #c8e6c9;
+  /* Light Green */
+  --background-color: #f1f8e9;
+  /* Very Light Green */
+  --secondary-color: #4caf50;
+  /* Medium Green */
+  --highlight-color: #a5d6a7;
+  /* Soft Light Green */
 }
 
 .dark {
-  --primary-color: #001F3F; /* Dark Gray */
-  --text-color: #EAD8B1; /* Light Gray */
-  --MainContent-color: #3A6D8C; /* Medium Gray */
-  --background-color: #070606; /* Near Black */
-  --secondary-color: #757575; /* Gray */
-  --highlight-color: #6A9AB0; /* Light Gray */
+  --primary-color: #001F3F;
+  /* Dark Gray */
+  --text-color: #EAD8B1;
+  /* Light Gray */
+  --MainContent-color: #3A6D8C;
+  /* Medium Gray */
+  --background-color: #070606;
+  /* Near Black */
+  --secondary-color: #757575;
+  /* Gray */
+  --highlight-color: #6A9AB0;
+  /* Light Gray */
 }
 
 .babyblue {
-  --primary-color: #f06292; /* Pink */
-  --text-color: #5d4037; /* Brown */
-  --MainContent-color: #ce93d8; /* Lavender */
-  --background-color: #fce4ec; /* Very Light Pink */
-  --secondary-color: #b39ddb; /* Light Purple */
-  --highlight-color: #ffccbc; /* Light Peach */
+  --primary-color: #f06292;
+  /* Pink */
+  --text-color: #5d4037;
+  /* Brown */
+  --MainContent-color: #ce93d8;
+  /* Lavender */
+  --background-color: #fce4ec;
+  /* Very Light Pink */
+  --secondary-color: #b39ddb;
+  /* Light Purple */
+  --highlight-color: #ffccbc;
+  /* Light Peach */
 }
 
 
 
 html {
   scroll-behavior: smooth;
+}
+
+
+
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.swiper-slide:nth-child(1n) {
+  background-color: rgb(255, 255, 255);
+}
+
+.swiper-slide:nth-child(2n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(3n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(4n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(5n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(6n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(7n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(8n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(9n) {
+  background-color: rgb(255, 255, 255);
+
+}
+
+.swiper-slide:nth-child(10n) {
+  background-color: rgb(255, 255, 255);
+
 }

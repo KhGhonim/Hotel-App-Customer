@@ -1,4 +1,3 @@
-
 import margherita from "../../../../public/images/Food/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg";
 import Tiramsu from "../../../../public/images/Food/AdobeStock_273554640.jpeg";
 import carbonara from "../../../../public/images/Food/carbonara-horizontal-square640-v2.jpg";
@@ -41,14 +40,7 @@ const restaurantData = {
       image: Tiramsu,
     },
   ],
-  gallery: [
-    burger,
-    pizza,
-    fish,
-    img,
-    Untitleddesign,
-    Photography,
-  ],
+  gallery: [burger, pizza, fish, img, Untitleddesign, Photography],
   chefSpecial: {
     name: "Osso Buco alla Milanese",
     description:
@@ -56,46 +48,11 @@ const restaurantData = {
     price: "$28",
     image: Milanese,
   },
-  reviews: [
-    {
-      name: "Alice Johnson",
-      rating: 5,
-      comment:
-        "Absolutely delicious! The atmosphere is charming and the service is impeccable.",
-      avatar: "https://avatar.iran.liara.run/public/82",
-    },
-    {
-      name: "Mark Thompson",
-      rating: 4,
-      comment: "Great food and ambiance. The pasta dishes are a must-try!",
-      avatar: "https://avatar.iran.liara.run/public/41",
-    },
-    {
-      name: "Sarah Lee",
-      rating: 5,
-      comment: "The tiramisu is to die for! Will definitely be coming back.",
-      avatar: "https://avatar.iran.liara.run/public/27",
-    },
-    {
-      name: "Ahmed Lutfy",
-      rating: 5,
-      comment:
-        "I love this place! The food is delicious and the service is top-notch.",
-      avatar: "https://avatar.iran.liara.run/public/12",
-    },
-    {
-      name: "Emily Chen",
-      rating: 5,
-      comment: "What a great experience! It was just perfect. I'll be back!",
-      avatar: "https://avatar.iran.liara.run/public/93",
-    },
-  ],
 };
 
 export const metadata = {
   title: "KG Cave Hotel",
-  description:
-    "Learn more about our restaurant. Designed by Khaled Ghonim",
+  description: "Learn more about our restaurant. Designed by Khaled Ghonim",
 
   icons: {
     icon: "/images/KGLogo.png",
@@ -104,15 +61,16 @@ export const metadata = {
 export default function page() {
   return (
     <div className=" bg-gray-300 w-full h-full">
+      <Header />
       <div>
-        <Header />
         <ResturantHeroSection restaurantData={restaurantData} />
         <ResturantMenuHighlights restaurantData={restaurantData} />
         <ResturantChefSpeacial restaurantData={restaurantData} />
         <ResturantGallery restaurantData={restaurantData} />
-        <ResturantCustomerReviews restaurantData={restaurantData} />
-        <Footer />
+        <ResturantCustomerReviews />
       </div>
+
+      <Footer />
     </div>
   );
 }

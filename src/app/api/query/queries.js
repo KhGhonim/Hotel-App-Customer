@@ -61,3 +61,38 @@ export const InsertNewBooking = `INSERT INTO bookings (user_id, room_id, number_
 export const InsertDiningReservation = `INSERT INTO dining (date, time, people, user_id) VALUES ($1, $2, $3 , $4);`;
 
 export const GETALLRESERVATIONS = `SELECT * FROM reservations;`;
+
+export const GETAllReviews = `SELECT 
+    users.id AS user_id,
+    users.first_name AS user_firstname,
+    users.last_name AS user_lastname,
+    reviews.content,
+    reviews.avatar,
+    reviews.rating,
+    reviews.created_at,
+    reviews.responded
+FROM 
+    reviews
+JOIN 
+    users ON users.id = reviews.author;`;
+export const InsertReview = `INSERT INTO reviews (author, content, avatar, rating)
+VALUES ($1, $2, $3, $4);`;
+
+export const AcceptReview = `UPDATE reviews SET responded = true WHERE author = $1;`;
+export const DeleteReview = `UPDATE reviews SET responded = false WHERE author = $1;`;
+
+export const GETApprovedReviews = `SELECT 
+reviews.rating AS rating,
+reviews.author AS author,
+reviews.content AS content,
+reviews.avatar AS avatar,
+reviews.responded AS responded,
+reviews.created_at AS created_at,
+users.first_name AS user_firstname,
+users.last_name AS user_lastname
+FROM reviews
+
+JOIN 
+    users ON users.id = reviews.author
+
+WHERE responded = true;`;

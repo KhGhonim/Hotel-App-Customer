@@ -1,4 +1,6 @@
 "use client";
+import Footer from "components/ClientInterface/Footer/Footer";
+import Header from "components/ClientInterface/Header/Header";
 import DashboardHeader from "components/Dashboard/Header/DashboardHeader";
 import SideBar from "components/Dashboard/SideBar/SideBar";
 import { useSession } from "next-auth/react";
@@ -79,10 +81,9 @@ export default function page() {
   // @ts-ignore
   const { IsSideBarOpened } = useSelector((state) => state.Users);
   return (
-    <div>
-      <DashboardHeader />
-      <SideBar />
       <div className={`w-full  h-dvh flex flex-col bg-gray-100 relative `}>
+                      <Header />
+
         <div
           className={`flex flex-col md:flex-row   ${
             IsSideBarOpened ? "pl-60  pt-24 pr-5" : "pl-20 pt-24 pr-5"
@@ -413,7 +414,8 @@ export default function page() {
             </div>
           </div>
         )}
+
+        <Footer />
       </div>
-    </div>
   );
 }
