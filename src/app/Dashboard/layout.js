@@ -9,6 +9,7 @@ import { store, persistor } from "../lib/store";
 import { PersistGate } from "redux-persist/integration/react";
 import AdminWrapper from "app/lib/AdminWrapper";
 
+
 export default function RootLayout({ children }) {
   return (
     <div className="relative h-full w-full overflow-hidden bg-slate-100">

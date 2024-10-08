@@ -204,7 +204,7 @@ export const rooms = [
     bedType: "Double Bed",
     roomType: "Studio",
     roomView: "City View",
-    services: ["wifi", "tv", "kitchenette"],
+    services: ["wifi", "tv"],
     rating: 3,
     pricePerNight: 160,
   },

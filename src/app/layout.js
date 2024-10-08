@@ -5,6 +5,7 @@ import { Cairo } from "next/font/google";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import store, { persistor } from "./lib/store";
+
 const cairo = Cairo({
   weight: ["200", "300", "400", "500", "600", "700"],
   subsets: ["latin"],
