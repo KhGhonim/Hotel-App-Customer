@@ -40,6 +40,7 @@ export default function AccommodationForm({ setIsFormOpen }) {
     }
   };
 
+  const AccommodationFormAPI = `${process.env.NEXT_PUBLIC_ACCOMMODATION_API}?checkIn=${CheckInDate}&checkOut=${CheckOutDate}&adults=${adults}&kids=${kids}`;
   const handleFormSubmit = async (eo) => {
     eo.preventDefault();
 
@@ -51,16 +52,13 @@ export default function AccommodationForm({ setIsFormOpen }) {
 
     setIsloading(true);
     try {
-      const res = await fetch(
-        `/api/reservation/CheckAvailableRoom?checkIn=${CheckInDate}&checkOut=${CheckOutDate}&adults=${adults}&kids=${kids}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const res = await fetch(AccommodationFormAPI, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
       const data = await res.json();
       if (!res.ok) {
@@ -80,8 +78,6 @@ export default function AccommodationForm({ setIsFormOpen }) {
       toast.error("Something went wrong, please try again later...");
     } finally {
       setIsloading(false);
-
-      
     }
   };
 

@@ -13,7 +13,7 @@ export default function RoomFiltering() {
 
   useEffect(() => {
     const GetAllRoomsData = async () => {
-      const res = await fetch(`http://localhost:3000/api/reservation/rooms`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_GetAllRoomsData, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

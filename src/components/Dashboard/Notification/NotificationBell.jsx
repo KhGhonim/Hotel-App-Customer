@@ -1,4 +1,5 @@
 "use client";
+import { NotificationData } from "DB/db";
 import { useEffect, useRef, useState } from "react";
 import { BiLogIn } from "react-icons/bi";
 import { FaBell } from "react-icons/fa";
@@ -6,44 +7,6 @@ import { FcLeave } from "react-icons/fc";
 import { MdPayment } from "react-icons/md";
 import { SiHiltonhotelsandresorts } from "react-icons/si";
 
-const NotificationData = [
-  {
-    id: 1,
-    type: "booking",
-    message: "New booking: Room 301 for John Doe",
-    time: "5 minutes ago",
-
-    unread: true,
-  },
-  {
-    id: 2,
-    type: "check-in",
-    message: "Guest check-in: Room 205",
-    time: "10 minutes ago",
-    unread: true,
-  },
-  {
-    id: 3,
-    type: "room-service",
-    message: "Room service request: Room 412",
-    time: "15 minutes ago",
-    unread: true,
-  },
-  {
-    id: 4,
-    type: "payment",
-    message: "Payment received: $500 for Room 118",
-    time: "30 minutes ago",
-    unread: true,
-  },
-  {
-    id: 5,
-    type: "check-out",
-    message: "Guest check-out: Room 548",
-    time: "2 minutes ago",
-    unread: true,
-  },
-];
 export default function NotificationBell() {
   const [isOpen, setIsOpen] = useState(false);
   const [NotificationsAfterReaded, setNotificationsAfterReaded] =

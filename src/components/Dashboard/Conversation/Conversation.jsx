@@ -1,46 +1,8 @@
 "use client";
+import { ConversationData } from "DB/db";
 import { useEffect, useRef, useState } from "react";
 import { BiSend } from "react-icons/bi";
 import { FaMessage } from "react-icons/fa6";
-
-const ConversationData = [
-  {
-    id: 1,
-    type: "worker",
-    sender: "Jane Smith",
-    avatar: "https://avatar.iran.liara.run/public/100",
-    message: "Room 302 needs cleaning ASAP",
-    time: "5 minutes ago",
-    unread: true,
-  },
-  {
-    id: 2,
-    type: "customer",
-    sender: "John Doe",
-    avatar: "https://avatar.iran.liara.run/public/45",
-    message: "Is late check-out available?",
-    time: "10 minutes ago",
-    unread: true,
-  },
-  {
-    id: 3,
-    type: "worker",
-    sender: "Mike Johnson",
-    avatar: "https://avatar.iran.liara.run/public/4",
-    message: "Maintenance required in Room 205",
-    time: "15 minutes ago",
-    unread: true,
-  },
-  {
-    id: 4,
-    type: "customer",
-    sender: "Sarah Williams",
-    avatar: "https://avatar.iran.liara.run/public/79",
-    message: "Thank you for the great service!",
-    time: "30 minutes ago",
-    unread: true,
-  },
-];
 
 export default function Conversation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -155,7 +117,9 @@ export default function Conversation() {
                       {message.message}
                     </p>
                     <div className="mt-2 flex items-center justify-between">
-                      <p className="text-[10px] text-gray-500">{message.time}</p>
+                      <p className="text-[10px] text-gray-500">
+                        {message.time}
+                      </p>
                       <div className="flex flex-col md:flex-row space-x-2">
                         {message.unread && (
                           <button

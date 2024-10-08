@@ -9,7 +9,7 @@ export default function RecentDining() {
 
   useEffect(() => {
     const FetchDiningData = async () => {
-      const res = await fetch(`/api/reservation/Dashboarddining`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_Dashboarddining_API, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

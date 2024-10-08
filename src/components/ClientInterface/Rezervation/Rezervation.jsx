@@ -113,6 +113,7 @@ export default function Rezervation() {
     };
   }, []);
 
+  const RezervationAPI = `${process.env.NEXT_PUBLIC_Rezervation_API}?checkIn=${CheckIn}&checkOut=${CheckOut}&adults=${adults}&kids=${kids}`;
   const HandleRezervation = async (eo) => {
     eo.preventDefault();
     setIsloading(true);
@@ -124,16 +125,13 @@ export default function Rezervation() {
     }
 
     try {
-      const res = await fetch(
-        `/api/reservation/CheckAvailableRoom?checkIn=${CheckIn}&checkOut=${CheckOut}&adults=${adults}&kids=${kids}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const res = await fetch(RezervationAPI, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
       const data = await res.json();
       if (!res.ok) {

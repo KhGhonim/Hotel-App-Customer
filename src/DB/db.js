@@ -14,6 +14,7 @@ import atv from "../../public/Activities/kapadokya-atv-turu_1.jpg";
 import hiking from "../../public/Activities/love-valley-hike-hiking-cappadocia.jpg";
 import tbath from "../../public/Activities/turkish-bath-1.webp";
 import horsetour from "../../public/Activities/sunrise-horse-tour-cappadocia-dalton-brothers-horse-riding-cappadocia-horse-ranch-turkey-travel-1240x914.jpg";
+import { FaBath, FaBell, FaCar, FaWifi } from "react-icons/fa";
 
 export const HeroSectionSliderDB = [
   {
@@ -390,5 +391,108 @@ export const activities = [
       "Discover nearby restaurants, shops, and attractions in Cappadocia.",
 
     image: LocalAmanti,
+  },
+];
+
+export const amenities = [
+  {
+    icon: <FaCar />,
+    title: "Car Parking Area",
+    description: "Free car parking is available for our customers.",
+  },
+  {
+    icon: <FaWifi />,
+    title: "Free Internet",
+    description: "Free Wi-Fi is available for our customers.",
+  },
+  {
+    icon: <FaBath />,
+    title: "Turkish Bath",
+    description:
+      "Enjoy purification and relaxation with a historical experience in a traditional Turkish bath.",
+  },
+  {
+    icon: <FaBell />,
+    title: "24/7 Room Service",
+    description:
+      "We serve delicious meals and snacks to your room at any time.",
+  },
+];
+
+export const ConversationData = [
+  {
+    id: 1,
+    type: "worker",
+    sender: "Jane Smith",
+    avatar: "https://avatar.iran.liara.run/public/100",
+    message: "Room 302 needs cleaning ASAP",
+    time: "5 minutes ago",
+    unread: true,
+  },
+  {
+    id: 2,
+    type: "customer",
+    sender: "John Doe",
+    avatar: "https://avatar.iran.liara.run/public/45",
+    message: "Is late check-out available?",
+    time: "10 minutes ago",
+    unread: true,
+  },
+  {
+    id: 3,
+    type: "worker",
+    sender: "Mike Johnson",
+    avatar: "https://avatar.iran.liara.run/public/4",
+    message: "Maintenance required in Room 205",
+    time: "15 minutes ago",
+    unread: true,
+  },
+  {
+    id: 4,
+    type: "customer",
+    sender: "Sarah Williams",
+    avatar: "https://avatar.iran.liara.run/public/79",
+    message: "Thank you for the great service!",
+    time: "30 minutes ago",
+    unread: true,
+  },
+];
+
+export const NotificationData = [
+  {
+    id: 1,
+    type: "booking",
+    message: "New booking: Room 301 for John Doe",
+    time: "5 minutes ago",
+
+    unread: true,
+  },
+  {
+    id: 2,
+    type: "check-in",
+    message: "Guest check-in: Room 205",
+    time: "10 minutes ago",
+    unread: true,
+  },
+  {
+    id: 3,
+    type: "room-service",
+    message: "Room service request: Room 412",
+    time: "15 minutes ago",
+    unread: true,
+  },
+  {
+    id: 4,
+    type: "payment",
+    message: "Payment received: $500 for Room 118",
+    time: "30 minutes ago",
+    unread: true,
+  },
+  {
+    id: 5,
+    type: "check-out",
+    message: "Guest check-out: Room 548",
+    time: "2 minutes ago",
+    unread: true,
   },
 ];

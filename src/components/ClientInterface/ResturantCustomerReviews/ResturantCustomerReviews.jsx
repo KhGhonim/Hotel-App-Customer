@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
-import { FaStar } from "react-icons/fa";
+import { FaSpinner, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 export default function ResturantCustomerReviews() {
-  const [Reviews, setReviews] = useState([]);
+  const [Reviews, setReviews] = useState(null);
 
   useEffect(() => {
     const FetchApprovedReviews = async () => {
@@ -30,6 +30,22 @@ export default function ResturantCustomerReviews() {
 
     FetchApprovedReviews();
   }, []);
+
+  if (!Reviews) {
+    return (
+      <div className="flex w-full h-full items-center justify-center">
+        <FaSpinner className="animate-spin" />
+      </div>
+    );
+  }
+
+  if (Reviews.length === 0) {
+    return (
+      <div className="flex justify-center">
+        <p>No reviews yet</p>
+      </div>
+    );
+  }
 
   return (
     <section className="pb-12 p-4 container mx-auto">
@@ -75,13 +91,13 @@ export default function ResturantCustomerReviews() {
                 key={index}
                 className="p-3  bg-white w-full rounded-lg shadow-lg transition-transform duration-300 hover:scale-105"
               >
-                <div className="flex items-center w-full h-32 md:h-44 gap-4">
+                <div className="flex items-center w-full h-28  gap-4">
                   <Image
                     width={50}
                     height={50}
                     src={review.avatar}
                     alt={review.author}
-                    className="rounded-full shadow-md"
+                    className="rounded-full shadow-md w-12 h-12 object-cover"
                   />
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900">

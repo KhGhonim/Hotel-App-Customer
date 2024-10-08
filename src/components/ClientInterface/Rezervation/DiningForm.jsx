@@ -4,7 +4,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
 
-export default function DiningForm({setIsFormOpen}) {
+export default function DiningForm({ setIsFormOpen }) {
   const [ReservationTime, setReservationTime] = useState(null);
   const [Time, setTime] = useState(null);
   const [People, setPeople] = useState(1);
@@ -25,7 +25,7 @@ export default function DiningForm({setIsFormOpen}) {
 
     setIsloading(true);
     try {
-      const res = await fetch(`/api/reservation/dining`, {
+      const res = await fetch(process.env.NEXT_PUBLIC_DINING_API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +50,6 @@ export default function DiningForm({setIsFormOpen}) {
       setIsloading(false);
       setIsFormOpen(false);
       toast.success(data.message);
-
     } catch (error) {
       toast.error("Something went wrong, please try again later...");
     } finally {
@@ -108,7 +107,13 @@ export default function DiningForm({setIsFormOpen}) {
         disabled={Isloading}
         className="w-full text-2xl md:text-3xl bg-blue-500 text-white py-2 px-4 rounded-md"
       >
-        {Isloading ? <div className="flex justify-center"><FaSpinner className="animate-spin" /></div> : "Book Now"}
+        {Isloading ? (
+          <div className="flex justify-center">
+            <FaSpinner className="animate-spin" />
+          </div>
+        ) : (
+          "Book Now"
+        )}
       </button>
     </form>
   );

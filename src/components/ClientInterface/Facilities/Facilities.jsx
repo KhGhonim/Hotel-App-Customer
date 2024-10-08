@@ -1,29 +1,4 @@
-import { FaBath, FaBell, FaCar, FaWifi } from "react-icons/fa";
-
-const amenities = [
-  {
-    icon: <FaCar />,
-    title: "Car Parking Area",
-    description: "Free car parking is available for our customers.",
-  },
-  {
-    icon: <FaWifi />,
-    title: "Free Internet",
-    description: "Free Wi-Fi is available for our customers.",
-  },
-  {
-    icon: <FaBath />,
-    title: "Turkish Bath",
-    description:
-      "Enjoy purification and relaxation with a historical experience in a traditional Turkish bath.",
-  },
-  {
-    icon: <FaBell />,
-    title: "24/7 Room Service",
-    description:
-      "We serve delicious meals and snacks to your room at any time.",
-  },
-];
+import { amenities } from "DB/db";
 
 export default function Facilities() {
   return (

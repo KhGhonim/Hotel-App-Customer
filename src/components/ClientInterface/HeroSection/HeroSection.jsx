@@ -9,7 +9,7 @@ import Rezervation from "../Rezervation/Rezervation";
 export default function HeroSection() {
   const [data, setdata] = useState({});
   const [loading, setloading] = useState(false);
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=istanbul&units=imperial&appid=c949f569bf1e1840f93ad20f9ced79fd`;
+  const url = process.env.NEXT_PUBLIC_WEATHER_API;
 
   useEffect(() => {
     const SearchTool = () => {

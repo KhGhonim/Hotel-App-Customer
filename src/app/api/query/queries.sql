@@ -1,0 +1,1 @@
+UPDATE reviews SET responded = null WHERE responded = TRUE;

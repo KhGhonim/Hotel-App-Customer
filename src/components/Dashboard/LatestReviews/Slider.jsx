@@ -26,7 +26,7 @@ export default function Slider({ reviews }) {
     }
     try {
       const res = await fetch(
-        `/api/reservation/reviews/AcceptReview?id=${currentIndex}`,
+        `${process.env.NEXT_PUBLIC_handleAcceptAPI}?id=${currentIndex}`,
         {
           method: "POST",
           headers: {
@@ -60,7 +60,7 @@ export default function Slider({ reviews }) {
         return;
       }
       const res = await fetch(
-        `/api/reservation/reviews/DeleteReview?id=${currentIndex}`,
+        `${process.env.NEXT_PUBLIC_handleRefuseAPI}?id=${currentIndex}`,
         {
           method: "POST",
           headers: {

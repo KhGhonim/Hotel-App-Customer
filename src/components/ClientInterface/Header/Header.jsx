@@ -13,7 +13,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session, status } = useSession();
   const [IsPhotoClicked, setIsPhotoClicked] = useState(false);
-  
+
   // Handler for language change
   const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);
@@ -35,8 +35,6 @@ export default function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
-
 
   return (
     <>

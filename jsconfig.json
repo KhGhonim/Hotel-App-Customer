@@ -6,17 +6,31 @@
     "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
-      "@/*": ["./src/*"],
-      "@backend/*": ["../backend/*"],
-      "@components/*": ["./src/components/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@utils/*": ["src/utils/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@backend/*": [
+        "../backend/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ]
     },
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "checkJs": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "skipLibCheck": true,
     "incremental": true,
   },
@@ -50,12 +64,32 @@
       "plugin:node/recommended",
       "prettier"
     ],
-    "plugins": ["react", "node", "express"],
+    "plugins": [
+      "react",
+      "node",
+      "express"
+    ],
     "rules": {
       "prettier/prettier": "error",
-      "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
-      "node/no-missing-import": ["error", { "tryExtensions": [".js", ".json", ".node"] }],
-      "react/prop-types": "off"  // Optional: if using TypeScript or if PropTypes are not used
+      "node/no-unsupported-features/es-syntax": [
+        "error",
+        {
+          "ignores": [
+            "modules"
+          ]
+        }
+      ],
+      "node/no-missing-import": [
+        "error",
+        {
+          "tryExtensions": [
+            ".js",
+            ".json",
+            ".node"
+          ]
+        }
+      ],
+      "react/prop-types": "off" // Optional: if using TypeScript or if PropTypes are not used
     },
     "env": {
       "browser": true,
