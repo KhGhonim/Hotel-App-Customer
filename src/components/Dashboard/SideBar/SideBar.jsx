@@ -5,8 +5,10 @@ import Image from "next/image";
 import Logo from "../../../../public/images/hotel-svgrepo-com.svg";
 import { DashboardMenu } from "DB/db";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import { MdKeyboardArrowUp, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { DashboardOpened } from "app/lib/DashboardSlice";
 
 export default function SideBar() {
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -14,13 +16,23 @@ export default function SideBar() {
   const [OpenSubItem, setOpenSubItem] = useState(null);
   const { IsSideBarOpened } = useSelector((state) => state.Users);
   const router = useRouter();
-
+  const dispatch = useDispatch();
   const HandleMenuDashboard = (item) => {
-    setOpenSubItem(item.label);
-    item.link === "/Dashboard" ? router.push(item.link) : null;
+    if (OpenSubItem === item.label) {
+      setOpenSubItem(null);
+    } else {
+      setOpenSubItem(item.label);
+      item.link === "/Dashboard" ? router.push(item.link) : null;
+    }
   };
+
+  const HandleMenuDashboardNevigation = (item) => {
+    dispatch(DashboardOpened());
+    setOpenSubItem(null);
+  };
+
   return (
-    <div className="flex fixed left-0 top-0 z-40   h-screen">
+    <div className="flex fixed left-0 top-0 z-40  h-screen">
       <div
         className={`flex transition-all duration-300  flex-col items-center justify-between bg-white pb-20 ${
           IsSideBarOpened ? "w-56" : "w-16"
@@ -54,23 +66,32 @@ export default function SideBar() {
           <div
             key={index}
             className="relative "
-            onMouseEnter={() => setHoveredItem(item.label)}
+            onMouseEnter={() => setHoveredItem(item?.label)}
             onMouseLeave={() => setHoveredItem(null)}
-            onClick={() => {
-              HandleMenuDashboard(item);
-            }}
+            onClick={() => HandleMenuDashboard(item)}
           >
             <div
               className={`flex h-12 px-8 gap-5 cursor-pointer transition-all duration-300  items-center z-50 ${
                 IsSideBarOpened ? "justify-start w-44 " : "justify-center"
               } rounded-lg text-gray-500 hover:bg-gray-100 hover:text-gray-900`}
             >
-              <p> {item.icon}</p>
+              <p> {item?.icon}</p>
               {IsSideBarOpened && (
-                <h6 className="text-black font-bold">{item.label}</h6>
+                <div className="flex gap-2 items-center">
+                  <h6 className="text-black font-bold">{item?.label}</h6>
+                  <span>
+                    {item?.subItems ? (
+                      OpenSubItem === item?.label ? (
+                        <MdKeyboardArrowUp />
+                      ) : (
+                        <MdOutlineKeyboardArrowDown />
+                      )
+                    ) : null}
+                  </span>
+                </div>
               )}
             </div>
-            {hoveredItem === item.label && item.subItems && (
+            {hoveredItem === item?.label && item?.subItems && (
               <>
                 <div
                   className={`${
@@ -79,43 +100,42 @@ export default function SideBar() {
                       : "absolute left-[80px] -top-10 w-48"
                   }  rounded-md bg-white py-2 shadow-lg `}
                 >
-                  {item.subItems.map((subItem, subIndex) => (
+                  {item?.subItems?.map((subItem, subIndex) => (
                     <Link
                       key={subIndex}
-                      href="#"
+                      href={`${subItem?.link}`}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => HandleMenuDashboardNevigation(item)}
                     >
-                      {subItem}
+                      {subItem?.Name}
                     </Link>
                   ))}
                 </div>
               </>
             )}
 
-            {hoveredItem === item.label &&
-              item.subItems &&
-              OpenSubItem === item.label && (
-                <>
-                  <div
-                    className={`${
-                      IsSideBarOpened
-                        ? "block transition-all duration-500"
-                        : "hidden transition-all duration-500"
-                    }  w-full bg-white  `}
-                    onMouseLeave={() => setOpenSubItem(null)}
-                  >
-                    {item.subItems.map((subItem, subIndex) => (
-                      <Link
-                        key={subIndex}
-                        href="#"
-                        className="block pl-14 rounded-md py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        {subItem}
-                      </Link>
-                    ))}
-                  </div>
-                </>
-              )}
+            {OpenSubItem === item?.label && (
+              <>
+                <div
+                  className={`${
+                    IsSideBarOpened
+                      ? "block transition-all duration-500"
+                      : "hidden transition-all duration-500"
+                  }  w-full bg-white  `}
+                  onClick={() => HandleMenuDashboardNevigation(item)}
+                >
+                  {item?.subItems?.map((subItem, subIndex) => (
+                    <Link
+                      key={subIndex}
+                      href={`${subItem?.link}`}
+                      className="block pl-14 rounded-md py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      {subItem?.Name}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         ))}
       </div>

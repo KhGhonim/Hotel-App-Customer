@@ -123,7 +123,7 @@ export default function RecentBooking() {
         </div>
 
         {/* Pagination Controls */}
-        <div className="absolute top-4 right-4 w-64 flex justify-between items-center rounded-lg">
+        <div className="absolute top-4 right-4 w-60 flex justify-between items-center rounded-lg">
           <button
             className={`text-sm font-semibold px-3 py-1 rounded-md transition-all duration-300 ${
               currentPage === 1

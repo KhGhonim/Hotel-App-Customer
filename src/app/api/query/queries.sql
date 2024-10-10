@@ -1,1 +1,1 @@
-UPDATE reviews SET responded = null WHERE responded = TRUE;
+UPDATE rooms SET title = "Executive", description = "A spacious and elegant suite with premium amenities", price_per_night = 1000.00, room_capacity = 1, room_type  = "deluxe", bed_type= "king", room_view = "ocean", room_availability = FALSE, rating = 2, services = ["wifi","jacuzzi","slippers","microwave","fridge","roll-in shower","turkish bath","air conditioning","hairdryer","minibar"], image = "http://res.cloudinary.com/dazvn6hep/image/upload/v1728482471/Hotel_RoomsPhotos/sfu5w2jc9arfkfml9pcv.jpg" WHERE id = 30;

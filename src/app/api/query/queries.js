@@ -96,3 +96,30 @@ JOIN
     users ON users.id = reviews.author
 
 WHERE responded = true;`;
+
+export const GetAllRoomsForRoomGrid = `SELECT
+  rooms.id,
+  jsonb_build_object(
+    'title', rooms.title, 
+    'image', rooms.image, 
+    'room_view', rooms.room_view
+  ) AS Room_Details,
+  rooms.description AS description,
+  rooms.bed_type AS bed_type,
+  rooms.room_type AS room_type,
+  rooms.services AS services,
+  rooms.price_per_night AS price_per_night,
+  rooms.room_capacity AS room_capacity,
+  rooms.room_availability AS room_availability,
+  rooms.rating AS rating
+  
+FROM
+  rooms;
+`;
+
+export const InsertRoom = `INSERT INTO rooms (title, description, price_per_night, room_capacity, room_type,  bed_type, room_view,  room_availability, rating,   services,  image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)  RETURNING *;`;
+
+export const UpdateRoom = `UPDATE rooms SET title = $1, description = $2, price_per_night = $3, room_capacity = $4, room_type  = $5, bed_type= $6, room_view = $7, room_availability = $8, rating = $9, services = $10, image = $11 WHERE id = $12 RETURNING *;`;
+
+
+export const DeleteOneRoom = `DELETE FROM rooms WHERE id = $1;`;

@@ -204,7 +204,7 @@ export const rooms = [
     bedType: "Double Bed",
     roomType: "Studio",
     roomView: "City View",
-    services: ["wifi", "tv"],
+    services: ["wifi", "tv", "kitchenette"],
     rating: 3,
     pricePerNight: 160,
   },
@@ -291,39 +291,51 @@ export const DashboardMenu = [
   },
   {
     icon: <MdBedroomParent className="h-6 w-6" />,
-    link: "/Rooms",
+    link: "RoomList",
     label: "Rooms",
-    subItems: ["All Rooms", "Available", "Booked"],
+    subItems: [
+      { Name: "All Rooms", link: "/Dashboard/RoomList?q=AllRooms" },
+      { Name: "Available", link: "/Dashboard/RoomList?q=Available" },
+      { Name: "Booked", link: "/Dashboard/RoomList?q=Booked" },
+    ],
   },
   {
     icon: <IoMdInformationCircle className="h-6 w-6" />,
-    link: "/Info",
-    label: "Information",
-    subItems: ["Hotel Info", "Policies", "FAQs"],
+    link: "Info",
+    label: "Info",
+    subItems: [
+      { Name: "Hotel Info", link: "/Dashboard/HotelInfo" },
+      { Name: "FAQs", link: "/Dashboard/FAQs" },
+      { Name: "Policies", link: "/Dashboard/Policies" },
+    ],
   },
   {
     icon: <BiSolidUserDetail className="h-6 w-6" />,
-    link: "/Analytics",
+    link: "Analytics",
     label: "Analytics",
-    subItems: ["Revenue", "Occupancy", "Trends"],
+    subItems: [
+      { Name: "Analytics", link: "/Dashboard/Analytics?q=Revenue" },
+      { Name: "Occupancy", link: "/Dashboard/Analytics?q=Occupancy" },
+    ],
   },
   {
     icon: <GrUserWorker className="h-6 w-6" />,
     label: "Reviews",
-    subItems: ["All Reviews", "Pending", "Responded"],
-  },
-  {
-    icon: <CiSettings className="h-6 w-6" />,
-    label: "Settings",
-    subItems: ["General", "Security", "Notifications"],
+    subItems: [
+      { Name: "All Reviews", link: "/Dashboard/Reviews?q=AllReviews" },
+      { Name: "Approved", link: "/Dashboard/Reviews?q=ApprovedReviews" },
+      { Name: "Pending", link: "/Dashboard/Reviews?q=PendingReviews" },
+    ],
   },
   {
     icon: <CgMenuRound className="h-6 w-6" />,
     label: "More",
-    subItems: ["Help", "About", "Contact"],
+    subItems: [
+      { Name: "About Us", link: "/Dashboard/AboutUs" },
+      { Name: "Contact Us", link: "/Dashboard/ContactUs" },
+    ],
   },
 ];
-
 export const activities = [
   {
     title: "Balloon Tour",

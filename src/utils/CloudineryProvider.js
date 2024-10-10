@@ -8,10 +8,10 @@ cloudinary.config({
 });
 
 // Cloudinary upload function using streams
-export const uploadStream = async (buffer) => {
+export const uploadStream = async (buffer, folder) => {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
-      { folder: "Hotel_usersPhotos" }, // Specify folder or other options here
+      { folder: folder }, 
       (error, result) => {
         if (error) return reject(error);
         resolve(result);

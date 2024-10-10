@@ -22,7 +22,7 @@ export async function POST(request) {
   if (ProfilePic) {
     try {
       const buffer = Buffer.from(await ProfilePic.arrayBuffer());
-      const uploadedImg = await uploadStream(buffer);
+      const uploadedImg = await uploadStream(buffer, 'Hotel_usersPhotos');
       ProfilePic = uploadedImg.url;
     } catch (err) {
       console.error("Error uploading image:", err);

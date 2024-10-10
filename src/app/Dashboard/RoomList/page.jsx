@@ -1,235 +1,100 @@
 "use client";
-
-import { useState } from "react";
-import { BiEdit, BiPlus, BiTrash } from "react-icons/bi";
-import { FaArrowDown } from "react-icons/fa";
-import { MdMoreVert } from "react-icons/md";
+import DeleteRoomModel from "components/Dashboard/DeleteRoomModel/DeleteRoomModel";
+import SharingGrid from "components/Dashboard/Grid/SharingGrid";
+import GridModel from "components/Dashboard/GridModel/GridModel";
+import GridUpdateModal from "components/Dashboard/GridUpdateModal/GridUpdateModal";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { BiPlus } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 export default function page() {
-  const [rooms, setRooms] = useState([
-    {
-      id: "1",
-      name: "#12341225 Deluxe A-91234",
-      image: "/placeholder.svg",
-      bedType: "Double Bed",
-      floor: "Floor A-1",
-      facilities: [
-        "AC",
-        "Shower",
-        "Double Bed",
-        "Towel",
-        "Bathup",
-        "Coffee Set",
-        "LED TV",
-        "Wifi",
-      ],
-      rate: 145,
-      status: "ACTIVE",
-    },
-    {
-      id: "2",
-      name: "#12341226 Deluxe A-91235",
-      image: "/placeholder.svg",
-      bedType: "Double Bed",
-      floor: "Floor A-1",
-      facilities: [
-        "AC",
-        "Shower",
-        "Double Bed",
-        "Towel",
-        "Bathup",
-        "Coffee Set",
-        "LED TV",
-        "Wifi",
-      ],
-      rate: 145,
-      status: "BOOKED",
-    },
-    // Add more room data as needed
-  ]);
+  // @ts-ignore
+  const { IsSideBarOpened } = useSelector((state) => state.Users);
+  const [RoomDataGrid, setRoomDataGrid] = useState([]);
+  const [IsModelOpen, setIsModelOpen] = useState(false);
+  const [IsUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [UpdateDetils, setUpdateDetils] = useState([]);
+  const [Col1] = useState("Room_Details");
+  const [Col2] = useState("bed_type");
+  const [Col3] = useState("Facilities");
+  const [Col4] = useState("Rate");
+  const [Col5] = useState("room_availability");
+  const [Col6] = useState("Actions");
+  const [DeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const [filter, setFilter] = useState("ALL");
-  const [sort, setSort] = useState("NEWEST");
+  useEffect(() => {
+    const FetchRoomDataGrid = async (params) => {
+      const res = await fetch(process.env.NEXT_PUBLIC_RoomDataGrid, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+        credentials: "include",
+      });
 
-  const filteredRooms = rooms.filter((room) => {
-    if (filter === "ALL") return true;
-    return room.status === filter;
-  });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.error);
+        return;
+      }
 
-  const sortedRooms = [...filteredRooms].sort((a, b) => {
-    if (sort === "NEWEST") {
-      return b.id.localeCompare(a.id);
-    } else {
-      return a.id.localeCompare(b.id);
-    }
-  });
+      setRoomDataGrid(data);
+    };
 
-  const handleAddRoom = () => {
-    // Implement add room functionality
-    console.log("Add new room");
-  };
-
-  const handleDeleteRoom = (id) => {
-    setRooms(rooms.filter((room) => room.id !== id));
-  };
-
-  const handleEditRoom = (id) => {
-    // Implement edit room functionality
-    console.log("Edit room", id);
-  };
+    FetchRoomDataGrid();
+  }, []);
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex space-x-4">
-          <button
-            className={`rounded-md px-4 py-2 ${
-              filter === "ALL"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-800"
-            }`}
-            onClick={() => setFilter("ALL")}
-          >
-            All Rooms
-          </button>
-          <button
-            className={`rounded-md px-4 py-2 ${
-              filter === "ACTIVE"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-800"
-            }`}
-            onClick={() => setFilter("ACTIVE")}
-          >
-            Active
-          </button>
-          <button
-            className={`rounded-md px-4 py-2 ${
-              filter === "BOOKED"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-800"
-            }`}
-            onClick={() => setFilter("BOOKED")}
-          >
-            Booked
-          </button>
-        </div>
-        <div className="flex items-center space-x-4">
-          <button
-            className="flex items-center space-x-2 rounded-md bg-green-600 px-4 py-2 text-white"
-            onClick={handleAddRoom}
-          >
-            <BiPlus className="h-5 w-5" />
-            <span>New Room</span>
-          </button>
-          <div className="relative">
-            <button className="flex items-center space-x-2 rounded-md border border-gray-300 px-4 py-2">
-              <span>{sort === "NEWEST" ? "Newest" : "Oldest"}</span>
-              <FaArrowDown className="h-5 w-5" />
-            </button>
-            <ul className="absolute right-0 mt-2 w-40 rounded-md bg-white shadow-lg">
-              <li>
-                <button
-                  className="block w-full px-4 py-2 text-left hover:bg-gray-100"
-                  onClick={() => setSort("NEWEST")}
-                >
-                  Newest
-                </button>
-              </li>
-              <li>
-                <button
-                  className="block w-full px-4 py-2 text-left hover:bg-gray-100"
-                  onClick={() => setSort("OLDEST")}
-                >
-                  Oldest
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
+    <div className="container mx-auto p-6 bg-slate-100 h-dvh w-full relative">
+      <div className="absolute right-0 top-28">
+        <button
+          onClick={() => setIsModelOpen(true)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 lg:py-2 lg:px-4 rounded flex items-center transition-all duration-300 "
+        >
+          Add a Room{" "}
+          <span>
+            <BiPlus />
+          </span>
+        </button>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="border-b text-left">
-              <th className="px-4 py-2">Room Name</th>
-              <th className="px-4 py-2">Room Image</th>
-              <th className="px-4 py-2">Bed Type</th>
-              <th className="px-4 py-2">Room Floor</th>
-              <th className="px-4 py-2">Facilities</th>
-              <th className="px-4 py-2">Rate</th>
-              <th className="px-4 py-2">Status</th>
-              <th className="px-4 py-2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sortedRooms.map((room) => (
-              <tr key={room.id} className="border-b">
-                <td className="px-4 py-2">{room.name}</td>
-                <td className="px-4 py-2">
-                  <img
-                    src={room.image}
-                    alt={room.name}
-                    className="h-16 w-24 rounded object-cover"
-                  />
-                </td>
-                <td className="px-4 py-2">{room.bedType}</td>
-                <td className="px-4 py-2">{room.floor}</td>
-                <td className="px-4 py-2">
-                  <div className="flex flex-wrap gap-1">
-                    {room.facilities.map((facility, index) => (
-                      <span
-                        key={index}
-                        className="rounded-full bg-gray-200 px-2 py-1 text-xs"
-                      >
-                        {facility}
-                      </span>
-                    ))}
-                  </div>
-                </td>
-                <td className="px-4 py-2">Price ${room.rate} /night</td>
-                <td className="px-4 py-2">
-                  <span
-                    className={`rounded-full px-2 py-1 text-xs ${
-                      room.status === "ACTIVE"
-                        ? "bg-green-200 text-green-800"
-                        : "bg-red-200 text-red-800"
-                    }`}
-                  >
-                    {room.status}
-                  </span>
-                </td>
-                <td className="px-4 py-2">
-                  <div className="relative">
-                    <button className="text-gray-500 hover:text-gray-700">
-                      <MdMoreVert className="h-5 w-5" />
-                    </button>
-                    <ul className="absolute right-0 mt-2 w-40 rounded-md bg-white shadow-lg">
-                      <li>
-                        <button
-                          className="flex w-full items-center px-4 py-2 text-left hover:bg-gray-100"
-                          onClick={() => handleEditRoom(room.id)}
-                        >
-                          <BiEdit className="mr-2 h-4 w-4" />
-                          Edit
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className="flex w-full items-center px-4 py-2 text-left text-red-600 hover:bg-gray-100"
-                          onClick={() => handleDeleteRoom(room.id)}
-                        >
-                          <BiTrash className="mr-2 h-4 w-4" />
-                          Delete
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      <div
+        className={` transition-all duration-300 h-full bg-gray-100 flex flex-1 flex-col pt-16  ${
+          IsSideBarOpened ? "pl-44" : "pl-14 lg:pl-0 "
+        } container mx-auto`}
+      >
+        <h1 className="text-2xl font-bold mb-4">Room List</h1>
+        <p className="text-gray-600 my-1">
+          Here you can view the list of all rooms in your hotel.
+        </p>
+
+        <SharingGrid
+          Col1={Col1}
+          Col2={Col2}
+          Col3={Col3}
+          Col4={Col4}
+          Col5={Col5}
+          Col6={Col6}
+          RoomDataGrid={RoomDataGrid}
+          setUpdateDetils={setUpdateDetils}
+          setIsUpdateModalOpen={setIsUpdateModalOpen}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
+        />
       </div>
+      <GridModel IsModelOpen={IsModelOpen} setIsModelOpen={setIsModelOpen} />
+      <GridUpdateModal
+        UpdateDetils={UpdateDetils}
+        IsUpdateModalOpen={IsUpdateModalOpen}
+        setIsUpdateModalOpen={setIsUpdateModalOpen}
+        setRoomDataGrid={setRoomDataGrid}
+      />
+      <DeleteRoomModel
+        DeleteModalOpen={DeleteModalOpen}
+        UpdateDetils={UpdateDetils}
+        setIsDeleteModalOpen={setIsDeleteModalOpen}
+      />
     </div>
   );
 }

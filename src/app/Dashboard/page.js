@@ -9,9 +9,5 @@ export const metadata = {
 };
 
 export default function page() {
-  return (
-    <>
-      <DahsboardAdmin />
-    </>
-  );
+  return <DahsboardAdmin />;
 }
