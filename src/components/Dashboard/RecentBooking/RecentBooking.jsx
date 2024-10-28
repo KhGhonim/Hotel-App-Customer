@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaSpinner } from "react-icons/fa";
+// @ts-ignore
 import hotelPic from "../../../../public/images/Rooms/Deluxe Double Room with Turkish Bath, istanbul, City View.jpg";
 import Image from "next/image";
 import Link from "next/link";

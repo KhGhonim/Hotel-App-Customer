@@ -401,8 +401,8 @@ export default function GridUpdateModal({
                   id="description"
                   name="description"
                   placeholder="Enter description of the room"
-                  maxLength="500"
-                  minLength="10"
+                  maxLength={500}
+                  minLength={10}
                   value={formDataa.description}
                   onChange={handleInputChange}
                   className="p-2 border border-gray-300 rounded w-full"
