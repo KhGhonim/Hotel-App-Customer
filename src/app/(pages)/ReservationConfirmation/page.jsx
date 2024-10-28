@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import HotelLogo from "../../../../public/images/Rooms/Connecting Family Room, istanbul, Garden View.webp";
 import { BiSolidWasher, BiSolidFridge } from "react-icons/bi";
 import { FaWifi, FaCoffee, FaBath, FaTv } from "react-icons/fa";
@@ -139,10 +139,11 @@ export default function ReservationConfirmation() {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <Toaster position="top-right" />
       <div className="max-w-5xl mx-auto bg-white shadow-lg relative rounded-lg p-8">
         <Link
           href="/"
-          className="absolute top-3 z-50 right-2 text-black p-2 bg-white/80  hover:scale-105 transition-all duration-300 rounded-md"
+          className="absolute top-0 z-50 right-0 text-white p-1 bg-black/80  hover:scale-105 transition-all duration-300 rounded-md"
         >
           Return to Home
         </Link>
