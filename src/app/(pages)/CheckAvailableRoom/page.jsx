@@ -79,6 +79,12 @@ export default function page() {
     <>
       <div className="container mx-auto px-4 py-8">
         <div className="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 rounded-lg shadow-lg overflow-hidden mb-8">
+        <Link
+        href="/"
+        className="absolute top-3 z-50 right-2 text-black p-2 bg-white/80  hover:scale-105 transition-all duration-300 rounded-md"
+      >
+        Return to Home
+      </Link>
           <div className="absolute inset-0 bg-black opacity-50"></div>
           <div className="relative z-10">
             <h2 className="text-3xl font-bold mb-2">

@@ -12,6 +12,7 @@ import { MdOutlineRoomService } from "react-icons/md";
 import { PiOven, PiHairDryerLight } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function ReservationConfirmation() {
   const [isConfirmed, setIsConfirmed] = useState(false);
@@ -66,14 +67,11 @@ export default function ReservationConfirmation() {
   const totalPrice = numberOfDays * price;
 
   const handleConfirmAndPay = async () => {
-    if (
-      !checkIn ||
-      !checkOut ||
-      !adults ||
-      !kids ||
-      !roomID ||
-      !session?.user?.id
-    ) {
+    if (!session?.user?.id) {
+      toast.error("Please ensure you are logged in to submit a reservation");
+      return;
+    }
+    if (!checkIn || !checkOut || !adults || !kids || !roomID) {
       toast.error("Please return and try again with all fields filled in");
       return;
     }
@@ -141,7 +139,13 @@ export default function ReservationConfirmation() {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg p-8">
+      <div className="max-w-5xl mx-auto bg-white shadow-lg relative rounded-lg p-8">
+        <Link
+          href="/"
+          className="absolute top-3 z-50 right-2 text-black p-2 bg-white/80  hover:scale-105 transition-all duration-300 rounded-md"
+        >
+          Return to Home
+        </Link>
         {/* Heading Section */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
