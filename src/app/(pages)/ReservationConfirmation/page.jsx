@@ -65,8 +65,6 @@ export default function ReservationConfirmation() {
   const numberOfDays = timeDifference / (1000 * 60 * 60 * 24);
   const totalPrice = numberOfDays * price;
 
-
-
   const handleConfirmAndPay = async () => {
     if (
       !checkIn ||
@@ -174,43 +172,36 @@ export default function ReservationConfirmation() {
 
           {/* Facilities */}
           <div className="flex flex-wrap gap-2 mt-4">
-            {RoomData?.services?.map((facility, index) => (
-              <div
-                key={index}
-                className="bg-blue-100 text-blue-600 rounded-full px-4 py-1 text-sm font-medium"
-              >
-                <span>
-                  {facility === "wifi" && <FaWifi className="w-4 h-4 mr-1" />}
-                  {facility === "coffee" && (
-                    <FaCoffee className="w-4 h-4 mr-1" />
-                  )}
-                  {facility === "turkish bath" && (
-                    <FaBath className="w-4 h-4 mr-1" />
-                  )}
-                  {facility === "tv" && <FaTv className="w-4 h-4 mr-1" />}
-                  {facility === "washer" && (
-                    <BiSolidWasher className="w-4 h-4 mr-1" />
-                  )}
-                  {facility === "minibar" && (
-                    <BiSolidFridge className="w-4 h-4 mr-1" />
-                  )}
-                  {facility === "oven" && <PiOven className="w-4 h-4 mr-1" />}
-                  {facility === "hairdryer" && (
-                    <PiHairDryerLight className="w-4 h-4 mr-1" />
-                  )}
-                  {facility === "air conditioning" && (
-                    <TbAirConditioning className="w-4 h-4 mr-1" />
-                  )}
-                  {facility === "slippers" && (
-                    <GiSlippers className="w-4 h-4 mr-1" />
-                  )}
-                  {facility === "safe" && <FcSafe className="w-4 h-4 mr-1" />}
-                  {facility === "roomervice" && (
-                    <MdOutlineRoomService className="w-4 h-4 mr-1" />
-                  )}
-                </span>
-              </div>
-            ))}
+            {RoomData?.services?.map((facility, index) => {
+              const iconMap = {
+                wifi: <FaWifi className="w-4 h-4 mr-1" />,
+                coffee: <FaCoffee className="w-4 h-4 mr-1" />,
+                "turkish bath": <FaBath className="w-4 h-4 mr-1" />,
+                tv: <FaTv className="w-4 h-4 mr-1" />,
+                washer: <BiSolidWasher className="w-4 h-4 mr-1" />,
+                minibar: <BiSolidFridge className="w-4 h-4 mr-1" />,
+                oven: <PiOven className="w-4 h-4 mr-1" />,
+                hairdryer: <PiHairDryerLight className="w-4 h-4 mr-1" />,
+                "air conditioning": (
+                  <TbAirConditioning className="w-4 h-4 mr-1" />
+                ),
+                slippers: <GiSlippers className="w-4 h-4 mr-1" />,
+                safe: <FcSafe className="w-4 h-4 mr-1" />,
+                roomservice: <MdOutlineRoomService className="w-4 h-4 mr-1" />,
+              };
+
+              const icon = iconMap[facility];
+              if (!icon) return null;
+
+              return (
+                <div
+                  key={index}
+                  className="bg-blue-100 text-blue-600 rounded-full px-4 py-1 text-sm font-medium"
+                >
+                  <span>{icon}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
 

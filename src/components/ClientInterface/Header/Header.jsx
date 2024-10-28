@@ -160,12 +160,20 @@ export default function Header() {
 
                 {status !== "authenticated" && (
                   <div className="flex flex-col items-center p-4 bg-white shadow-lg rounded-lg mt-2">
+                    <div className="flex items-center justify-center gap-3">
                     <Link
                       className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
                       href={"/login"}
                     >
                       Log In
                     </Link>
+                    <Link
+                      className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
+                      href={"/register"}
+                    >
+                      Sign Up
+                    </Link>
+                    </div>
                     <Link
                       className="text-base font-medium text-gray-600 hover:text-gray-800 transition-colors px-4 py-2 rounded-full hover:bg-gray-100"
                       href={"/Rooms"}

@@ -12,19 +12,18 @@ export default function HeroSection() {
   const url = process.env.NEXT_PUBLIC_WEATHER_API;
 
   useEffect(() => {
-    const SearchTool = () => {
+    const SearchTool = async () => {
       setloading(true);
-      fetch(url)
-        .then((res) => res.json())
-        .then((result) => {
-          setdata(result);
-        })
-        .catch((error) => {
-          console.error("Error fetching weather data:", error);
-        })
-        .finally(() => {
-          setloading(false);
-        });
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        setdata(data);
+        setloading(false);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setloading(false);
+      }
     };
 
     SearchTool();
