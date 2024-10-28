@@ -38,11 +38,11 @@ export default function page() {
 
       try {
         const res = await fetch(
-          `/api/reservation/CheckAvailableRoom?checkIn=${checkIn}&checkOut=${checkOut}&adults=${adults}&kids=${kids}`,
+          `${process.env.NEXT_PUBLIC_Rezervation_API}?checkIn=${checkIn}&checkOut=${checkOut}&adults=${adults}&kids=${kids}`,
 
           {
             cache: "no-store",
-            method: "POST",
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
             },

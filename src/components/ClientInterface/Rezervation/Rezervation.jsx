@@ -113,7 +113,6 @@ export default function Rezervation() {
     };
   }, []);
 
-  const RezervationAPI = `${process.env.NEXT_PUBLIC_Rezervation_API}?checkIn=${CheckIn}&checkOut=${CheckOut}&adults=${adults}&kids=${kids}`;
   const HandleRezervation = async (eo) => {
     eo.preventDefault();
     setIsloading(true);
@@ -125,7 +124,7 @@ export default function Rezervation() {
     }
 
     try {
-      const res = await fetch(RezervationAPI, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_Rezervation_API}?checkIn=${CheckIn}&checkOut=${CheckOut}&adults=${adults}&kids=${kids}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
