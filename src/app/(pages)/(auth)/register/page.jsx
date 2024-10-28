@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { FaCamera, FaSpinner } from "react-icons/fa";
-import PlaceHolder from "../../../../public/PlaceHolder.jpg";
+import PlaceHolder from "../../../../../public/PlaceHolder.jpg";
+import Link from "next/link";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex =
@@ -112,7 +113,14 @@ export default function page() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center py-12 px-4 relative sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
+      <Link
+        href="/"
+        className="absolute top-3 z-50 left-2 text-white p-2 bg-black  hover:scale-105 transition-all duration-300 rounded-md"
+      >
+        Return to Home
+      </Link>
       <Toaster />
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-xl transform transition-all duration-300 hover:shadow-2xl">
         <div className="mb-6">

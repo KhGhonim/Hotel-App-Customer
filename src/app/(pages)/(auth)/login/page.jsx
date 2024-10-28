@@ -66,6 +66,13 @@ export default function page() {
         backgroundRepeat: "no-repeat",
       }}
     >
+      <Link
+        href="/"
+        className="absolute top-3 z-50 left-2 text-white p-2 bg-blue-700  hover:scale-105 transition-all duration-300 rounded-md"
+      >
+        Return to Home
+      </Link>
+
       <Toaster position="top-right" />
       <div className="absolute inset-0 bg-black opacity-40"></div>
       <div className="bg-white bg-opacity-70 p-8 rounded-lg shadow-2xl w-96 backdrop-blur-sm">
