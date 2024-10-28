@@ -41,11 +41,12 @@ export default function HeroSection() {
       }
       toast.success(data.message);
 
-      settest(data.time);
+      settest(data.message);
     };
 
     testdb();
   }, []);
+  console.log(test);
   return (
     <div className="w-full h-dvh relative font-cairo">
       <Toaster />
