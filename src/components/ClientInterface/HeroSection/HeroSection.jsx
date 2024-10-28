@@ -5,11 +5,11 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import Rezervation from "../Rezervation/Rezervation";
-import toast, { Toaster } from "react-hot-toast";
 
 export default function HeroSection() {
   const [data, setdata] = useState({});
   const [loading, setloading] = useState(false);
+
   useEffect(() => {
     const SearchTool = async () => {
       setloading(true);
@@ -31,7 +31,6 @@ export default function HeroSection() {
 
   return (
     <div className="w-full h-dvh relative font-cairo">
-      <Toaster />
       <div className="hidden md:block absolute z-10 top-1/4 space-y-10 right-10 text-white font-cairo font-[500]">
         <div className="flex flex-col items-center gap-5">
           <div className="flex items-center gap-5 text-2xl lg:text-5xl">
