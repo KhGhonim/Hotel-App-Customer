@@ -126,7 +126,7 @@ export default function Rezervation() {
 
     try {
       const res = await fetch(RezervationAPI, {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },

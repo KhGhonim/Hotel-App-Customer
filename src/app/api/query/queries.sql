@@ -1,1 +1,1 @@
-SELECT * FROM rooms;
+SELECT * FROM rooms WHERE room_availability = true AND room_capacity >= 1;

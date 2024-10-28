@@ -2,7 +2,7 @@ import { CheckAvailableRoomWithDates } from "app/api/query/queries";
 import { pool } from "DB/Postgres";
 import { NextResponse } from "next/server";
 
-export async function POST(request) {
+export async function GET(request) {
 
   const checkIn = request.nextUrl.searchParams.get("checkIn")
   const checkOut = request.nextUrl.searchParams.get("checkOut")
