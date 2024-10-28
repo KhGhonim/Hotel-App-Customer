@@ -7,6 +7,6 @@ export default async function handler(req, res) {
     res.status(200).json({ success: true, time: result.rows[0].now });
   } catch (error) {
     console.error('Database connection error:', error);
-    res.status(500).json({ success: false, error: error.message });
+    res.status(500).json({ success: false, time: error.message });
   }
 }

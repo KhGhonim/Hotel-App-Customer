@@ -5,10 +5,12 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import Rezervation from "../Rezervation/Rezervation";
+import toast from "react-hot-toast";
 
 export default function HeroSection() {
   const [data, setdata] = useState({});
   const [loading, setloading] = useState(false);
+  const [test, settest] = useState(null);
 
   useEffect(() => {
     const SearchTool = async () => {
@@ -28,6 +30,20 @@ export default function HeroSection() {
     SearchTool();
   }, []);
 
+  useEffect(() => {
+    const testdb = async () => {
+      const res = await fetch("/api/testdb");
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(data.message);
+      }
+      toast.success(data.message);
+
+      settest(data.time);
+    };
+
+    testdb();
+  }, []);
   return (
     <div className="w-full h-dvh relative font-cairo">
       <div className="hidden md:block absolute z-10 top-1/4 space-y-10 right-10 text-white font-cairo font-[500]">
