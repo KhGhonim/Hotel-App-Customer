@@ -70,6 +70,8 @@ export default function RecentBooking() {
     getdata();
   }, []);
 
+  console.log(data)
+
   if (!data || data.length === 0) {
     return (
       <div className="h-96 flex items-center justify-start">

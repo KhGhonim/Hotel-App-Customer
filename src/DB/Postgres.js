@@ -1,5 +1,4 @@
-
-import pkg from 'pg';
+import pkg from "pg";
 const { Pool } = pkg;
 
 export const pool = new Pool({
@@ -12,6 +11,4 @@ export const pool = new Pool({
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
   ssl: { rejectUnauthorized: false },
-
 });
-
