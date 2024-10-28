@@ -2,7 +2,6 @@ import { BiSolidUserDetail } from "react-icons/bi";
 import { IoMdInformationCircle } from "react-icons/io";
 import { MdBedroomParent, MdSpaceDashboard } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
-import { CiSettings } from "react-icons/ci";
 import { CgMenuRound } from "react-icons/cg";
 import Kapadokya from "../../public/Activities/321888best-rooftops-in-Cappadocia.webp";
 import second from "../../public/Activities/57.jpg";

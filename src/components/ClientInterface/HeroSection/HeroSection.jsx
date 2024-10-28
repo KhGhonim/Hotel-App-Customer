@@ -9,13 +9,12 @@ import Rezervation from "../Rezervation/Rezervation";
 export default function HeroSection() {
   const [data, setdata] = useState({});
   const [loading, setloading] = useState(false);
-  const url = process.env.NEXT_PUBLIC_WEATHER_API;
 
   useEffect(() => {
     const SearchTool = async () => {
       setloading(true);
       try {
-        const res = await fetch(url);
+        const res = await fetch(process.env.NEXT_PUBLIC_WEATHER_API);
         const data = await res.json();
         setdata(data);
         setloading(false);
