@@ -50,7 +50,7 @@ export default function RecentBooking() {
 
   useEffect(() => {
     const getdata = async () => {
-      const res = await fetch(process.env.NEXT_PUBLIC_BOOKING_API, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BOOKING_API}`, {
         cache: "no-store",
         next: { revalidate: 0 },
         method: "GET",
@@ -70,7 +70,6 @@ export default function RecentBooking() {
     getdata();
   }, []);
 
-  console.log(data)
 
   if (!data || data.length === 0) {
     return (

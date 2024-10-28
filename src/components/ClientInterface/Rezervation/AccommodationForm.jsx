@@ -40,7 +40,6 @@ export default function AccommodationForm({ setIsFormOpen }) {
     }
   };
 
-  const AccommodationFormAPI = `${process.env.NEXT_PUBLIC_ACCOMMODATION_API}?checkIn=${CheckInDate}&checkOut=${CheckOutDate}&adults=${adults}&kids=${kids}`;
   const handleFormSubmit = async (eo) => {
     eo.preventDefault();
 
@@ -52,8 +51,8 @@ export default function AccommodationForm({ setIsFormOpen }) {
 
     setIsloading(true);
     try {
-      const res = await fetch(AccommodationFormAPI, {
-        method: "POST",
+      const res = await fetch(`${process.env.NEXT_PUBLIC_ACCOMMODATION_API}?checkIn=${CheckInDate}&checkOut=${CheckOutDate}&adults=${adults}&kids=${kids}`, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
