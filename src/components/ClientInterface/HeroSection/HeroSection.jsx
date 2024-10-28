@@ -10,8 +10,6 @@ import toast, { Toaster } from "react-hot-toast";
 export default function HeroSection() {
   const [data, setdata] = useState({});
   const [loading, setloading] = useState(false);
-  const [test, settest] = useState(null);
-
   useEffect(() => {
     const SearchTool = async () => {
       setloading(true);
@@ -30,23 +28,7 @@ export default function HeroSection() {
     SearchTool();
   }, []);
 
-  useEffect(() => {
-    const testdb = async () => {
-      const res = await fetch("/api/testdb");
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.message);
-        console.log("PostgreSQL connection error:", data.message);
-        return;
-      }
-      toast.success(data.message);
 
-      settest(data.message);
-    };
-
-    testdb();
-  }, []);
-  console.log(test);
   return (
     <div className="w-full h-dvh relative font-cairo">
       <Toaster />

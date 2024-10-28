@@ -9,6 +9,21 @@
       "name": "hotel",
       "database": "hotel",
       "username": "postgres"
+    },
+    {
+      "pgOptions": {
+        "ssl": {
+          "rejectUnauthorized": true
+        }
+      },
+      "previewLimit": 50,
+      "server": "dpg-csfmbp9u0jms73fi3d80-a.oregon-postgres.render.com",
+      "port": 5432,
+      "askForPassword": true,
+      "driver": "PostgreSQL",
+      "database": "hotelandadmin",
+      "username": "hotelandadmin_user",
+      "name": "dpg-csfmbp9u0jms73fi3d80-a"
     }
   ]
 }
