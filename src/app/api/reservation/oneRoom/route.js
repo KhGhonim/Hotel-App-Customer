@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function GET(request) {
   const q = request.nextUrl.searchParams.get("q")
-  console.log(q)
   if (!q) {
     return NextResponse.json({ error: "Room ID is required" }, { status: 400 });
   }

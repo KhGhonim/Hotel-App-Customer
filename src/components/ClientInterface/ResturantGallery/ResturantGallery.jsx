@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Magnifier from "react18-image-magnifier";
 
 export default function ResturantGallery({ restaurantData }) {

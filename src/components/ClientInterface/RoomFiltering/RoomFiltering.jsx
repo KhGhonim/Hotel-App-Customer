@@ -31,8 +31,6 @@ export default function RoomFiltering() {
     GetAllRoomsData();
   }, []);
 
-  console.log(rooms)
-
   function CardFiltiring() {
     let AllData = rooms;
     AllData = rooms?.filter((room) => {

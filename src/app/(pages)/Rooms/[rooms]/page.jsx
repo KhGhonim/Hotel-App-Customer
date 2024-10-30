@@ -9,11 +9,6 @@ import { TbAirConditioning } from "react-icons/tb";
 import { GiSlippers } from "react-icons/gi";
 import { FcSafe } from "react-icons/fc";
 import { MdOutlineRoomService } from "react-icons/md";
-import HotelLogo from "../../../../../public/images/Amazing view.jpg";
-import terace from "../../../../../public/images/cay in terace.jpg";
-import Cityscape from "../../../../../public/images/Cityscape with river.jpg";
-import taksim from "../../../../../public/images/taksim.jpg";
-import Entrance from "../../../../../public/images/Entrance-scaled.jpg.webp";
 import ImagePicker from "./ImagePicker";
 import CalenderPicker from "./CalenderPicker";
 import { useEffect, useState } from "react";
@@ -28,11 +23,10 @@ const Skeleton = ({ className }) => (
 export default function page() {
   const params = useParams().rooms;
   const [Data, setData] = useState(null);
-  console.log(Data)
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
-        `http://localhost:3000/api/reservation/oneRoom?q=${params}`,
+        `${process.env.NEXT_PUBLIC_oneRoom_API}?q=${params}`,
 
         {
           method: "GET",
@@ -55,21 +49,6 @@ export default function page() {
       fetchData();
     }
   }, [params]);
-
-  const roomData = {
-    id: "room-001",
-    title: "Deluxe Ocean View Suite",
-    image: HotelLogo,
-    description:
-      "Experience luxury with breathtaking ocean views in our spacious Deluxe Suite. Perfect for a romantic getaway or a relaxing family vacation.",
-    bedType: "King Size",
-    roomType: "Suite",
-    roomView: "Ocean View",
-    services: ["washer", "tv", "coffee", "air conditioning"],
-    roomImages: [terace, Cityscape, Entrance, taksim],
-    rating: 3.5,
-    pricePerNight: 299,
-  };
 
   if (Data === null || Data.length === 0) {
     return (
@@ -140,13 +119,13 @@ export default function page() {
   if (Data) {
     return (
       <div className="w-full min-h-screen bg-gray-900">
-                      <Header />
+        <Header />
 
         <div className=" bg-gray-900  px-4 py-32 ">
           <Toaster position="top-right" />
           <div className="grid md:grid-cols-2 gap-8 mx-auto container">
             <div>
-              <ImagePicker roomData={roomData} />
+              <ImagePicker Data={Data} />
             </div>
             <div>
               <h1 className="text-3xl text-slate-100 font-bold mb-2">
@@ -245,9 +224,7 @@ export default function page() {
                     per night
                   </span>
                 </div>
-                <button className="bg-black hover:bg-gray-800 transition-all duration-300 text-white font-bold py-2 px-8 rounded">
-                  Book Now
-                </button>
+
               </div>
             </div>
           </div>
