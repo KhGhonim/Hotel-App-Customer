@@ -69,7 +69,7 @@ export default function RecentBooking() {
     };
     getdata();
   }, []);
-console.log(data, currentItems)
+
 
   if (!data || data.length === 0) {
     return (
