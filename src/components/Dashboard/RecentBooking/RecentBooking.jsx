@@ -71,13 +71,13 @@ export default function RecentBooking() {
   }, []);
 console.log(data, currentItems)
 
-  // if (!data || data.length === 0) {
-  //   return (
-  //     <div className="h-96 flex items-center justify-start">
-  //       <FaSpinner className="animate-spin" />
-  //     </div>
-  //   );
-  // }
+  if (!data || data.length === 0) {
+    return (
+      <div className="h-96 flex items-center justify-start">
+        <FaSpinner className="animate-spin" />
+      </div>
+    );
+  }
   if (data.length > 0) {
     return (
       <div className="rounded-xl bg-white p-6 shadow-sm hover:shadow-xl h-96 transition-all duration-300 w-full md:w-2/5 overflow-hidden relative">
