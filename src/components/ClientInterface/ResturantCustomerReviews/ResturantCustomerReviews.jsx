@@ -11,7 +11,7 @@ export default function ResturantCustomerReviews() {
 
   useEffect(() => {
     const FetchApprovedReviews = async () => {
-      const res = await fetch(`/api/reservation/reviews/ApprovedReviews`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_ApprovedReviews}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export default function ResturantCustomerReviews() {
 
   if (!Reviews) {
     return (
-      <div className="flex w-full h-full items-center justify-center">
+      <div className="flex w-full h-full items-center mb-8 justify-center">
         <FaSpinner className="animate-spin" />
       </div>
     );
@@ -41,7 +41,7 @@ export default function ResturantCustomerReviews() {
 
   if (Reviews.length === 0) {
     return (
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-8">
         <p>No reviews yet</p>
       </div>
     );

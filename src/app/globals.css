@@ -144,3 +144,28 @@ html {
   background-color: rgb(255, 255, 255);
 
 }
+
+.magnifier-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100px; /* Or any fixed height */
+  border-radius: 8px;
+}
+
+.magnifier-image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.magnifying-glass {
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

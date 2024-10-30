@@ -15,6 +15,7 @@ import ResturantCustomerReviews from "components/ClientInterface/ResturantCustom
 import ResturantGallery from "components/ClientInterface/ResturantGallery/ResturantGallery";
 import ResturantHeroSection from "components/ClientInterface/ResturantHeroSection/ResturantHeroSection";
 import ResturantMenuHighlights from "components/ClientInterface/ResturantMenuHighlights/ResturantMenuHighlights";
+import ResturantReviewSubmission from "components/ClientInterface/ResturantReviewSubmission/ResturantReviewSubmission";
 
 const restaurantData = {
   name: "KG Cave Hotel",
@@ -68,6 +69,7 @@ export default function page() {
         <ResturantChefSpeacial restaurantData={restaurantData} />
         <ResturantGallery restaurantData={restaurantData} />
         <ResturantCustomerReviews />
+        <ResturantReviewSubmission />
       </div>
 
       <Footer />

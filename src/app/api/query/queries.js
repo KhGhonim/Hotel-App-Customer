@@ -75,8 +75,13 @@ FROM
     reviews
 JOIN 
     users ON users.id = reviews.author;`;
-export const InsertReview = `INSERT INTO reviews (author, content, avatar, rating)
-VALUES ($1, $2, $3, $4);`;
+
+export const InsertReview = `
+    INSERT INTO reviews (author, content, avatar, rating)
+    VALUES ($1, $2, 
+        (SELECT profile_img FROM users WHERE id = $1), 
+        $3);
+    `;
 
 export const AcceptReview = `UPDATE reviews SET responded = true WHERE author = $1;`;
 export const DeleteReview = `UPDATE reviews SET responded = false WHERE author = $1;`;
@@ -120,6 +125,5 @@ FROM
 export const InsertRoom = `INSERT INTO rooms (title, description, price_per_night, room_capacity, room_type,  bed_type, room_view,  room_availability, rating,   services,  image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)  RETURNING *;`;
 
 export const UpdateRoom = `UPDATE rooms SET title = $1, description = $2, price_per_night = $3, room_capacity = $4, room_type  = $5, bed_type= $6, room_view = $7, room_availability = $8, rating = $9, services = $10, image = $11 WHERE id = $12 RETURNING *;`;
-
 
 export const DeleteOneRoom = `DELETE FROM rooms WHERE id = $1;`;
