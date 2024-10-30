@@ -8,84 +8,7 @@ import "swiper/css";
 import "swiper/css/effect-cards";
 import toast from "react-hot-toast";
 import { useState } from "react";
-export default function Slider({ reviews }) {
-  const [localReviews, setLocalReviews] = useState(reviews);
-
-  // Function to update reviews after an action (optimistic UI)
-  const updateReviews = (id, action) => {
-    const updatedReviews = localReviews.map((review) =>
-      review.user_id === id ? { ...review, responded: action } : review
-    );
-    setLocalReviews(updatedReviews);
-  };
-
-  const handleAccept = async (currentIndex) => {
-    if (currentIndex === null) {
-      toast.error("Please select a review to accept");
-      return;
-    }
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_handleAcceptAPI}?id=${currentIndex}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          cache: "no-store",
-        }
-      );
-
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.error);
-        return;
-      }
-
-      updateReviews(currentIndex, true);
-
-      toast.success("Review accepted and will be displayed on Hotel website");
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
-    }
-  };
-
-  const handleRefuse = async (currentIndex) => {
-    // refuse the review and change it response accordingly into true
-    try {
-      if (currentIndex === null) {
-        toast.error("Please select a review to accept");
-        return;
-      }
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_handleRefuseAPI}?id=${currentIndex}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
-
-      const data = await res.json();
-      if (!res.ok) {
-        toast.error(data.error);
-        return;
-      }
-
-      updateReviews(currentIndex, false);
-
-      toast.success(
-        "Review refused and will not be displayed on Hotel website"
-      );
-    } catch (error) {
-      console.error(error);
-      toast.error(error.message);
-    }
-  };
+export default function Slider({ reviews, handleRefuse, handleAccept }) {
   return (
     <>
       <Swiper
@@ -94,7 +17,7 @@ export default function Slider({ reviews }) {
         modules={[EffectCards]}
         className="mySwiper h-96 max-w-2xl relative"
       >
-        {localReviews
+        {reviews
           .filter((review) => review.responded === null)
           .map((review, i) => {
             const date = new Date(review.created_at);

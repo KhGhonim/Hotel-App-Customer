@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   const id  = request.nextUrl.searchParams.get("id");
-  console.log(id)
   if (!id) {
     return NextResponse.json(
       { error: "Review ID is required" },
