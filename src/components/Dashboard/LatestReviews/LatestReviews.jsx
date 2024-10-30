@@ -9,7 +9,7 @@ export default function LatestReviews() {
 
   useEffect(() => {
     const FetchReviews = async () => {
-      const res = await fetch(`/api/reservation/reviews`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LatestReviews}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -20,7 +20,7 @@ export default function LatestReviews() {
 
       const data = await res.json();
       if (!res.ok) {
-        toast.error(data.error);
+        toast.error("Error fetching reviews, try to refresh the page");
         return;
       }
 
@@ -33,7 +33,7 @@ export default function LatestReviews() {
 
   if (!reviews || reviews.length === 0) {
     return (
-      <div className="flex justify-center">
+      <div className="flex w-full h-full items-center justify-center">
         <FaSpinner className="animate-spin" />
       </div>
     );
