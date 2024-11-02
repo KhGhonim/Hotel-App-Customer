@@ -1,9 +1,11 @@
 SELECT 
     users.id AS user_id,
-    users.first_name AS user_firstname,
-    users.last_name AS user_lastname,
+    jsonb_build_object(
+    'title', users.first_name, 
+    'Soyadi', users.first_name,
+    'image', users.profile_img 
+  ) AS review_Details,
     reviews.content,
-    reviews.avatar,
     reviews.rating,
     reviews.created_at,
     reviews.responded

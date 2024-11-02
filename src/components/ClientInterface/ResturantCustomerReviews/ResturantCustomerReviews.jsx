@@ -8,8 +8,11 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 export default function ResturantCustomerReviews() {
   const [Reviews, setReviews] = useState(null);
+  const [Isloading, setIsloading] = useState(false);
 
   useEffect(() => {
+    setIsloading(true);
+
     const FetchApprovedReviews = async () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_ApprovedReviews}`, {
         method: "GET",
@@ -26,20 +29,24 @@ export default function ResturantCustomerReviews() {
       }
 
       setReviews(data);
+
+      setIsloading(false);
     };
 
     FetchApprovedReviews();
   }, []);
 
-  if (!Reviews) {
+
+
+  if (Isloading) {
     return (
-      <div className="flex w-full h-full items-center mb-8 justify-center">
+      <div className="flex justify-center mb-8">
         <FaSpinner className="animate-spin" />
       </div>
     );
   }
 
-  if (Reviews.length === 0) {
+  if (!Reviews || Reviews.length === 0) {
     return (
       <div className="flex justify-center mb-8">
         <p>No reviews yet</p>

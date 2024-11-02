@@ -169,3 +169,14 @@ html {
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+/* Hide scrollbar */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+.overflow-x-auto {
+  scrollbar-width: none; /* Firefox */
+}
+/* Allow swipe scrolling */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}

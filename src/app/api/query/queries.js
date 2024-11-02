@@ -122,8 +122,28 @@ FROM
   rooms;
 `;
 
+export const GetAllReviewGrid = `SELECT 
+    users.id AS user_id,
+    jsonb_build_object(
+    'title', users.first_name, 
+    'Soyadi', users.last_name,
+    'image', users.profile_img 
+  ) AS review_Details,
+    reviews.content,
+    reviews.rating,
+    reviews.created_at,
+    reviews.responded
+FROM 
+    reviews
+JOIN 
+    users ON users.id = reviews.author;`;
+
 export const InsertRoom = `INSERT INTO rooms (title, description, price_per_night, room_capacity, room_type,  bed_type, room_view,  room_availability, rating,   services,  image) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)  RETURNING *;`;
 
 export const UpdateRoom = `UPDATE rooms SET title = $1, description = $2, price_per_night = $3, room_capacity = $4, room_type  = $5, bed_type= $6, room_view = $7, room_availability = $8, rating = $9, services = $10, image = $11 WHERE id = $12 RETURNING *;`;
 
 export const DeleteOneRoom = `DELETE FROM rooms WHERE id = $1;`;
+
+export const GETALLUSERS = `SELECT * FROM users;`;
+export const DeleteUser = `DELETE FROM users WHERE id = $1;`;
+export const UpdateUser = `UPDATE users SET email_address = $1, first_name = $2, last_name = $3, user_role = $4, profile_img = $5 WHERE id = $6;`;

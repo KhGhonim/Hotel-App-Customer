@@ -6,7 +6,7 @@ import Slider from "./Slider";
 
 export default function LatestReviews() {
   const [reviews, setReviews] = useState([]);
-  const [refreshing, setrefreshing] = useState(false);
+  const [refresh, setrefresh] = useState(false);
 
   const handleAccept = async (currentIndex) => {
     if (currentIndex === null) {
@@ -31,13 +31,13 @@ export default function LatestReviews() {
         toast.error(data.error);
         return;
       }
-      setrefreshing(true);
       toast.success("Review accepted and will be displayed on Hotel website");
+      setrefresh(true);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
-    } finally {
-      setrefreshing(false);
+    }  finally {
+      setrefresh(false);
     }
   };
 
@@ -65,15 +65,16 @@ export default function LatestReviews() {
         return;
       }
 
-      setrefreshing(true);
       toast.success(
         "Review refused and will not be displayed on Hotel website"
       );
+
+      setrefresh(true);
     } catch (error) {
       console.error(error);
       toast.error(error.message);
     } finally {
-      setrefreshing(false);
+      setrefresh(false);
     }
   };
 
@@ -98,7 +99,7 @@ export default function LatestReviews() {
     };
 
     FetchReviews();
-  }, [refreshing]);
+  }, [refresh]);
 
   if (!reviews || reviews.length === 0) {
     return (

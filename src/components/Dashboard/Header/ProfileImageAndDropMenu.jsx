@@ -3,12 +3,27 @@ import { SignOut } from "app/lib/DashboardSlice";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function ProfileImageAndDropMenu() {
   const { data: session, status } = useSession();
   const [IsPhotoClicked, setIsPhotoClicked] = useState(false);
+
+  const ref = useRef(null);
+  const handleClickOutside = (event) => {
+    // If the click is outside the modal, close it
+    if (ref.current && !ref.current.contains(event.target)) {
+      setIsPhotoClicked(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const dispatch = useDispatch();
 
@@ -17,7 +32,7 @@ export default function ProfileImageAndDropMenu() {
     dispatch(SignOut());
   };
   return (
-    <>
+    <div ref={ref}>
       {/* Profile image */}
       <button className="h-10 w-10 overflow-hidden rounded-full">
         <Image
@@ -60,6 +75,6 @@ export default function ProfileImageAndDropMenu() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

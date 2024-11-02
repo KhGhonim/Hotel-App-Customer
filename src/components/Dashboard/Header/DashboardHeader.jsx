@@ -15,6 +15,7 @@ export default function DashboardHeader({}) {
   const { IsSideBarOpened } = useSelector((state) => state.Users)
   const dispatch = useDispatch();
 
+
   return (
     <header
       className={`fixed z-40 w-full flex h-20 items-center justify-between transition-all duration-300  bg-white ${

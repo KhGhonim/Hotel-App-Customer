@@ -71,6 +71,7 @@ export default function RecentBooking() {
   }, []);
 
 
+
   if (!data || data.length === 0) {
     return (
       <div className="h-96 flex items-center justify-start">
@@ -100,7 +101,7 @@ export default function RecentBooking() {
                     width={100}
                     height={100}
                     quality={100}
-                    src={hotelPic}
+                    src={booking?.rooms_image}
                     alt={booking?.booking_id}
                     className="h-16 w-24 rounded-lg object-cover"
                   />

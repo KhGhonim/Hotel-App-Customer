@@ -88,7 +88,7 @@ export default function RecentDining() {
                     height={40}
                     src={reservation?.image}
                     alt={reservation?.user_firstname}
-                    className="object-cover"
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <div>
