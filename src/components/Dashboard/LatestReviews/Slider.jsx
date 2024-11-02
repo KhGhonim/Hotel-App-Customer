@@ -6,8 +6,6 @@ import { BiCheck } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import "swiper/css";
 import "swiper/css/effect-cards";
-import toast from "react-hot-toast";
-import { useState } from "react";
 export default function Slider({ reviews, handleRefuse, handleAccept }) {
   return (
     <>

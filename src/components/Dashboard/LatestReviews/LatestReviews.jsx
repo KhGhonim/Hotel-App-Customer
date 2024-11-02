@@ -36,6 +36,8 @@ export default function LatestReviews() {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setrefreshing(false);
     }
   };
 
@@ -70,6 +72,8 @@ export default function LatestReviews() {
     } catch (error) {
       console.error(error);
       toast.error(error.message);
+    } finally {
+      setrefreshing(false);
     }
   };
 
@@ -80,7 +84,7 @@ export default function LatestReviews() {
         headers: {
           "Content-Type": "application/json",
         },
-
+        cache: "no-store",
         credentials: "include",
       });
 
