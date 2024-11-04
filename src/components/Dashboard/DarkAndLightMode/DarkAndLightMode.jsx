@@ -4,6 +4,7 @@ import { CiSettings } from "react-icons/ci";
 
 export default function DarkAndLightMode() {
   const [IsSettignOpened, setIsSettignOpened] = useState(false);
+  const [MakeSpinnerHidden, setMakeSpinnerHidden] = useState("");
 
   const [activeTab, setActiveTab] = useState("Theme");
   const [background, setBackground] = useState(
@@ -48,7 +49,6 @@ export default function DarkAndLightMode() {
 
     // Reload the page
     window.location.reload();
-    
   };
 
   const ref = useRef(null);
@@ -65,8 +65,14 @@ export default function DarkAndLightMode() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const HandleDisabled = () => {
+    setMakeSpinnerHidden("hidden");
+    setIsSettignOpened(false);
+  };
+
   return (
-    <div className="fixed z-50 top-1/3 right-0">
+    <div className={`${MakeSpinnerHidden} fixed z-50 top-1/3 right-0 `}>
       <button
         onClick={() => setIsSettignOpened(!IsSettignOpened)}
         className=" bg-red-500 text-white p-2 rounded-full"
@@ -86,13 +92,23 @@ export default function DarkAndLightMode() {
           } transition-all duration-500`}
         >
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-2xl font-bold">Pick your style</h2>
-            <button
-              onClick={handleDeleteAllCookies}
-              className="rounded-md bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-            >
-              Delete All Cookie
-            </button>
+            <h2 className="text-base md:text-lg lg:text-2xl font-bold">
+              Pick your style
+            </h2>
+            <div className="flex gap-2">
+              <button
+                onClick={handleDeleteAllCookies}
+                className="rounded-md bg-red-500 p-2 md:px-4 md:py-2 text-xs md:text-sm lg:text-base text-white hover:bg-red-600"
+              >
+                Delete All Cookie
+              </button>
+              <button
+                onClick={HandleDisabled}
+                className="rounded-md bg-slate-500 p-2 md:px-4 md:py-2 text-xs md:text-sm lg:text-base text-white hover:bg-slate-600"
+              >
+                Make it disabled
+              </button>
+            </div>
           </div>
 
           <div className="mb-6 flex border-b">

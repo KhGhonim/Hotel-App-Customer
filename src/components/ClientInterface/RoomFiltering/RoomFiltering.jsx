@@ -10,7 +10,7 @@ export default function RoomFiltering() {
   const [roomType, setRoomType] = useState("all");
   const [roomView, setRoomView] = useState("all");
   const [rooms, setRooms] = useState([]);
-
+console.log(rooms)
   useEffect(() => {
     const GetAllRoomsData = async () => {
       const res = await fetch(process.env.NEXT_PUBLIC_GetAllRoomsData, {
@@ -86,8 +86,9 @@ export default function RoomFiltering() {
               className="w-[180px] px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value="all">All Bed Types</option>
-              <option value="King Bed">King Bed</option>
-              <option value="Twin Bed">Twin Bed</option>
+              <option value="king">King Bed</option>
+              <option value="double">Twin Bed</option>
+              <option value="queen">Queen Bed</option>
             </select>
           </div>
 
@@ -99,9 +100,9 @@ export default function RoomFiltering() {
               className="w-[180px] px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value="all">All Room Types</option>
-              <option value="Residence">Residence</option>
-              <option value="Room">Room</option>
-              <option value="Suite">Suite</option>
+              <option value="standard">Standard</option>
+              <option value="deluxe">Deluxe</option>
+              <option value="suite">Suite</option>
             </select>
           </div>
 
@@ -114,8 +115,8 @@ export default function RoomFiltering() {
             >
               <option value="all">All Views</option>
               <option value="City View">City View</option>
-              <option value="Square View">Square View</option>
-              <option value="Sea View">Sea View</option>
+              <option value="garden">Square View</option>
+              <option value="ocean">Sea View</option>
             </select>
           </div>
         </div>
@@ -123,7 +124,7 @@ export default function RoomFiltering() {
 
       {/* Rooms */}
 
-      {!data ? (
+      {!data || data.length === 0 ? (
         <p className="text-3xl font-bold text-center">
           No Room Found! Please Try Again With Different Teypes.
         </p>

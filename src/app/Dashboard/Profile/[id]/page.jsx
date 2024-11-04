@@ -11,6 +11,7 @@ export default function page() {
   // @ts-ignore
   const { IsSideBarOpened } = useSelector((state) => state.Users);
 
+
   const dispatch = useDispatch();
   const ref = useRef(null);
   const handleClickOutside = (event) => {
@@ -21,9 +22,9 @@ export default function page() {
 
   return (
     <div
-      className={`container mx-auto pl-20 lg:pl-0  pt-24 ${
-        IsSideBarOpened ? "pl-36" : "p-6 "
-      }  transition-all duration-300  w-full h-full md:h-dvh`}
+      className={`container mx-auto  lg:pl-0  pt-24 ${
+        IsSideBarOpened ? "!pl-36" : "pl-20 p-6 "
+      }  transition-all duration-300  w-full h-full`}
     >
       {IsSideBarOpened ? (
         <div

@@ -300,12 +300,14 @@ export const DashboardMenu = [
   },
   {
     icon: <IoMdInformationCircle className="h-6 w-6" />,
-    link: "Info",
-    label: "Info",
+    link: "PageContent",
+    label: "Content",
     subItems: [
       { Name: "Hotel Info", link: "/Dashboard/HotelInfo" },
       { Name: "FAQs", link: "/Dashboard/FAQs" },
-      { Name: "Policies", link: "/Dashboard/Policies" },
+      { Name: "Resturant", link: "/Dashboard/Policies" },
+      { Name: "About Us", link: "/Dashboard/AboutUs" },
+      { Name: "Contact Us", link: "/Dashboard/ContactUs" },
     ],
   },
   {
@@ -314,7 +316,7 @@ export const DashboardMenu = [
     label: "Analytics",
     subItems: [
       { Name: "Analytics", link: "/Dashboard/Analytics?q=Revenue" },
-      { Name: "Occupancy", link: "/Dashboard/Analytics?q=Occupancy" },
+      { Name: "Bookings", link: "/Dashboard/Analytics?q=Bookings" },
     ],
   },
   {
@@ -328,10 +330,10 @@ export const DashboardMenu = [
   },
   {
     icon: <CgMenuRound className="h-6 w-6" />,
-    label: "More",
+    label: "Activity",
     subItems: [
-      { Name: "About Us", link: "/Dashboard/AboutUs" },
-      { Name: "Contact Us", link: "/Dashboard/ContactUs" },
+      { Name: "Tours Content", link: "/Dashboard/Tours" },
+      { Name: "Speacial Events", link: "/Dashboard/Speacial" },
     ],
   },
 ];
