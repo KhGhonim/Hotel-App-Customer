@@ -312,8 +312,8 @@ export default function Header() {
         {/* Tablet Menu */}
         <div
           className={`absolute top-0 right-0 h-screen  z-50 bg-[#F5F5F5] w-96 p-7 text-black ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } transition-all duration-300 ease-in `}
+            isMenuOpen ? "translate-x-0" : "translate-x-[100%]"
+          }  transition-all duration-300 ease-in overflow-hidden `}
         >
           <div className="absolute top-5 right-5">
             <MdClose onClick={toggleMenu} className="text-3xl" />
@@ -328,9 +328,9 @@ export default function Header() {
                 Add New Room
               </Link>
             ) : (
-              <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg">
+              <Link className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg" href={"/Rooms"}>
                 Book Now
-              </button>
+              </Link>
             )}
             {status === "authenticated" ? (
               <Link
@@ -474,9 +474,9 @@ export default function Header() {
                 Add A Room
               </button>
             ) : (
-              <button className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black">
+              <Link className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black" href={"/Rooms"}>
                 Book Now
-              </button>
+              </Link>
             )}
             {status === "authenticated" ? (
               <Link

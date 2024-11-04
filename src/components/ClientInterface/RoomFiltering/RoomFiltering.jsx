@@ -10,8 +10,10 @@ export default function RoomFiltering() {
   const [roomType, setRoomType] = useState("all");
   const [roomView, setRoomView] = useState("all");
   const [rooms, setRooms] = useState([]);
+  const [Isloading, setIsloading] = useState(false);
   useEffect(() => {
     const GetAllRoomsData = async () => {
+      setIsloading(true);
       const res = await fetch(process.env.NEXT_PUBLIC_GetAllRoomsData, {
         method: "GET",
         headers: {
@@ -27,7 +29,9 @@ export default function RoomFiltering() {
       setRooms(data);
     };
 
+
     GetAllRoomsData();
+    setIsloading(false);
   }, []);
 
   function CardFiltiring() {
@@ -123,16 +127,16 @@ export default function RoomFiltering() {
 
       {/* Rooms */}
 
-      {!data || data.length === 0 ? (
+      {Isloading ? (
+        <div className="flex justify-center">
+        <FaSpinner className="animate-spin" />
+      </div>
+      ) : !data || data.length === 0 ? (
         <p className="text-3xl font-bold text-center">
           No Room Found! Please Try Again With Different Teypes.
         </p>
-      ) : data.length > 0 ? (
-        <FinalProducts result={data} />
       ) : (
-        <div className="flex justify-center">
-          <FaSpinner className="animate-spin" />
-        </div>
+        <FinalProducts result={data} />
       )}
     </section>
   );
