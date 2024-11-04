@@ -161,18 +161,18 @@ export default function Header() {
                 {status !== "authenticated" && (
                   <div className="flex flex-col items-center p-4 bg-white shadow-lg rounded-lg mt-2">
                     <div className="flex items-center justify-center gap-3">
-                    <a
-                      className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
-                      href={"/login"}
-                    >
-                      Log In
-                    </a>
-                    <a
-                      className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
-                      href={"/register"}
-                    >
-                      Sign Up
-                    </a>
+                      <a
+                        className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
+                        href={"/login"}
+                      >
+                        Log In
+                      </a>
+                      <a
+                        className="text-base font-medium text-blue-600 hover:text-blue-800 transition-colors mb-2 px-4 py-2 rounded-full hover:bg-blue-100"
+                        href={"/register"}
+                      >
+                        Sign Up
+                      </a>
                     </div>
                     <Link
                       className="text-base font-medium text-gray-600 hover:text-gray-800 transition-colors px-4 py-2 rounded-full hover:bg-gray-100"
@@ -485,7 +485,7 @@ export default function Header() {
                   toggleMenu();
                 }}
                 className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black"
-                href={"/LogIn"}
+                href={"/login"}
               >
                 Log Out
               </Link>
@@ -493,7 +493,7 @@ export default function Header() {
               <Link
                 onClick={toggleMenu}
                 className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black"
-                href={"/LogIn"}
+                href={"/login"}
               >
                 Log In
               </Link>

@@ -10,7 +10,6 @@ export default function RoomFiltering() {
   const [roomType, setRoomType] = useState("all");
   const [roomView, setRoomView] = useState("all");
   const [rooms, setRooms] = useState([]);
-console.log(rooms)
   useEffect(() => {
     const GetAllRoomsData = async () => {
       const res = await fetch(process.env.NEXT_PUBLIC_GetAllRoomsData, {

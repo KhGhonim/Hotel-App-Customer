@@ -8,7 +8,6 @@ export default function DeleteRoomModel({
   DeleteModalOpen,
 }) {
   const [IsLoading, setIsLoading] = useState(false);
-  console.log(UpdateDetils);
   const onDelete = async () => {
     setIsLoading(true);
     // Implement your delete logic here
