@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { BiSolidUserDetail } from "react-icons/bi";
 import { IoMdInformationCircle } from "react-icons/io";
 import { MdBedroomParent, MdSpaceDashboard } from "react-icons/md";
@@ -303,11 +304,9 @@ export const DashboardMenu = [
     link: "PageContent",
     label: "Content",
     subItems: [
-      { Name: "Hotel Info", link: "/Dashboard/HotelInfo" },
       { Name: "FAQs", link: "/Dashboard/FAQs" },
-      { Name: "Resturant", link: "/Dashboard/Policies" },
+      { Name: "Resturant", link: "/Dashboard/Content/Resturant" },
       { Name: "About Us", link: "/Dashboard/AboutUs" },
-      { Name: "Contact Us", link: "/Dashboard/ContactUs" },
     ],
   },
   {

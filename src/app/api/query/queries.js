@@ -147,3 +147,12 @@ export const DeleteOneRoom = `DELETE FROM rooms WHERE id = $1;`;
 export const GETALLUSERS = `SELECT * FROM users;`;
 export const DeleteUser = `DELETE FROM users WHERE id = $1;`;
 export const UpdateUser = `UPDATE users SET email_address = $1, first_name = $2, last_name = $3, user_role = $4, profile_img = $5 WHERE id = $6;`;
+
+export const GETABOUTUS = `SELECT * FROM restaurant;`;
+export const UpdateHeadline = `UPDATE restaurant SET headline = $1 RETURNING *;`;
+export const AddMenuHighlights = `INSERT INTO Menu (name, price, description, image) VALUES ($1, $2, $3, $4) RETURNING *;`;
+export const AddChefSpecial = `INSERT INTO ChefMenu (name, price, description, image) VALUES ($1, $2, $3, $4) RETURNING *;`;
+export const GETALLHIGHLIGHTS = `SELECT * FROM Menu;`;
+export const GETALLCHEFSPECIALS = `SELECT * FROM ChefMenu;`;
+export const GETALLGALLERIES = `SELECT * FROM Gallery;`;
+export const INSERTGALLERIES = `INSERT INTO Gallery (image) VALUES ($1) RETURNING *;`;

@@ -5,6 +5,8 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaEdit, FaSpinner } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
+import UserPlaceHolder from "../../../../../public/PlaceHolder.jpg";
+
 export default function ProfileSection() {
   const { data: session, status } = useSession();
   const [isEditing, setIsEditing] = useState(false);
@@ -15,7 +17,6 @@ export default function ProfileSection() {
     email: "",
     role: "",
   });
-
 
   const [avatar, setAvatar] = useState(null);
   const [avatartoBE, setavatartoBE] = useState(null);
@@ -88,7 +89,7 @@ export default function ProfileSection() {
             {isEditing ? (
               <div className="w-full h-full relative">
                 <Image
-                  src={avatar || session?.user?.ProfileImg}
+                  src={avatar || session?.user?.ProfileImg || UserPlaceHolder}
                   alt="Profile"
                   width={100}
                   height={100}
@@ -108,7 +109,7 @@ export default function ProfileSection() {
               </div>
             ) : (
               <Image
-                src={session?.user?.ProfileImg}
+                src={session?.user?.ProfileImg || UserPlaceHolder}
                 alt="Profile"
                 width={100}
                 height={100}

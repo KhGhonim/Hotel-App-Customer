@@ -1,4 +1,4 @@
-import DahsboardAdmin from "components/Dashboard/DashboardMainPage/DashboardMainPage";
+import DahsboardAdmin from "components/Dashboard/Wrappers/DashboardMainPage/DashboardMainPage";
 
 export const metadata = {
   title: "Dashboard",

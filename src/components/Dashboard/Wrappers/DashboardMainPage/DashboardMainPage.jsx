@@ -3,13 +3,13 @@
 import { DashboardOpened } from "app/lib/DashboardSlice";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AvabilityHome from "../AvabilityHome/AvabilityHome";
-import HomeStatics from "../HomeStatics/HomeStatics";
-import LatestReviews from "../LatestReviews/LatestReviews";
-import RecentBooking from "../RecentBooking/RecentBooking";
-import RecentDining from "../RecentDining/RecentDining";
-import ReservationHomeStats from "../ReservationHomeStats/ReservationHomeStats";
-import TotalStatistics from "../TotalStatistics/TotalStatistics";
+import AvabilityHome from "../../AvabilityHome/AvabilityHome";
+import HomeStatics from "../../HomeStatics/HomeStatics";
+import LatestReviews from "../../LatestReviews/LatestReviews";
+import RecentBooking from "../../RecentBooking/RecentBooking";
+import RecentDining from "../../RecentDining/RecentDining";
+import ReservationHomeStats from "../../ReservationHomeStats/ReservationHomeStats";
+import TotalStatistics from "../../TotalStatistics/TotalStatistics";
 
 export default function DahsboardAdmin() {
   // @ts-ignore
