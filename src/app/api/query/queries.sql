@@ -1,1 +1,1 @@
-SELECT * FROM gallery;
+SELECT * FROM about_cards;

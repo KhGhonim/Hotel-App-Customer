@@ -295,8 +295,8 @@ export const DashboardMenu = [
     label: "Rooms",
     subItems: [
       { Name: "All Rooms", link: "/Dashboard/RoomList?q=AllRooms" },
-      { Name: "Available", link: "/Dashboard/RoomList?q=Available" },
-      { Name: "Booked", link: "/Dashboard/RoomList?q=Booked" },
+      // { Name: "Available", link: "/Dashboard/RoomList?q=Available" },
+      // { Name: "Booked", link: "/Dashboard/RoomList?q=Booked" },
     ],
   },
   {
@@ -304,9 +304,8 @@ export const DashboardMenu = [
     link: "PageContent",
     label: "Content",
     subItems: [
-      { Name: "FAQs", link: "/Dashboard/FAQs" },
       { Name: "Resturant", link: "/Dashboard/Content/Resturant" },
-      { Name: "About Us", link: "/Dashboard/AboutUs" },
+      { Name: "About Us", link: "/Dashboard/Content/About" },
     ],
   },
   {
@@ -323,8 +322,8 @@ export const DashboardMenu = [
     label: "Reviews",
     subItems: [
       { Name: "All Reviews", link: "/Dashboard/Reviews?q=AllReviews" },
-      { Name: "Approved", link: "/Dashboard/Reviews?q=ApprovedReviews" },
-      { Name: "Pending", link: "/Dashboard/Reviews?q=PendingReviews" },
+      // { Name: "Approved", link: "/Dashboard/Reviews?q=ApprovedReviews" },
+      // { Name: "Pending", link: "/Dashboard/Reviews?q=PendingReviews" },
     ],
   },
   {

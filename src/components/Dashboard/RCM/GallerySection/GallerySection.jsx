@@ -86,7 +86,7 @@ export default function GallerySection() {
 
   return (
     <section className="bg-white rounded-lg shadow-md p-6">
-      <div className="flex items-center gap-4 my-4">
+      <div className="flex flex-col md:flex-row  items-center gap-4 my-4">
         <img
           src={avatar || "https://via.placeholder.com/150"}
           alt="User Avatar"
@@ -128,7 +128,7 @@ export default function GallerySection() {
       {!gallery ||
         (gallery.length === 0 && <div>No images in the gallery</div>)}
       {gallery && gallery.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-4">
           {gallery?.map((image, index) => (
             <div key={index} className="relative w-56 h-56">
               <img

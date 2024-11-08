@@ -162,7 +162,7 @@ export default function MenuHighlights() {
               className="w-full p-2 border  outline-none focus:outline-teal-400 border-gray-300 rounded-lg"
             />
           </div>
-          <div className="flex items-center gap-4 mt-4">
+          <div className="flex flex-col md:flex-row  items-center gap-4 mt-4">
             <img
               src={avatar || "https://via.placeholder.com/150"} // Placeholder when no avatar is uploaded
               alt="User Avatar"

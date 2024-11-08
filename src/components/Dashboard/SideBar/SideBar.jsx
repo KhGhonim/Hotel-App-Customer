@@ -14,6 +14,7 @@ export default function SideBar() {
   const [hoveredItem, setHoveredItem] = useState(null);
   // @ts-ignore
   const [OpenSubItem, setOpenSubItem] = useState(null);
+  // @ts-ignore
   const { IsSideBarOpened } = useSelector((state) => state.Users);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -27,7 +28,6 @@ export default function SideBar() {
   };
 
   const HandleMenuDashboardNevigation = (item) => {
-    dispatch(DashboardOpened());
     setOpenSubItem(null);
   };
 
@@ -97,7 +97,7 @@ export default function SideBar() {
                   className={`${
                     IsSideBarOpened
                       ? "hidden"
-                      : "absolute left-[80px] -top-10 w-48"
+                      : "absolute left-[80px] top-0 w-48"
                   }  rounded-md bg-white py-2 shadow-lg `}
                 >
                   {item?.subItems?.map((subItem, subIndex) => (
