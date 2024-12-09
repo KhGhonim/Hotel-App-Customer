@@ -33,7 +33,7 @@ export default function page() {
 
       if (!res.ok) {
         setIsLoading(false);
-        toast.error(res.error);
+        toast.error("Wrong email or password");
         return;
       }
 
@@ -41,7 +41,7 @@ export default function page() {
         toast.success("Login Successful");
         setIsLoading(false);
         const Session = await getSession();
-        dispatch(SignInSuccess(Session.user.Role));
+        dispatch(SignInSuccess(Session?.user?.Role));
 
         router.push("/");
       }
@@ -57,38 +57,40 @@ export default function page() {
 
   return (
     <div
-      className="min-h-screen flex items-center relative justify-center bg-cover bg-center"
+      className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
       style={{
         backgroundImage:
           "url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
       }}
     >
+      <Toaster/>
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+      {/* Return to Home Button */}
       <Link
         href="/"
-        className="absolute top-3 z-50 left-2 text-white p-2 bg-blue-700  hover:scale-105 transition-all duration-300 rounded-md"
+        className="absolute top-4 left-4 bg-blue-700 text-white px-4 py-2 rounded-md shadow-lg hover:scale-105 transition transform duration-300"
       >
         Return to Home
       </Link>
 
-      <Toaster position="top-right" />
-      <div className="absolute inset-0 bg-black opacity-40"></div>
-      <div className="bg-white bg-opacity-70 p-8 rounded-lg shadow-2xl w-96 backdrop-blur-sm">
+      {/* Login Card */}
+      <div className="relative bg-white bg-opacity-80 p-10 rounded-lg shadow-2xl w-[400px] backdrop-blur-sm">
         <div className="text-center mb-8">
           <h1
-            className="text-4xl font-bold text-blue-900 mb-2"
+            className="text-4xl font-bold text-blue-900 mb-3"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
             KG Cave Hotel
           </h1>
-          <p className="text-blue-600">
+          <p className="text-blue-600 font-medium">
             Experience the magic of two continents
           </p>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-6 p-6 ">
-          <div className="space-y-1">
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
             <label
               htmlFor="email"
               className="text-sm font-medium text-gray-700"
@@ -101,11 +103,15 @@ export default function page() {
               placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+            <span className="text-xs text-gray-500">
+              Admin: admin@admin.com
+            </span>
           </div>
-          <div className="space-y-1">
+
+          <div className="space-y-2">
             <label
               htmlFor="password"
               className="text-sm font-medium text-gray-700"
@@ -118,14 +124,16 @@ export default function page() {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+            <span className="text-xs text-gray-500">PW: Admin123@</span>
           </div>
+
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300 ease-in-out shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             {isLoading ? (
               <div className="flex justify-center">
@@ -137,21 +145,29 @@ export default function page() {
           </button>
         </form>
 
-        <div className="text-center mt-1">
-          <Link className="text-blue-600 hover:underline" href={"/register"}>
+        <div className="text-center mt-4">
+          <Link
+            href="/register"
+            className="text-blue-600 hover:underline text-sm font-medium"
+          >
             Create an account
           </Link>
         </div>
 
-        <div className="mt-6 text-center text-sm">
-          <Link className="text-blue-600 hover:underline" href={"/forgetPW"}>
+        <div className="text-center mt-4">
+          <Link
+            href="/forgetPW"
+            className="text-blue-600 hover:underline text-sm font-medium"
+          >
             Forgot password?
           </Link>
         </div>
-        <div className="mt-8 flex justify-center space-x-4 text-blue-500">
-          <SiTurkishairlines className="h-6 w-6 text-red-500 cursor-pointer" />
-          <FaShip className="h-6 w-6 text-blue-500 cursor-pointer" />
-          <FaTrain className="h-6 w-6 text-gray-500 cursor-pointer" />
+
+        {/* Social Media Icons */}
+        <div className="mt-6 flex justify-center space-x-6 text-blue-500">
+          <SiTurkishairlines className="h-6 w-6 text-red-500 hover:scale-110 transition transform duration-300 cursor-pointer" />
+          <FaShip className="h-6 w-6 hover:scale-110 transition transform duration-300 cursor-pointer" />
+          <FaTrain className="h-6 w-6 text-gray-500 hover:scale-110 transition transform duration-300 cursor-pointer" />
         </div>
       </div>
     </div>
