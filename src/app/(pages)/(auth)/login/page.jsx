@@ -21,7 +21,6 @@ export default function page() {
     if (!email || !password) {
       toast.error("Please fill in all fields");
     }
-
     try {
       setIsLoading(true);
 
