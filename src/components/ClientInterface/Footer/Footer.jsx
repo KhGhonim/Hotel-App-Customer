@@ -15,7 +15,7 @@ export default function Footer() {
         alt="taksim"
         priority={true}
         quality={100}
-        className="absolute inset-0 w-full h-auto object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gray-900 bg-opacity-95" />
       <div className="relative max-w-7xl mx-auto">
@@ -140,6 +140,7 @@ export default function Footer() {
               alt="Demiray Hotel Logo"
               width={150}
               height={50}
+              priority={true}
               className="mb-4 sm:mb-0"
             />
             <h1 className="text-white text-lg md:text-2xl font-semibold">

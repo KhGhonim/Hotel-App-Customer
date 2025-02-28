@@ -48,6 +48,7 @@ export default function Header() {
               width={75}
               height={75}
               quality={100}
+              priority={true}
             />
             <span className="text-2xl font-bold text-primary">KG HOTEL</span>
           </Link>
@@ -202,6 +203,8 @@ export default function Header() {
               width={75}
               height={75}
               quality={100}
+              priority={true}
+
             />
             <span className="text-2xl font-bold text-primary">KG HOTEL</span>
           </Link>
@@ -380,6 +383,7 @@ export default function Header() {
               width={75}
               height={75}
               quality={100}
+              priority={true}
             />
             <span className="text-sm font-bold text-primary">KG HOTEL</span>
           </Link>
