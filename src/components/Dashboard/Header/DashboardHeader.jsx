@@ -8,7 +8,7 @@ import {
 import NotificationBell from "components/Dashboard/Notification/NotificationBell";
 import Conversation from "../Conversation/Conversation";
 import { useDispatch, useSelector } from "react-redux";
-import { DashboardOpened } from "app/lib/DashboardSlice";
+import { DashboardOpened } from "app/Redux/DashboardSlice";
 
 export default function DashboardHeader({}) {
   // @ts-ignore

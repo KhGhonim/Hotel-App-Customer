@@ -1,5 +1,5 @@
 "use client";
-import { DashboardOpened } from "app/lib/DashboardSlice";
+import { DashboardOpened } from "app/Redux/DashboardSlice.js";
 import AboutUsResturant from "../../../../components/Dashboard/RCM/AboutUsResturant/AboutUsResturant.jsx";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,5 +1,5 @@
 "use client";
-import { SignOut } from "app/lib/DashboardSlice";
+import { SignOut } from "app/Redux/DashboardSlice";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";

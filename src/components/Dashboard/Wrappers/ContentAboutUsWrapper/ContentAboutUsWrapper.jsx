@@ -1,5 +1,5 @@
 "use client";
-import { DashboardOpened } from "app/lib/DashboardSlice";
+import { DashboardOpened } from "app/Redux/DashboardSlice";
 import AboutCards from "components/Dashboard/AboutCards/AboutCards";
 import AboutUsContent from "components/Dashboard/AboutContent/AboutUsContent";
 import { useState, useRef } from "react";

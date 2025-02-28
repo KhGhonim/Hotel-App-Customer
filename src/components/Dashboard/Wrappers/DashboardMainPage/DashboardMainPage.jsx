@@ -1,6 +1,6 @@
 "use client";
 
-import { DashboardOpened } from "app/lib/DashboardSlice";
+import { DashboardOpened } from "app/Redux/DashboardSlice";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AvabilityHome from "../../AvabilityHome/AvabilityHome";

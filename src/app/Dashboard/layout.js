@@ -5,9 +5,9 @@ import AuthProvider from "utils/AuthProvider";
 import DashboardHeader from "components/Dashboard/Header/DashboardHeader";
 import SideBar from "components/Dashboard/SideBar/SideBar";
 import { Provider } from "react-redux";
-import { store, persistor } from "../lib/store";
+import { store, persistor } from "../Redux/store";
 import { PersistGate } from "redux-persist/integration/react";
-import AdminWrapper from "app/lib/AdminWrapper";
+import AdminWrapper from "app/Redux/AdminWrapper";
 
 
 export default function RootLayout({ children }) {

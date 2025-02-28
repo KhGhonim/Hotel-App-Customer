@@ -21,7 +21,6 @@ export async function POST(request) {
       { status: 400 }
     );
   }
-  console.log(id, email, FirstName, LastName, role, ProfileImg);
   try {
     if (ProfileImg) {
       try {

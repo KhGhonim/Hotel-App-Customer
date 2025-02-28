@@ -1,5 +1,5 @@
 "use client";
-import { DashboardOpened } from "app/lib/DashboardSlice";
+import { DashboardOpened } from "app/Redux/DashboardSlice";
 import AuthPersons from "components/Dashboard/ProfilePage/AuthPersons/AuthPersons";
 import ProfileSection from "components/Dashboard/ProfilePage/ProfileSection/ProfileSection";
 import { useRef } from "react";

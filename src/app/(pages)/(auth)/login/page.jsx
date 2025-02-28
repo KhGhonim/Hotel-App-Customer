@@ -8,7 +8,7 @@ import { FaShip, FaSpinner, FaTrain } from "react-icons/fa";
 import { SiTurkishairlines } from "react-icons/si";
 import { getSession, signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
-import { SignInSuccess } from "app/lib/DashboardSlice";
+import { SignInSuccess } from "app/Redux/DashboardSlice";
 
 export default function page() {
   const [email, setEmail] = useState("");

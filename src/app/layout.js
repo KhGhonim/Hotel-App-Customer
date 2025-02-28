@@ -4,7 +4,7 @@ import "./globals.css";
 import { Cairo } from "next/font/google";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import store, { persistor } from "./lib/store";
+import store, { persistor } from "./Redux/store";
 
 const cairo = Cairo({
   weight: ["200", "300", "400", "500", "600", "700"],
