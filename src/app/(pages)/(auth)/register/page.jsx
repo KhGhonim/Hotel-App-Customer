@@ -18,7 +18,6 @@ export default function page() {
   const [passwordError, setPasswordError] = useState("");
   const [ArrayData, setArrayData] = useState({});
   const [Isloading, setIsloading] = useState(false);
-
   const router = useRouter();
 
   const ArrayDatas = (eo) => {
@@ -113,7 +112,10 @@ export default function page() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center py-12 px-4 relative sm:px-6 lg:px-8">
+    <div   style={{
+      backgroundImage:
+        "url('https://plus.unsplash.com/premium_photo-1661964071015-d97428970584?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+    }} className="min-h-screen flex items-center justify-center py-12 px-4 relative sm:px-6 lg:px-8">
       <div className="absolute inset-0 bg-gray-900 opacity-50"></div>
       <Link
         href="/"

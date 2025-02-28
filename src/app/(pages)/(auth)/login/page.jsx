@@ -55,29 +55,27 @@ export default function page() {
     }
   };
 
-  
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center relative"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          "url('https://plus.unsplash.com/premium_photo-1661928260943-4aa36c5e1acc?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
       }}
     >
-      <Toaster/>
+      <Toaster />
       {/* Background Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
-      {/* Return to Home Button */}
-      <Link
-        href="/"
-        className="absolute top-4 left-4 bg-blue-700 text-white px-4 py-2 rounded-md shadow-lg hover:scale-105 transition transform duration-300"
-      >
-        Return to Home
-      </Link>
-
       {/* Login Card */}
       <div className="relative bg-white bg-opacity-80 p-10 rounded-lg shadow-2xl w-[400px] backdrop-blur-sm">
+        {/* Return to Home Button */}
+        <Link
+          href="/"
+          className="absolute z-50 top-0 left-0 text-xs bg-blue-700 text-white px-4 py-2 rounded-md shadow-lg hover:scale-105 transition transform duration-300"
+        >
+          Return to Home
+        </Link>
         <div className="text-center mb-8">
           <h1
             className="text-4xl font-bold text-blue-900 mb-3"

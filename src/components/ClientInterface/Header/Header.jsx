@@ -87,7 +87,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="flex items-center ">
+            {/* <div className="flex items-center ">
               <select
                 id="language"
                 value={selectedLanguage}
@@ -113,7 +113,7 @@ export default function Header() {
                   Arabic
                 </option>
               </select>
-            </div>
+            </div> */}
             <div className="relative">
               <Image
                 src={session?.user?.ProfileImg || UserPlaceHolder}
@@ -519,7 +519,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="flex justify-center items-center space-x-4 border rounded-md p-2 border-gray-700 shadow-sm mt-6">
+          {/* <div className="flex justify-center items-center space-x-4 border rounded-md p-2 border-gray-700 shadow-sm mt-6">
             <button
               onClick={() => handleLanguageChange({ target: { value: "en" } })}
               className={`p-2 text-lg rounded-md ${
@@ -550,7 +550,7 @@ export default function Header() {
             >
               Arabic
             </button>
-          </div>
+          </div> */}
         </div>
       </header>
 
