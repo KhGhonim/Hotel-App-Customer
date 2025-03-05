@@ -12,6 +12,7 @@ import { PiOven, PiHairDryerLight } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
 import Link from "next/link";
 import useRezervationConfirmation from "Hooks/useRezervationConfirmation";
+import { CgHome } from "react-icons/cg";
 
 export default function ReservationConfirmation() {
   const searchParams = useSearchParams();
@@ -46,7 +47,7 @@ export default function ReservationConfirmation() {
           href="/"
           className="absolute top-0 z-50 right-0 text-white p-1 bg-black/80  hover:scale-105 transition-all duration-300 rounded-md"
         >
-          Return to Home
+          <CgHome className="  text-white font-semibold rounded-lg  transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-500" />
         </Link>
         {/* Heading Section */}
         <div className="text-center">

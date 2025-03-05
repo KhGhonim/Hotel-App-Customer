@@ -247,7 +247,7 @@ function ProfileWrapper() {
               BOOKED
             </div>
             <div>
-              <h2 className="text-4xl font-bold mb-2">Bed Room</h2>
+              <h2 className="text-4xl font-bold mb-2">{BookingData?.title}</h2>
               <p className="leading-relaxed">{BookingData?.description}</p>
             </div>
           </div>
