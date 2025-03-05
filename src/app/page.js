@@ -1,10 +1,11 @@
-import AboutUSHome from "components/ClientInterface/AboutUSHome/AboutUSHome";
 import Facilities from "components/ClientInterface/Facilities/Facilities";
 import Footer from "components/ClientInterface/Footer/Footer";
 import Gallery from "components/ClientInterface/Gallery/Gallery";
+import GuestExperiences from "components/ClientInterface/GuestExperiences/GuestExperiences";
 import Header from "components/ClientInterface/Header/Header";
 import HeroSection from "components/ClientInterface/HeroSection/HeroSection";
 import MiniHeroSection from "components/ClientInterface/MiniHeroSection/MiniHeroSection";
+import SpecialEventsCelebrations from "components/ClientInterface/SpecialEventsCelebrations/SpecialEventsCelebrations";
 
 export const metadata = {
   title: "LuxeStay Hotel",
@@ -24,7 +25,8 @@ export default function Home() {
       <MiniHeroSection />
       <Facilities />
       <Gallery />
-      <AboutUSHome />
+      <GuestExperiences />
+      <SpecialEventsCelebrations />
       <Footer />
     </div>
   );
