@@ -5,7 +5,7 @@ import Footer from "components/ClientInterface/Footer/Footer";
 import Header from "components/ClientInterface/Header/Header";
 
 export const metadata = {
-  title: "KG Cave Hotel",
+  title: "LuxeStay Hotel - About Us",
   description:
     "Read more about our eco-friendly building. Designed by Khaled Ghonim",
 

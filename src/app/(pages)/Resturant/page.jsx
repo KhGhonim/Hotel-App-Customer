@@ -18,7 +18,7 @@ import ResturantMenuHighlights from "components/ClientInterface/ResturantMenuHig
 import ResturantReviewSubmission from "components/ClientInterface/ResturantReviewSubmission/ResturantReviewSubmission";
 
 const restaurantData = {
-  name: "KG Cave Hotel",
+  name: "LuxeStay Hotel",
   description:
     "Experience the flavors of Türkiye in the heart of the city. Our passionate chefs create authentic dishes using the finest ingredients.",
   menuHighlights: [
@@ -52,7 +52,7 @@ const restaurantData = {
 };
 
 export const metadata = {
-  title: "KG Cave Hotel",
+  title: "LuxeStay Hotel - Resturant",
   description: "Learn more about our restaurant. Designed by Khaled Ghonim",
 
   icons: {

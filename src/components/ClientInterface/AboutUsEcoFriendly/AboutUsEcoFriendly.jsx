@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaArrowRight, FaBuilding, FaLeaf, FaSun } from "react-icons/fa";
 
 export default function AboutUsEcoFriendly() {
@@ -53,10 +54,10 @@ export default function AboutUsEcoFriendly() {
         </div>
 
         <div className="mt-16 text-center flex justify-center">
-          <button className="bg-black text-white font-semibold transition-all duration-500 group hover:bg-gray-800 px-10 py-4 rounded-none text-lg flex justify-center items-center">
+          <Link className="bg-black text-white font-semibold transition-all duration-500 group hover:bg-gray-800 px-10 py-4 rounded-none text-lg flex justify-center items-center" href={"/Rooms"}>
             Book Your Eco-Luxury Stay
             <FaArrowRight className="ml-2 h-5 w-5 group-hover:pl-2 transition-all duration-500 text-orange-400" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

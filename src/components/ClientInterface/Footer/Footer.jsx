@@ -144,10 +144,10 @@ export default function Footer() {
               className="mb-4 sm:mb-0"
             />
             <h1 className="text-white text-lg md:text-2xl font-semibold">
-              KG Cave Hotel
+              LuxeStay Hotel
             </h1>
           </div>
-          <p className="text-sm">© 2024 KG Cave Hotel - All Rights Reserved.</p>
+          <p className="text-sm">© 2024 LuxeStay Hotel - All Rights Reserved.</p>
         </div>
       </div>
     </footer>

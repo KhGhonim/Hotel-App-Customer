@@ -1,5 +1,6 @@
 import Image from "next/image";
 import HotelEntrance from "../../../../public/images/Entrance-scaled.jpg.webp";
+import Link from "next/link";
 
 export default function AboutUsHeroSection() {
   return (
@@ -7,28 +8,28 @@ export default function AboutUsHeroSection() {
       <div className="w-full  lg:p-32 flex flex-col justify-center">
         <h2 className="text-sm text-white mb-4"> Welcome To </h2>
         <h1 className="text-4xl lg:text-6xl text-white font-light mb-6">
-          KG Cave Hotel
+          LuxeStay Hotel
           <br />
           Green Building
         </h1>
         <p className="text-white mb-6 max-w-2xl">
-          KG Cave Hotel combines luxury living experiences with city life,
+          LuxeStay Hotel combines luxury living experiences with city life,
           Located on the{" "}
           <span className="font-bold text-green-800"> European Side</span>, in
           the heart of <span className="font-bold text-red-500">Taksim</span>{" "}
           Square.
         </p>
         <p className="text-white mb-6 max-w-2xl">
-          KG Cave Hotel offers unlimited possibilities and inspiring is a living
+          LuxeStay Hotel offers unlimited possibilities and inspiring is a living
           space in itself with its experiences. Many numerous food and beverage
           venues, wellness and spa experiences, meeting areas, an
           environmentally friendly building and on the 48th floor - a step into
-          the sky KG Cave Hotel is flawless with its Skyview Observation Terrace
+          the sky LuxeStay Hotel is flawless with its Skyview Observation Terrace
           offers a living space.
         </p>
-        <button className="bg-black rounded-lg text-white hover:bg-gray-800 px-6 py-3 transition-all duration-500 w-fit">
+        <Link className="bg-black rounded-lg text-white hover:bg-gray-800 px-6 py-3 transition-all duration-500 w-fit" href={"/Rooms"}>
           Discover Our Eco-Friendly Building
-        </button>
+        </Link>
       </div>
       <div className="w-full bg-gray-100  relative rounded-3xl ">
         <Image
@@ -36,7 +37,7 @@ export default function AboutUsHeroSection() {
           height={1080}
           quality={100}
           src={HotelEntrance}
-          alt="KG Cave Hotel Entrance"
+          alt="LuxeStay Hotel Entrance"
           className=" w-full  h-full  object-center rounded-3xl  object-cover"
         />
       </div>

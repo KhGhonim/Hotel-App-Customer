@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import HotelLogo from "../../../../public/images/Rooms/Connecting Family Room, istanbul, Garden View.webp";
 import { BiSolidWasher, BiSolidFridge } from "react-icons/bi";
 import { FaWifi, FaCoffee, FaBath, FaTv } from "react-icons/fa";
@@ -11,13 +10,10 @@ import { GiSlippers } from "react-icons/gi";
 import { MdOutlineRoomService } from "react-icons/md";
 import { PiOven, PiHairDryerLight } from "react-icons/pi";
 import { TbAirConditioning } from "react-icons/tb";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
+import useRezervationConfirmation from "Hooks/useRezervationConfirmation";
 
 export default function ReservationConfirmation() {
-  const [isConfirmed, setIsConfirmed] = useState(false);
-  const [RoomData, setRoomData] = useState([]);
-  const [SpecialRequest, setSpecialRequest] = useState(null);
   const searchParams = useSearchParams();
   const checkIn = searchParams.get("checkIn");
   const checkOut = searchParams.get("checkOut");
@@ -25,118 +21,23 @@ export default function ReservationConfirmation() {
   const kids = searchParams.get("kids");
   const price = parseInt(searchParams.get("price"), 10);
   const roomID = searchParams.get("room_id");
-  const { data: session, status } = useSession();
 
-  useEffect(() => {
-    if (!checkIn || !checkOut || !adults || !kids || !price || !roomID) {
-      toast.error("Please return and try again with all fields filled in");
-      return;
-    }
-    try {
-      const fetchData = async () => {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_oneRoom_API}?q=${roomID}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        );
-        const data = await response.json();
-
-        setRoomData(data);
-        if (!response.ok) {
-          toast.error(data.message);
-          return;
-        }
-      };
-
-      fetchData();
-    } catch (error) {
-      console.log("Error fetching room data: " + error);
-      toast.error("Error fetching room data: " + error);
-    }
-  }, [roomID]);
-  const checkInDate = new Date(checkIn);
-  const checkOutDate = new Date(checkOut);
-
-  const timeDifference = checkOutDate.getTime() - checkInDate.getTime();
-  const numberOfDays = timeDifference / (1000 * 60 * 60 * 24);
-  const totalPrice = numberOfDays * price;
-
-  const handleConfirmAndPay = async () => {
-    if (!session?.user?.id) {
-      toast.error("Please ensure you are logged in to submit a reservation");
-      return;
-    }
-    if (!checkIn || !checkOut || !adults || !kids || !roomID) {
-      toast.error("Please return and try again with all fields filled in");
-      return;
-    }
-
-    const formattedAdults = parseInt(adults, 10);
-    const formattedKids = parseInt(kids, 10);
-    const formattedRoomID = parseInt(roomID, 10);
-
-    // Handle payment logic here
-    const InsertBooking = await fetch(
-      process.env.NEXT_PUBLIC_InsertBooking_API,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          checkIn,
-          checkOut,
-          adults: formattedAdults,
-          kids: formattedKids,
-          roomID: formattedRoomID,
-          SpecialRequest,
-          id: session?.user?.id,
-        }),
-      }
-    );
-    const data = await InsertBooking.json();
-    if (!InsertBooking.ok) {
-      toast.error(data.error);
-      return;
-    }
-
-    toast.success("Payment successful");
-    setIsConfirmed(true);
-  };
-
-  useEffect(() => {
-    if (isConfirmed) {
-      const Sent = async (params) => {
-        const Sendemail = await fetch(process.env.NEXT_PUBLIC_Sendemail_API, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({
-            checkIn,
-            checkOut,
-            adults,
-            kids,
-            totalPrice,
-            roomID,
-            email: session?.user?.Email,
-          }),
-        });
-        if (!Sendemail.ok) {
-          toast.error("Error sending email");
-          return;
-        }
-
-        toast.success("Email sent successfully, check your inbox");
-      };
-
-      Sent();
-    }
-  }, [isConfirmed]);
-
+  const {
+    isConfirmed,
+    RoomData,
+    handleConfirmAndPay,
+    setSpecialRequest,
+    totalPrice,
+    numberOfDays,
+    session,
+  } = useRezervationConfirmation(
+    roomID,
+    price,
+    kids,
+    adults,
+    checkIn,
+    checkOut
+  );
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <Toaster position="top-right" />

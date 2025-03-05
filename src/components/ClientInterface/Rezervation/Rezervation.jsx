@@ -24,10 +24,6 @@ export default function Rezervation() {
   const dateInputRef = useRef(null);
   const dateInputRef2 = useRef(null);
   const router = useRouter();
-
-  {
-    /* Handlers CheckIn  */
-  }
   const handleDateChangeForCheckIn = (event) => {
     const selectedDate = new Date(event.target.value);
     setCheckIn(selectedDate.toISOString().slice(0, 10));
@@ -270,7 +266,7 @@ export default function Rezervation() {
       <div className="lg:hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30">
         <button
           onClick={() => setIsFormOpen(true)}
-          className="bg-blue-500 text-base md:text-2xl hover:bg-blue-500/80 transition-all duration-300 ease-in-out text-white p-4 px-6 md:p-8 md:px-12 mt-20 rounded-lg"
+          className="bg-blue-500 text-base  hover:bg-blue-500/80 transition-all duration-300 ease-in-out text-white p-4 px-6  mt-20 rounded-lg"
         >
           Book Now
         </button>
@@ -291,7 +287,7 @@ export default function Rezervation() {
               alt="Address Hotels+Resorts"
               className="h-12 md:w-24 w-12 md:h-24 rounded-full"
             />
-            <h1 className="text-xl font-bold">KG Cave Hotel</h1>
+            <h1 className="text-xl font-bold">LuxeStay Hotel</h1>
           </div>
           <button
             onClick={() => setIsFormOpen(false)}
@@ -327,7 +323,7 @@ export default function Rezervation() {
           </div>
 
           {activeTab === "accommodation" ? (
-            <AccommodationForm setIsFormOpen={setIsFormOpen} />
+            <AccommodationForm />
           ) : (
             <DiningForm setIsFormOpen={setIsFormOpen} />
           )}

@@ -50,7 +50,9 @@ export default function Header() {
               quality={100}
               priority={true}
             />
-            <span className="text-2xl font-bold text-primary">KG HOTEL</span>
+            <span className="text-2xl font-bold text-primary">
+              LuxeStay HOTEL
+            </span>
           </Link>
 
           <div className="flex items-center gap-4 pr-5">
@@ -150,12 +152,22 @@ export default function Header() {
                       </Link>
                     )}
 
-                    <button
-                      className="mt-4 !z-50 px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-full hover:bg-red-600 transition-colors"
-                      onClick={() => signOut()}
-                    >
-                      Log Out
-                    </button>
+                    <div className="flex justify-between gap-2 items-center">
+                      <button
+                        className="mt-4 !z-50 px-4 py-2 bg-red-500 text-white text-sm font-medium rounded-full hover:bg-red-600 transition-colors"
+                        onClick={() => signOut()}
+                      >
+                        Log Out
+                      </button>
+                      {status === "authenticated" && (
+                        <Link
+                          className="mt-4 !z-50 px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-full hover:bg-green-600 transition-colors"
+                          href={`/Profile/${session?.user?.id}`}
+                        >
+                          Profile
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 )}
 
@@ -204,9 +216,10 @@ export default function Header() {
               height={75}
               quality={100}
               priority={true}
-
             />
-            <span className="text-2xl font-bold text-primary">KG HOTEL</span>
+            <span className="text-2xl font-bold text-primary">
+              LuxeStay Hotel
+            </span>
           </Link>
 
           {/* Tablet Menu Icon */}
@@ -219,7 +232,7 @@ export default function Header() {
               )}
             </nav>
 
-            <div className="flex items-center ">
+            {/* <div className="flex items-center ">
               <select
                 id="language"
                 value={selectedLanguage}
@@ -245,7 +258,7 @@ export default function Header() {
                   Arabic
                 </option>
               </select>
-            </div>
+            </div> */}
 
             <div className="relative">
               <Image
@@ -315,7 +328,7 @@ export default function Header() {
         {/* Tablet Menu */}
         <div
           className={`absolute top-0 right-0 h-screen  z-50 bg-[#F5F5F5] w-96 p-7 text-black ${
-            isMenuOpen ? "translate-x-0" : "translate-x-[100%]"
+            isMenuOpen ? "translate-x-0" : "translate-x-[1000%]"
           }  transition-all duration-300 ease-in overflow-hidden `}
         >
           <div className="absolute top-5 right-5">
@@ -331,7 +344,10 @@ export default function Header() {
                 Add New Room
               </Link>
             ) : (
-              <Link className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg" href={"/Rooms"}>
+              <Link
+                className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg"
+                href={"/Rooms"}
+              >
                 Book Now
               </Link>
             )}
@@ -385,7 +401,9 @@ export default function Header() {
               quality={100}
               priority={true}
             />
-            <span className="text-sm font-bold text-primary">KG HOTEL</span>
+            <span className="text-sm font-bold text-primary">
+              LuxeStay HOTEL
+            </span>
           </Link>
 
           <div className="flex items-center gap-4 pr-5">
@@ -478,7 +496,10 @@ export default function Header() {
                 Add A Room
               </button>
             ) : (
-              <Link className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black" href={"/Rooms"}>
+              <Link
+                className="text-xl font-bold bg-[#F7AB0A] p-3 rounded-lg  backdrop-blur-md shadow-lg hover:bg-opacity-40 transition-colors duration-300 border border-black"
+                href={"/Rooms"}
+              >
                 Book Now
               </Link>
             )}

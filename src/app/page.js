@@ -7,7 +7,7 @@ import HeroSection from "components/ClientInterface/HeroSection/HeroSection";
 import MiniHeroSection from "components/ClientInterface/MiniHeroSection/MiniHeroSection";
 
 export const metadata = {
-  title: "KG Cave Hotel",
+  title: "LuxeStay Hotel",
   description:
     "Experience the flavors of Turkiye in the heart of the city. Designed by Khaled Ghonim",
 

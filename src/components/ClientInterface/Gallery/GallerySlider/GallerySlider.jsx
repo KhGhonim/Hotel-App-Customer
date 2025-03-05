@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
 import { HomeGallery } from "DB/db";
+import { Autoplay } from "swiper/modules";
 
 export default function GallerySlider() {
   return (
@@ -22,9 +23,14 @@ export default function GallerySlider() {
             spaceBetween: 5,
           },
         }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}
+        modules={[Autoplay]}
         className="mySwiper"
       >
         {HomeGallery.map((photo, i) => {

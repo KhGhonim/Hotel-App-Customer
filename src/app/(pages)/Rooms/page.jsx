@@ -4,7 +4,7 @@ import RoomFiltering from "components/ClientInterface/RoomFiltering/RoomFilterin
 import RoomsHeroSection from "components/ClientInterface/RoomsHeroSection/RoomsHeroSection";
 
 export const metadata = {
-  title: "KG Cave Hotel",
+  title: "LuxeStay Hotel - Rooms",
   description: "Know more about our rooms. Designed by Khaled Ghonim",
 
   icons: {

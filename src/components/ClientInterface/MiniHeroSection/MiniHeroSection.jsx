@@ -13,13 +13,13 @@ export default function MiniHeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-base font-semibold text-gray-500 tracking-wide uppercase">
-              KG CAVE HOTEL
+              LuxeStay HOTEL
             </h2>
             <h1 className="mt-1 text-4xl font-bold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-              KG Cave Hotel
+              LuxeStay Hotel
             </h1>
             <p className="mt-5 text-xl text-gray-500">
-              KG Cave Hotel is a family-run boutique guesthouse in the heart of
+              LuxeStay Hotel is a family-run boutique guesthouse in the heart of
               Istanbul overlooking Goreme National Park. KG Hotel is completely
               unique. Carved from Istanbul's natural rock and stone, the
               guesthouse is located a short walk from the centre of Arnavutkoy.
@@ -28,7 +28,7 @@ export default function MiniHeroSection() {
               two individually designed rooms.
             </p>
             <p className="mt-3 text-2xl italic text-gray-700">
-              The KG CAVE HOTEL
+              The LuxeStay HOTEL
             </p>
           </div>
           <div className="relative">
