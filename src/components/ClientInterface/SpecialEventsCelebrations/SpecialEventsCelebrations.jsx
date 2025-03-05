@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function SpecialEventsCelebrations() {
   return (
     <section className="py-16">
@@ -11,19 +13,23 @@ function SpecialEventsCelebrations() {
               title: "Weddings",
               capacity: "Up to 200 guests",
               image: "photo-1519167758481-83f550bb49b3",
+              type: "weddings",
             },
             {
               title: "Corporate Events",
               capacity: "Up to 150 guests",
               image: "photo-1523580494863-6f3031224c94",
+              type: "corporate",
             },
             {
               title: "Private Parties",
               capacity: "Up to 100 guests",
               image: "photo-1562866470-3774249bef10",
+              type: "parties",
             },
           ].map((event, index) => (
-            <div
+            <Link
+              href={`/Events/${event.type}`}
               key={index}
               className="relative group overflow-hidden rounded-xl"
             >
@@ -41,7 +47,7 @@ function SpecialEventsCelebrations() {
                   Learn More
                 </button>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

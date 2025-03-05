@@ -507,3 +507,120 @@ export const NotificationData = [
     unread: true,
   },
 ];
+
+export const eventData = {
+  weddings: {
+    title: 'Luxury Wedding Venues',
+    description: 'Create unforgettable memories in our elegant wedding spaces',
+    capacity: 'Up to 200 guests',
+    features: [
+      'Dedicated wedding planner',
+      'Customizable decoration packages',
+      'Bridal suite',
+      'Professional catering services',
+      'Indoor and outdoor venues',
+      'State-of-the-art sound system'
+    ],
+    packages: [
+      {
+        name: 'Intimate Ceremony',
+        guests: '50-80',
+        price: '$5,000',
+        includes: ['Ceremony venue', 'Basic decorations', '3-hour reception', 'Basic catering']
+      },
+      {
+        name: 'Classic Wedding',
+        guests: '100-150',
+        price: '$12,000',
+        includes: ['Ceremony & reception venues', 'Full decorations', '5-hour reception', 'Premium catering', 'Wedding cake']
+      },
+      {
+        name: 'Grand Celebration',
+        guests: '150-200',
+        price: '$20,000',
+        includes: ['All venues access', 'Luxury decorations', 'Full day access', 'Premium catering', 'Wedding cake', 'Photography']
+      }
+    ],
+    images: [
+      'photo-1511285560929-80b456fea0bc',
+      'photo-1714972383570-44ddc9738355',
+      'photo-1511795409834-ef04bbd61622'
+    ]
+  },
+  corporate: {
+    title: 'Corporate Event Spaces',
+    description: 'Professional venues for your business needs',
+    capacity: 'Up to 150 guests',
+    features: [
+      'High-speed internet',
+      'Audio-visual equipment',
+      'Breakout rooms',
+      'Business center',
+      'Catering services',
+      'Event coordinator'
+    ],
+    packages: [
+      {
+        name: 'Half-Day Meeting',
+        guests: '20-50',
+        price: '$1,500',
+        includes: ['Meeting room', 'Basic AV equipment', 'Coffee break', 'Light lunch']
+      },
+      {
+        name: 'Full-Day Conference',
+        guests: '50-100',
+        price: '$3,500',
+        includes: ['Conference hall', 'Full AV setup', 'Breakfast & lunch', 'Coffee breaks']
+      },
+      {
+        name: 'Corporate Retreat',
+        guests: '100-150',
+        price: '$8,000',
+        includes: ['Multiple venues', 'Full AV setup', 'All meals', 'Team activities']
+      }
+    ],
+    images: [
+      'photo-1561489396-888724a1543d',
+      'photo-1561489411-c0ce86e994bb',
+      'photo-1561489404-42f13a2f09a2'
+    ]
+  },
+  parties: {
+    title: 'Private Party Venues',
+    description: 'Perfect spaces for your special celebrations',
+    capacity: 'Up to 100 guests',
+    features: [
+      'Flexible spaces',
+      'Custom lighting',
+      'Dance floor',
+      'Bar service',
+      'Catering options',
+      'Event staff'
+    ],
+    packages: [
+      {
+        name: 'Cocktail Party',
+        guests: '30-50',
+        price: '$2,000',
+        includes: ['Venue space', 'Basic decorations', '3-hour event', 'Appetizers']
+      },
+      {
+        name: 'Birthday Celebration',
+        guests: '50-75',
+        price: '$3,500',
+        includes: ['Venue space', 'Full decorations', '4-hour event', 'Buffet dinner']
+      },
+      {
+        name: 'Gala Event',
+        guests: '75-100',
+        price: '$6,000',
+        includes: ['Premium venue', 'Luxury decorations', '5-hour event', 'Plated dinner']
+      }
+    ],
+    images: [
+      'photo-1528605248644-14dd04022da1',
+      'photo-1581954548122-4dff8989c0f7',
+      'photo-1529832588601-c01e066263a8'
+    ]
+  }
+};
